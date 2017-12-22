@@ -1,0 +1,38 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'fr.efaya.game'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-freemarker')
+
+	compile('org.springframework.boot:spring-boot-devtools')
+
+	compile group: 'org.webjars', name: 'angularjs', version: '1.6.6'
+	compile group: 'org.webjars', name: 'bootstrap', version: '3.3.7-1'
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
