@@ -3,6 +3,7 @@ package fr.efaya.game.todorpg.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +38,11 @@ public class ApplicationViewController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView getHomePage(Principal principal) {
         return retrieveHomePageMav(principal);
+    }
+
+    @RequestMapping(path = "/partials/{partial}.html", method = RequestMethod.GET)
+    public String retrievePartial(@PathVariable String partial) {
+        return "partials/" + partial;
     }
 
     private ModelAndView retrieveHomePageMav(Principal principal) {

@@ -13,14 +13,19 @@ public class Constants {
     static Map<Integer, Integer> expToLevels = new HashMap<Integer, Integer>() {{
         put(0, 1);
         put(100, 2);
-        put(250, 3);
-        put(475, 4);
-        put(625, 5);
-        put(1025, 6);
-        put(1500, 7);
-        put(2350, 8);
-        put(3625, 9);
-        put(4900, 10);
+        put(200, 3);
+        put(310, 4);
+        put(475, 5);
+        put(625, 6);
+        put(865, 7);
+        put(1025, 8);
+        put(1250, 9);
+        put(1585, 10);
+        put(2350, 11);
+        put(3625, 12);
+        put(4900, 13);
+        put(6400, 14);
+        put(8200, 15);
     }};
 
     public static Map<Integer, Integer> levelsToExp = expToLevels.entrySet()

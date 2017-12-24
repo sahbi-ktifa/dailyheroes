@@ -37,7 +37,8 @@ public class TaskServiceImpl implements TaskService {
     public Task createTask(Task task, User user) {
         task.setId(UUID.randomUUID().toString());
         task.setCreationDate(new Date());
-        Integer exp = (Constants.complexity.get(task.getComplexity()) * Constants.levelsToExp.get(user.getLevel())) / 100;
+        Integer complexity = Constants.complexity.get(task.getComplexity()) - ((user.getLevel() - 1) * 4);
+        Integer exp = (complexity * Constants.levelsToExp.get(user.getLevel())) / 100;
         task.setExp(exp);
         task = repository.save(task);
         publisher.publishEvent(new CreatedTaskEvent(this, task, user));
