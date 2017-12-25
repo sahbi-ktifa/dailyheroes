@@ -9,5 +9,5 @@ import fr.efaya.game.todorpg.domain.Dashboard;
 public interface DashboardService {
     Dashboard saveDashboard(Dashboard dashboard);
 
-    Dashboard retrieveDashboardForUser(String userId);
+    Dashboard retrieveDashboardForUser(String username);
 }

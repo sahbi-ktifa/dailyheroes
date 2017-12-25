@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3" ng-app="LoginApp" ng-controller="LoginCtrl">
                  <#if error??>
-                    <div class="notif alert alert-danger">Nom d'utilisateur inconnu, mot de passe incorrect ou l'utilisateur n'a pas été validé.</div>
+                    <div class="notif alert alert-danger">Nom d'utilisateur inconnu ou mot de passe incorrect.</div>
                  </#if>
                 <div class="notif alert alert-danger" ng-if="error" ng-click="clearError()">{{error}}</div>
                 <div class="notif alert alert-success" ng-if="success" ng-click="clearSuccess()">{{success}}</div>

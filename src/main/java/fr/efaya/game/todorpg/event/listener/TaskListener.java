@@ -53,14 +53,14 @@ public class TaskListener {
     }
 
     private void addNotification(User user, String message) {
-        String userId = user.getId();
-        Dashboard dashboard = dashboardService.retrieveDashboardForUser(userId);
+        String username = user.getUsername();
+        Dashboard dashboard = dashboardService.retrieveDashboardForUser(username);
 
         List<String> users = dashboard.getUsers().stream()
-                .filter(u -> !u.equals(userId))
+                .filter(u -> !u.equals(username))
                 .collect(Collectors.toList());
-        for (String _userId : users) {
-            User _user = userService.retrieveUser(_userId);
+        for (String _username : users) {
+            User _user = userService.retrieveUser(_username);
             _user.getNotifications().add(new Notification(message));
             userService.saveUser(_user);
         }

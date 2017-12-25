@@ -53,9 +53,9 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task completeTask(Task task, User user) {
         task = repository.findOne(task.getId());
-        if (task.getStatus().equals(Task.State.todo)) {
-            task.setStatus(Task.State.tovalidate);
-            task.setAssignedTo(user.getId());
+        if (task.getStatus().equals(Task.STATE.todo)) {
+            task.setStatus(Task.STATE.tovalidate);
+            task.setAssignedTo(user.getUsername());
             task = repository.save(task);
             publisher.publishEvent(new CompletedTaskEvent(this, task, user));
         }
@@ -65,8 +65,8 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task validTask(Task task, User user) {
         task = repository.findOne(task.getId());
-        if (task.getStatus().equals(Task.State.tovalidate)) {
-            task.setStatus(Task.State.done);
+        if (task.getStatus().equals(Task.STATE.tovalidate)) {
+            task.setStatus(Task.STATE.done);
             task = repository.save(task);
             publisher.publishEvent(new ValidatedTaskEvent(this, task, user));
         }

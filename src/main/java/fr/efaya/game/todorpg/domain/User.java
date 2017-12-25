@@ -15,7 +15,6 @@ import java.util.Set;
 @Document(collection = "Users")
 public class User {
     @Id
-    private String id;
     private String username;
     private String password;
     private Integer level = 1;
@@ -29,14 +28,6 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getUsername() {

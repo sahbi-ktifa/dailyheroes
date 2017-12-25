@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/interface.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/dashboard.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
@@ -30,16 +31,16 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="page-scroll">
+                <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('#!/')}">
                     <a href="#!/home"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a>
                 </li>
-                <li class="page-scroll">
+                <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('/profile')}">
                     <a href="#!/profile"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
                 </li>
-                <li class="page-scroll">
+                <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('/notifications')}">
                     <a href="#!/notifications"><i class="fa fa-envelope" aria-hidden="true"></i> Notifications</a>
                 </li>
-                <li class="page-scroll">
+                <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('/task')}">
                     <a href="#!/task"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a task</a>
                 </li>
             </ul>
@@ -76,6 +77,7 @@
 <script type="text/javascript" src="webjars/angularjs/1.6.6/angular-route.min.js"></script>
 <script type="text/javascript" src="/resources/js/home/app.js"></script>
 <script type="text/javascript" src="/resources/js/home/services.js"></script>
+<script type="text/javascript" src="/resources/js/home/directives.js"></script>
 <script type="text/javascript" src="/resources/js/home/controllers.js"></script>
 </body>
 </html>

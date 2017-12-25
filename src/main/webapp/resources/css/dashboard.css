@@ -1,0 +1,11 @@
+.dashboard-container ul {
+    list-style: none;
+}
+.dashboard-container .dashboard-users ul {
+    text-align: center;
+}
+.dashboard-container .dashboard-users ul li {
+    display: inline-block;
+    margin-left: 15px;
+    margin-right: 15px;
+}

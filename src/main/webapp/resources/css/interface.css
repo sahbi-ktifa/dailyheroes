@@ -134,6 +134,16 @@ form .row:first-child .floating-label-form-group {
     outline: none;
 }
 .container.app {
-    padding-top: 11rem;
+    padding-top: calc(6rem + 90px);
     padding-bottom: 6rem;
+}
+@media (min-width: 992px) {
+    .container.app {
+        padding-top: calc(6rem + 45px);
+        padding-bottom: 6rem;
+    }
+}
+.container .loading {
+    text-align: center;
+    color: #2c3e50;
 }

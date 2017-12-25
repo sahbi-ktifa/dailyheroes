@@ -5,7 +5,6 @@ import fr.efaya.game.todorpg.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * @author Sahbi Ktifa
@@ -20,20 +19,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User retrieveUser(String userId) {
-        return repository.findOne(userId);
-    }
-
-    @Override
-    public User retrieveUserUsingName(String username) {
-        return repository.findByUsername(username);
+    public User retrieveUser(String username) {
+        User user = repository.findOne(username);
+        user.setPassword(null);
+        return user;
     }
 
     @Override
     public User saveUser(User user) {
-        if (user.getId() == null) {
-            user.setId(UUID.randomUUID().toString());
-        }
         if (user.getCreationDate() == null) {
             user.setCreationDate(new Date());
         }

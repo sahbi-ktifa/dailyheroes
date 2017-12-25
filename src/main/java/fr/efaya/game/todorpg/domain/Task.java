@@ -14,7 +14,8 @@ import java.util.Date;
  */
 @Document(collection = "Tasks")
 public class Task {
-    public enum State {todo, tovalidate, done}
+    public enum STATE {todo, tovalidate, done}
+    private enum TASK_TYPE {administrative, fun, DIY, cleaning}
 
     @Id
     private String id;
@@ -26,7 +27,7 @@ public class Task {
     private String name;
 
     @NotNull
-    private State status = State.todo;
+    private STATE status = STATE.todo;
 
     private Integer exp;
 
@@ -35,6 +36,7 @@ public class Task {
     @Max(5)
     private Integer complexity;
 
+    private TASK_TYPE category;
     private String assignedTo;
     private String notes;
     private Date creationDate;
@@ -64,11 +66,11 @@ public class Task {
         this.name = name;
     }
 
-    public State getStatus() {
+    public STATE getStatus() {
         return status;
     }
 
-    public void setStatus(State status) {
+    public void setStatus(STATE status) {
         this.status = status;
     }
 
@@ -86,6 +88,14 @@ public class Task {
 
     public void setComplexity(Integer complexity) {
         this.complexity = complexity;
+    }
+
+    public TASK_TYPE getCategory() {
+        return category;
+    }
+
+    public void setCategory(TASK_TYPE category) {
+        this.category = category;
     }
 
     public String getAssignedTo() {

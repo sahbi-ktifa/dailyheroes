@@ -1,7 +1,8 @@
 (function(angular) {
     angular.module("HomeApp.controllers", []);
     angular.module("HomeApp.services", []);
-    angular.module("HomeApp", ["ngResource", "HomeApp.controllers", "HomeApp.services", "ngRoute"]).config(function($routeProvider, $locationProvider) {
+    angular.module("HomeApp.directives", []);
+    angular.module("HomeApp", ["ngResource", "HomeApp.controllers", "HomeApp.services", "HomeApp.directives", "ngRoute"]).config(function($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'partials/dashboard.html',

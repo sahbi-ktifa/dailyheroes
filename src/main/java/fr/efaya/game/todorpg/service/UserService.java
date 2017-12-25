@@ -7,8 +7,7 @@ import fr.efaya.game.todorpg.domain.User;
  * created on 19/12/2017
  */
 public interface UserService {
-    User retrieveUser(String userId);
-    User retrieveUserUsingName(String username);
+    User retrieveUser(String username);
     User saveUser(User user);
     void consumeNotification(User user, String notificationId);
 }

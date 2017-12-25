@@ -31,7 +31,7 @@ public class RegisterWebServiceController {
         Dashboard dashboard = new Dashboard();
         for (String username : command.getPlayerNames()) {
             User user = userService.saveUser(new User(username, command.getPassword()));
-            dashboard.getUsers().add(user.getId());
+            dashboard.getUsers().add(user.getUsername());
         }
         dashboardService.saveDashboard(dashboard);
     }

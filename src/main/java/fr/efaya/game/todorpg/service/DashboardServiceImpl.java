@@ -27,7 +27,7 @@ public class DashboardServiceImpl implements DashboardService {
     }
 
     @Override
-    public Dashboard retrieveDashboardForUser(String userId) {
-        return repository.findByUsersContains(userId);
+    public Dashboard retrieveDashboardForUser(String username) {
+        return repository.findByUsersContains(username);
     }
 }

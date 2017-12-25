@@ -1,7 +1,7 @@
 package fr.efaya.game.todorpg.config;
 
 import fr.efaya.game.todorpg.domain.User;
-import fr.efaya.game.todorpg.service.UserService;
+import fr.efaya.game.todorpg.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -21,14 +21,14 @@ import java.util.Collections;
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
-    private UserService userService;
+    private UserRepository repository;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         final String name = authentication.getName();
         final String password = authentication.getCredentials().toString();
 
-        User user = userService.retrieveUserUsingName(name);
+        User user = repository.findOne(name);
         if (user == null || !password.equals(user.getPassword())) {
             throw new BadCredentialsException("Username is unknown or password is incorrect");
         }

@@ -1,13 +1,23 @@
 (function(angular) {
     var HomeCtrl = function($scope) {
-
+        $scope.$on('$locationChangeStart', function($event, next) {
+            $scope.currentRoute = next;
+        });
     };
     HomeCtrl.$inject = ['$scope'];
 
-    var DashboardCtrl = function($scope) {
-
+    var DashboardCtrl = function($scope, Dashboard, Task) {
+        $scope.loading = true;
+        $scope.tasks = [];
+        Dashboard.retrieveDashboardForUser(username).then(function (response) {
+            $scope.dashboard = response.data;
+            Task.retrieveTasks($scope.dashboard.id).then(function (response) {
+               $scope.tasks = response.data;
+               $scope.loading = false;
+            });
+        });
     };
-    DashboardCtrl.$inject = ['$scope'];
+    DashboardCtrl.$inject = ['$scope', 'Dashboard', 'Task'];
 
     var ProfileCtrl = function($scope) {
 
