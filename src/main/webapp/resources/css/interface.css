@@ -147,3 +147,11 @@ form .row:first-child .floating-label-form-group {
     text-align: center;
     color: #2c3e50;
 }
+.container .btn-primary {
+    background-color: #18bc9c;
+    border-color: #18bc9c;
+}
+.container .btn-primary:hover {
+    background-color: #17bcb1;
+    border-color: #17bcb1;
+}

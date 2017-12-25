@@ -23,5 +23,26 @@
     };
     userPresentation.$inject = ['User'];
 
+    var taskForm = function (Task, Dashboard) {
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                task: '='
+            },
+            templateUrl: 'partials/task-form.html',
+            link: function (scope) {
+                Task.retrieveTaskCategories().then(function (res) {
+                    scope.categories = res.data;
+                });
+                Dashboard.retrieveDashboardForUser(username).then(function (response) {
+                    scope.task.dashboardId = response.data.id;
+                });
+            }
+        };
+    };
+    taskForm.$inject = ['Task', 'Dashboard'];
+
     angular.module("HomeApp.directives").directive("userPresentation", userPresentation);
+    angular.module("HomeApp.directives").directive("taskForm", taskForm);
 }(angular));

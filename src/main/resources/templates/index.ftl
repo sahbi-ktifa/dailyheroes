@@ -75,6 +75,7 @@
 <script type="text/javascript" src="webjars/angularjs/1.6.6/angular.min.js"></script>
 <script type="text/javascript" src="webjars/angularjs/1.6.6/angular-resource.min.js"></script>
 <script type="text/javascript" src="webjars/angularjs/1.6.6/angular-route.min.js"></script>
+<script type="text/javascript" src="webjars/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js"></script>
 <script type="text/javascript" src="/resources/js/home/app.js"></script>
 <script type="text/javascript" src="/resources/js/home/services.js"></script>
 <script type="text/javascript" src="/resources/js/home/directives.js"></script>

@@ -1,5 +1,6 @@
 (function(angular) {
     var HomeCtrl = function($scope) {
+        $scope.dashboard = {};
         $scope.$on('$locationChangeStart', function($event, next) {
             $scope.currentRoute = next;
         });
@@ -29,10 +30,19 @@
     };
     NotificationsCtrl.$inject = ['$scope'];
 
-    var CreateTaskCtrl = function($scope) {
+    var CreateTaskCtrl = function($scope, Task) {
+        $scope.task = {};
+        $scope.success = false;
 
+        $scope.createTask = function () {
+            $scope.success = false;
+            Task.createTask($scope.task).then(function () {
+                $scope.task = {};
+                $scope.success = true;
+            });
+        };
     };
-    CreateTaskCtrl.$inject = ['$scope'];
+    CreateTaskCtrl.$inject = ['$scope', 'Task'];
 
     angular.module("HomeApp.controllers").controller("HomeCtrl", HomeCtrl);
     angular.module("HomeApp.controllers").controller("DashboardCtrl", DashboardCtrl);

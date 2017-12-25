@@ -1,5 +1,6 @@
 package fr.efaya.game.todorpg.domain;
 
+import fr.efaya.game.todorpg.controller.api.TaskWebServiceController;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,7 +16,6 @@ import java.util.Date;
 @Document(collection = "Tasks")
 public class Task {
     public enum STATE {todo, tovalidate, done}
-    private enum TASK_TYPE {administrative, fun, DIY, cleaning}
 
     @Id
     private String id;
@@ -32,11 +32,11 @@ public class Task {
     private Integer exp;
 
     @NotNull
-    @Min(1)
+    @Min(0)
     @Max(5)
     private Integer complexity;
 
-    private TASK_TYPE category;
+    private TaskWebServiceController.TASK_TYPE category;
     private String assignedTo;
     private String notes;
     private Date creationDate;
@@ -90,11 +90,11 @@ public class Task {
         this.complexity = complexity;
     }
 
-    public TASK_TYPE getCategory() {
+    public TaskWebServiceController.TASK_TYPE getCategory() {
         return category;
     }
 
-    public void setCategory(TASK_TYPE category) {
+    public void setCategory(TaskWebServiceController.TASK_TYPE category) {
         this.category = category;
     }
 

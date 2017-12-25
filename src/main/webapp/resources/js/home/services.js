@@ -17,6 +17,14 @@
             return $http.get(contextPath + '/task/' + dashboardId);
         };
 
+        taskService.retrieveTaskCategories = function() {
+            return $http.get(contextPath + '/task/info/categories');
+        };
+
+        taskService.createTask = function (task) {
+            return $http.post(contextPath + '/task', task);
+        };
+
         return taskService;
     };
     TaskFactory.$inject = ['$http'];
