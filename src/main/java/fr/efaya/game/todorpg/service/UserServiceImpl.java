@@ -21,7 +21,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User retrieveUser(String username) {
         User user = repository.findOne(username);
-        user.setPassword(null);
+        if (user != null) {
+            user.setPassword(null);
+        }
         return user;
     }
 

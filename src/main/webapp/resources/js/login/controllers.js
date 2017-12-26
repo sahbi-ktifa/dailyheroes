@@ -24,8 +24,15 @@
         $scope.form = {
             player1: undefined,
             player2: undefined,
+            extraPlayers: [],
             password: undefined,
             confirmPassword: undefined
+        };
+
+        $scope.addPlayer = function () {
+            if ($scope.form.extraPlayers.length < 6) {
+                $scope.form.extraPlayers.push({value:''});
+            }
         };
 
         $scope.register = function() {
@@ -35,6 +42,7 @@
                         $scope.form[prop] = undefined;
                     }
                 }
+                $scope.form.extraPlayers = [];
                 $scope.$emit('successOccurred', 'Registration complete, you can now log in.');
             }, function (reason) {
                 console.log(reason);

@@ -4,6 +4,7 @@
 <head>
     <title>ToDo RPG - The game</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/login.css" />
 </head>
 
@@ -54,9 +55,11 @@
                                 <form name="registerForm" role="form" ng-if="registerTab" ng-controller="RegistrationCtrl">
                                     <div class="form-group">
                                         <input type="text" name="player1" tabindex="1" class="form-control" ng-model="form.player1" ng-minlength="4" placeholder="Enter player 1 name" required="required">
+                                        <user-check user="form.player1"></user-check>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="player2" tabindex="2" class="form-control" ng-model="form.player2" ng-minlength="4" placeholder="Enter player 2 name" required="required">
+                                        <user-check user="form.player2"></user-check>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" ng-model="form.password" name="password" tabindex="3" class="form-control" placeholder="Password" ng-minlength="6" required="required">
@@ -64,6 +67,14 @@
                                     <div class="form-group">
                                         <input type="password" ng-model="form.confirmPassword" name="confirm-password" id="confirm-password" tabindex="4" class="form-control" placeholder="Confirm Password" required="required">
                                     </div>
+
+                                    <div ng-if="form.extraPlayers.length > 0">
+                                        <div class="form-group" ng-repeat="player in form.extraPlayers track by $index">
+                                            <input type="text" class="form-control" ng-model="player.value" ng-minlength="4" placeholder="Enter extra player name">
+                                            <user-check user="player.value"></user-check>
+                                        </div>
+                                    </div>
+                                    <div class="extra-adder" ng-if="form.extraPlayers.length < 4" ng-click="addPlayer()"><i class="fa fa-plus"></i> Add an extra player.</div>
 
                                     <div class="form-group">
                                         <div class="row">
@@ -87,6 +98,7 @@
 <script type="text/javascript" src="webjars/angularjs/1.6.6/angular-resource.min.js"></script>
 <script type="text/javascript" src="/resources/js/login/app.js"></script>
 <script type="text/javascript" src="/resources/js/login/services.js"></script>
+<script type="text/javascript" src="/resources/js/login/directives.js"></script>
 <script type="text/javascript" src="/resources/js/login/controllers.js"></script>
 </body>
 </html>
