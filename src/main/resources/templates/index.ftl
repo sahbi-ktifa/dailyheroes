@@ -44,6 +44,9 @@
                     <a href="#!/task"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a task</a>
                 </li>
             </ul>
+            <div class="logout" ng-click="logout()">
+                <i class="fa fa-sign-out"></i> ${user}
+            </div>
         </div>
         <!-- /.navbar-collapse -->
     </div>

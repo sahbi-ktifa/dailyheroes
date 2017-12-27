@@ -135,12 +135,12 @@ form .row:first-child .floating-label-form-group {
 }
 .container.app {
     padding-top: calc(6rem + 90px);
-    padding-bottom: 6rem;
+    padding-bottom: calc(6rem + 45px);
 }
 @media (min-width: 992px) {
     .container.app {
         padding-top: calc(6rem + 45px);
-        padding-bottom: 6rem;
+        padding-bottom: calc(6rem + 45px);
     }
 }
 .container .loading {
@@ -154,4 +154,21 @@ form .row:first-child .floating-label-form-group {
 .container .btn-primary:hover {
     background-color: #17bcb1;
     border-color: #17bcb1;
+}
+.container .dashboard-tasks .notes {
+    font-style: italic;
+}
+.container .dashboard-users ul {
+    list-style-type:none;
+    white-space:nowrap;
+    overflow-x:auto;
+}
+.container .logout i {
+    color: #d9534f;
+}
+.container .logout {
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
 }

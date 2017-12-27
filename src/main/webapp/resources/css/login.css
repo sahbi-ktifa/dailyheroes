@@ -1,7 +1,6 @@
 body {
     padding-top: 90px;
-    background-image: url("/resources/img/background.png");
-    background-size: auto;
+    background-color: #2C3E50;
 }
 .container > h1 {
     text-align: center;

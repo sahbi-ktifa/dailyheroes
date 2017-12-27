@@ -29,8 +29,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> retrieveTasks(String dashboardId) {
-        return repository.findAllByDashboardId(dashboardId);
+    public List<Task> retrieveTasks(String dashboardId, Task.STATE status) {
+        return repository.findAllByDashboardIdAndStatus(dashboardId, status);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class TaskServiceImpl implements TaskService {
         task.setId(UUID.randomUUID().toString());
         task.setCreationDate(new Date());
         Integer complexity = Constants.complexity.get(task.getComplexity()) - ((user.getLevel() - 1) * 4);
-        Integer exp = (complexity * Constants.levelsToExp.get(user.getLevel())) / 100;
+        Integer exp = (complexity * Constants.levelsToExp.get(user.getLevel() + 1)) / 100;
         task.setExp(exp);
         task = repository.save(task);
         publisher.publishEvent(new CreatedTaskEvent(this, task, user));
@@ -47,12 +47,16 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task updateTask(Task task) {
-        return repository.save(task);
+        Task _task = repository.findOne(task.getId());
+        _task.setNotes(task.getNotes());
+        _task.setName(task.getName());
+        _task.setDueDate(task.getDueDate());
+        return repository.save(_task);
     }
 
     @Override
-    public Task completeTask(Task task, User user) {
-        task = repository.findOne(task.getId());
+    public Task completeTask(String taskId, User user) {
+        Task task = repository.findOne(taskId);
         if (task.getStatus().equals(Task.STATE.todo)) {
             task.setStatus(Task.STATE.tovalidate);
             task.setAssignedTo(user.getUsername());
@@ -70,6 +74,13 @@ public class TaskServiceImpl implements TaskService {
             task = repository.save(task);
             publisher.publishEvent(new ValidatedTaskEvent(this, task, user));
         }
+        return task;
+    }
+
+    @Override
+    public Task deleteTask(String taskId) {
+        Task task = repository.findOne(taskId);
+        repository.delete(taskId);
         return task;
     }
 }

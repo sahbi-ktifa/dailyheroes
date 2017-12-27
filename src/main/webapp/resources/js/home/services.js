@@ -22,7 +22,22 @@
         };
 
         taskService.createTask = function (task) {
+            if (!task.complexity) {
+                task.complexity = 0;
+            }
             return $http.post(contextPath + '/task', task);
+        };
+
+        taskService.updateTask = function (task) {
+            return $http.post(contextPath + '/task/' + task.id, task);
+        };
+
+        taskService.deleteTask = function (taskId) {
+            return $http.delete(contextPath + '/task/' + taskId);
+        };
+
+        taskService.validTask = function (taskId) {
+            return $http.post(contextPath + '/task/' + taskId + '/valid');
         };
 
         return taskService;

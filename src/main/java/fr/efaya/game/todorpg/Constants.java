@@ -33,10 +33,11 @@ public class Constants {
             .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
 
     public static Map<Integer, Integer> complexity = new HashMap<Integer, Integer>() {{
+        put(0, 5);
         put(1, 10);
         put(2, 20);
         put(3, 30);
-        put(4, 60);
-        put(5, 75);
+        put(4, 40);
+        put(5, 45);
     }};
 }

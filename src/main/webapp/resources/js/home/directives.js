@@ -23,7 +23,7 @@
     };
     userPresentation.$inject = ['User'];
 
-    var taskForm = function (Task, Dashboard) {
+    var taskForm = function (Task) {
         return {
             restrict: 'E',
             replace: true,
@@ -32,17 +32,48 @@
             },
             templateUrl: 'partials/task-form.html',
             link: function (scope) {
+                scope.edit = scope.task.id && scope.task.id.length > 0;
                 Task.retrieveTaskCategories().then(function (res) {
                     scope.categories = res.data;
-                });
-                Dashboard.retrieveDashboardForUser(username).then(function (response) {
-                    scope.task.dashboardId = response.data.id;
                 });
             }
         };
     };
-    taskForm.$inject = ['Task', 'Dashboard'];
+    taskForm.$inject = ['Task'];
+
+    var categoryIcon = function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                ref: '='
+            },
+            template: '<span><i ng-if="ref && icon" class="fa {{class}}"></i></span>',
+            link: function (scope) {
+                scope.class = '';
+                switch (scope.ref) {
+                    case 'fun':
+                        scope.icon = true;
+                        scope.class = 'fa-futbol-o';
+                        break;
+                    case 'DIY':
+                        scope.icon = true;
+                        scope.class = 'fa-briefcase';
+                        break;
+                    case 'administrative':
+                        scope.icon = true;
+                        scope.class = 'fa-file-text';
+                        break;
+                    case 'cleaning':
+                        scope.icon = true;
+                        scope.class = 'fa-bath';
+                        break;
+                }
+            }
+        };
+    };
 
     angular.module("HomeApp.directives").directive("userPresentation", userPresentation);
     angular.module("HomeApp.directives").directive("taskForm", taskForm);
+    angular.module("HomeApp.directives").directive("categoryIcon", categoryIcon);
 }(angular));

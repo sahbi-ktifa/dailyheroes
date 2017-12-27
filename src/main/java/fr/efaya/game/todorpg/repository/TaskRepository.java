@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface TaskRepository extends CrudRepository<Task, String> {
 
-    List<Task> findAllByDashboardId(String dashboardId);
+    List<Task> findAllByDashboardIdAndStatus(String dashboardId, Task.STATE status);
 }
