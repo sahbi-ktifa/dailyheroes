@@ -172,3 +172,6 @@ form .row:first-child .floating-label-form-group {
     position: absolute;
     right: 15px;
 }
+.badge.active {
+    background-color: #f0ad4e;
+}

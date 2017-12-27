@@ -1,12 +1,9 @@
 package fr.efaya.game.todorpg.domain;
 
-import fr.efaya.game.todorpg.domain.pojo.Notification;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author Sahbi Ktifa
@@ -20,7 +17,6 @@ public class User {
     private Integer level = 1;
     private Integer currentExp = 0;
     private Date creationDate;
-    private Set<Notification> notifications = new HashSet<>();
 
     public User() {
     }
@@ -68,13 +64,5 @@ public class User {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public Set<Notification> getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(Set<Notification> notifications) {
-        this.notifications = notifications;
     }
 }

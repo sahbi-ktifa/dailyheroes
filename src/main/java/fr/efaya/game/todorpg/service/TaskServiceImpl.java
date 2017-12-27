@@ -67,8 +67,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task validTask(Task task, User user) {
-        task = repository.findOne(task.getId());
+    public Task validTask(String taskId, User user) {
+        Task task = repository.findOne(taskId);
         if (task.getStatus().equals(Task.STATE.tovalidate)) {
             task.setStatus(Task.STATE.done);
             task = repository.save(task);

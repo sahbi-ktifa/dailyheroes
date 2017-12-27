@@ -1,0 +1,11 @@
+.notifications-container .notifications-list ul {
+    list-style: none;
+}
+.notifications-container .notifications-list ul li div {
+    border-bottom: 1px dashed lightgray;
+    cursor: pointer;
+    line-height: 50px;
+}
+.notifications-container .notifications-list ul li div.unread {
+    font-weight: bold;
+}

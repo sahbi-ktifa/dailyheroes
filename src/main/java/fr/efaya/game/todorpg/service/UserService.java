@@ -9,5 +9,4 @@ import fr.efaya.game.todorpg.domain.User;
 public interface UserService {
     User retrieveUser(String username);
     User saveUser(User user);
-    void consumeNotification(User user, String notificationId);
 }

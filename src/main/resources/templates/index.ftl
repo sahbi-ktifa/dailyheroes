@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/interface.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/notification.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
@@ -38,7 +39,11 @@
                     <a href="#!/profile"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
                 </li>
                 <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('/notifications')}">
-                    <a href="#!/notifications"><i class="fa fa-envelope" aria-hidden="true"></i> Notifications</a>
+                    <a href="#!/notifications">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        Notifications
+                        <span class="badge" ng-class="{'active':notificationsCount > 0}">{{notificationsCount}}</span>
+                    </a>
                 </li>
                 <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('/task')}">
                     <a href="#!/task"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a task</a>

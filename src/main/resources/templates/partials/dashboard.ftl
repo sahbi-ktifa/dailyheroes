@@ -6,7 +6,7 @@
     <div class="dashboard-users" ng-if="!loading">
         <h3>Players</h3>
         <ul>
-            <li ng-repeat="user in dashboard.users | orderBy:'level'">
+            <li ng-repeat="user in dashboard.users | orderBy:'scurrentExp'">
                 <user-presentation username="{{user}}"></user-presentation>
             </li>
         </ul>

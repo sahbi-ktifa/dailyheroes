@@ -34,10 +34,4 @@ public class UserServiceImpl implements UserService {
         }
         return repository.save(user);
     }
-
-    @Override
-    public void consumeNotification(User user, String notificationId) {
-        user.getNotifications().removeIf(n -> n.getId().equals(notificationId));
-        repository.save(user);
-    }
 }

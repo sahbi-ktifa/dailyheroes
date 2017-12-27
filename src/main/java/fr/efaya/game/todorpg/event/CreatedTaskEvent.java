@@ -15,6 +15,6 @@ public class CreatedTaskEvent extends SimpleTaskEvent {
 
     @Override
     public String getMessage() {
-        return String.format("%s created a task: %s", getUser().getUsername(), getTask().getName());
+        return String.format("%s has created a task named: '%s', check if you can do it!", getUser().getUsername(), getTask().getName());
     }
 }

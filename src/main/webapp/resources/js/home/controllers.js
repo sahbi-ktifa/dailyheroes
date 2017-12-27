@@ -1,15 +1,27 @@
 (function(angular) {
-    var HomeCtrl = function($scope) {
+    var HomeCtrl = function($scope, Notification) {
         $scope.dashboard = {};
+        $scope.notificationsCount = 0;
+        var checkNotifications = function () {
+            Notification.checkNotifications(username).then(function (res) {
+                $scope.notificationsCount = res.data;
+            });
+        };
+
         $scope.$on('$locationChangeStart', function($event, next) {
             $scope.currentRoute = next;
+            checkNotifications();
+        });
+
+        $scope.$on('notificationConsumed', function () {
+            checkNotifications();
         });
 
         $scope.logout = function () {
             window.location.href = contextPath + '/logout';
         };
     };
-    HomeCtrl.$inject = ['$scope'];
+    HomeCtrl.$inject = ['$scope', 'Notification'];
 
     var DashboardCtrl = function($scope, Dashboard, Task, $uibModal) {
         $scope.loading = true;
@@ -93,10 +105,33 @@
     };
     ProfileCtrl.$inject = ['$scope'];
 
-    var NotificationsCtrl = function($scope) {
+    var NotificationsCtrl = function($scope, Notification, Task) {
+        $scope.loading = true;
+        var retrieveNotifications = function () {
+            Notification.retrieveNotifications(username).then(function (res) {
+                $scope.loading = false;
+                $scope.notifications = res.data;
+            });
+        };
+        retrieveNotifications();
 
+        $scope.consume = function (notification) {
+            if (notification.read === 0) {
+                Notification.consumeNotification(notification.id).then(function () {
+                    retrieveNotifications();
+                    $scope.$emit('notificationConsumed');
+                });
+            }
+        };
+
+        $scope.validTask = function (notification) {
+            Task.confirmValidTask(notification.taskId).then(function () {
+                retrieveNotifications();
+                $scope.$emit('notificationConsumed');
+            });
+        };
     };
-    NotificationsCtrl.$inject = ['$scope'];
+    NotificationsCtrl.$inject = ['$scope', 'Notification', 'Task'];
 
     var CreateTaskCtrl = function($scope, Task, Dashboard) {
         $scope.task = {};

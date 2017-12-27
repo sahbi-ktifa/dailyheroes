@@ -40,6 +40,10 @@
             return $http.post(contextPath + '/task/' + taskId + '/valid');
         };
 
+        taskService.confirmValidTask = function (taskId) {
+            return $http.post(contextPath + '/task/' + taskId + '/validated');
+        };
+
         return taskService;
     };
     TaskFactory.$inject = ['$http'];
@@ -55,7 +59,27 @@
     };
     UserFactory.$inject = ['$http'];
 
+    var NotificationFactory = function($http) {
+        var notificationService = {};
+
+        notificationService.checkNotifications = function(username) {
+            return $http.get(contextPath + '/notification/' + username + '/check');
+        };
+
+        notificationService.retrieveNotifications = function(username) {
+            return $http.get(contextPath + '/notification/' + username);
+        };
+
+        notificationService.consumeNotification = function(notificationId) {
+            return $http.post(contextPath + '/notification/' + notificationId);
+        };
+
+        return notificationService;
+    };
+    NotificationFactory.$inject = ['$http'];
+
     angular.module("HomeApp.services").factory("Dashboard", DashboardFactory);
     angular.module("HomeApp.services").factory("Task", TaskFactory);
     angular.module("HomeApp.services").factory("User", UserFactory);
+    angular.module("HomeApp.services").factory("Notification", NotificationFactory);
 }(angular));

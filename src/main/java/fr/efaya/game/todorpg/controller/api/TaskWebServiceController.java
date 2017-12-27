@@ -59,6 +59,11 @@ public class TaskWebServiceController {
         return taskService.completeTask(taskId, userService.retrieveUser(principal.getName()));
     }
 
+    @PostMapping("{taskId}/validated")
+    public Task confirmValidTask(@PathVariable("taskId") String taskId, Principal principal) {
+        return taskService.validTask(taskId, userService.retrieveUser(principal.getName()));
+    }
+
     @DeleteMapping("{taskId}")
     public Task deleteTask(@PathVariable("taskId") String taskId) {
         return taskService.deleteTask(taskId);
