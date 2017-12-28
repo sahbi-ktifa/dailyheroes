@@ -8,12 +8,12 @@
         <ul>
             <li ng-repeat="notification in notifications | orderBy:'-creationDate'">
                 <div ng-class="{'unread': notification.read === 0,
-                 'col-md-10': notification.requireValidation === true && notification.validated === false,
-                 'col-md-12': notification.requireValidation !== true && notification.validated === false}"
+                 'col-md-10': notification.requireValidation === true && notification.validated !== true,
+                 'col-md-12': notification.requireValidation !== true}"
                      ng-click="consume(notification)">
                     <span>{{notification.creationDate | date:'dd/MM/yyyy'}} - {{notification.message}}</span>
                 </div>
-                <div class="validation col-md-2" ng-if="notification.requireValidation === true && notification.validated === false">
+                <div class="validation col-md-2" ng-if="notification.requireValidation === true && notification.validated !== true">
                     <button type="button" class="btn btn-primary" ng-click="validTask(notification)">
                         <i class="fa fa-check mr-2"></i> Task is done.
                     </button>

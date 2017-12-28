@@ -21,6 +21,10 @@
             return $http.get(contextPath + '/task/info/categories');
         };
 
+        taskService.retrieveTaskRedundancy = function() {
+            return $http.get(contextPath + '/task/info/redundancy');
+        };
+
         taskService.createTask = function (task) {
             if (!task.complexity) {
                 task.complexity = 0;

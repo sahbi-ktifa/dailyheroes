@@ -27,6 +27,7 @@ public class TaskWebServiceController {
     private UserService userService;
 
     public enum TASK_TYPE {administrative, fun, DIY, cleaning}
+    public enum TASK_REDUNDANCY {daily, weekly, monthly}
 
     public TaskWebServiceController(TaskService taskService, UserService userService) {
         this.taskService = taskService;
@@ -36,6 +37,11 @@ public class TaskWebServiceController {
     @GetMapping("info/categories")
     public TASK_TYPE[] retrieveTaskCategories() {
         return TASK_TYPE.values();
+    }
+
+    @GetMapping("info/redundancy")
+    public TASK_REDUNDANCY[] retrieveTaskRedundancy() {
+        return TASK_REDUNDANCY.values();
     }
 
     @GetMapping("{dashboardId}")

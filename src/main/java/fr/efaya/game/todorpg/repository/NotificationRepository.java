@@ -10,6 +10,6 @@ import java.util.List;
  * created on 19/12/2017
  */
 public interface NotificationRepository extends CrudRepository<Notification, String> {
-    Notification findByTaskId(String taskId);
+    List<Notification> findAllByTaskId(String taskId);
     List<Notification> findAllByUsername(String username);
 }

@@ -32,6 +32,10 @@ public class UserServiceImpl implements UserService {
         if (user.getCreationDate() == null) {
             user.setCreationDate(new Date());
         }
+        if (user.getPassword() == null) {
+            User refUser = repository.findOne(user.getUsername());
+            user.setPassword(refUser.getPassword());
+        }
         return repository.save(user);
     }
 }

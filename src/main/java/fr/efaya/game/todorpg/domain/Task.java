@@ -41,6 +41,7 @@ public class Task {
     private String notes;
     private Date creationDate;
     private Date dueDate;
+    private TaskWebServiceController.TASK_REDUNDANCY redundancy;
 
     public String getId() {
         return id;
@@ -128,5 +129,13 @@ public class Task {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public TaskWebServiceController.TASK_REDUNDANCY getRedundancy() {
+        return redundancy;
+    }
+
+    public void setRedundancy(TaskWebServiceController.TASK_REDUNDANCY redundancy) {
+        this.redundancy = redundancy;
     }
 }

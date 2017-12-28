@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface NotificationService {
     Notification retrieveNotification(String notificationId);
-    Notification retrieveNotificationUsingTask(String taskId);
+    List<Notification> retrieveNotificationsUsingTask(String taskId);
     Notification saveNotification(Notification notification);
     List<Notification> retrieveNotifications(String username);
     void consumeNotification(String notificationId);

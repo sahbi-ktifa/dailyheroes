@@ -28,4 +28,10 @@
             </span>
         </p>
     </div>
+    <div class="form-group" ng-if="task.dueDate">
+        <label for="notes" class="col-sm-3 control-label">Redundancy</label>
+        <label class="btn btn-primary" ng-model="task.redundancy" uib-btn-radio="'daily'">Daily</label>
+        <label class="btn btn-primary" ng-model="task.redundancy" uib-btn-radio="'weekly'">Weekly</label>
+        <label class="btn btn-primary" ng-model="task.redundancy" uib-btn-radio="'monthly'">Monthly</label>
+    </div>
 </div>

@@ -25,8 +25,8 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public Notification retrieveNotificationUsingTask(String taskId) {
-        return repository.findByTaskId(taskId);
+    public List<Notification> retrieveNotificationsUsingTask(String taskId) {
+        return repository.findAllByTaskId(taskId);
     }
 
     @Override

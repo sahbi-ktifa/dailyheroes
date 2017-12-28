@@ -6,7 +6,7 @@
     <div class="dashboard-users" ng-if="!loading">
         <h3>Players</h3>
         <ul>
-            <li ng-repeat="user in dashboard.users | orderBy:'scurrentExp'">
+            <li ng-repeat="user in dashboard.users | orderBy:'-currentExp'">
                 <user-presentation username="{{user}}"></user-presentation>
             </li>
         </ul>
@@ -19,6 +19,7 @@
                     <category-icon ref="task.category"></category-icon>
                     <span>{{task.name}}</span>
                     <span uib-rating ng-model="task.complexity" read-only="true" aria-labelledby="default-rating"></span>
+                    <span ng-if="task.dueDate"> - {{task.dueDate | date:'dd/MM/yyyy'}} <i ng-if="task.redundancy" class="fa fa-refresh"></i></span>
                 </div>
                 <div class="col-md-4">
                     <span class="notes">{{task.notes}}</span>

@@ -51,6 +51,7 @@ public class TaskServiceImpl implements TaskService {
         _task.setNotes(task.getNotes());
         _task.setName(task.getName());
         _task.setDueDate(task.getDueDate());
+        _task.setRedundancy(task.getRedundancy());
         return repository.save(_task);
     }
 
