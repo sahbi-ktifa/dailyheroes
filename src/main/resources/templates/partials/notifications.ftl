@@ -7,9 +7,8 @@
         <h3>Notifications</h3>
         <ul>
             <li ng-repeat="notification in notifications | orderBy:'-creationDate'">
-                <div ng-class="{'unread': notification.read === 0,
-                 'col-md-10': notification.requireValidation === true && notification.validated !== true,
-                 'col-md-12': notification.requireValidation !== true}"
+                <div class="col-md-12" ng-class="{'unread': notification.read === 0,
+                 'col-md-10': notification.requireValidation === true && notification.validated !== true}"
                      ng-click="consume(notification)">
                     <span>{{notification.creationDate | date:'dd/MM/yyyy'}} - {{notification.message}}</span>
                 </div>
