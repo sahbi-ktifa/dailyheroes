@@ -36,6 +36,7 @@ public class TaskListener {
             task.setNotes(event.getTask().getNotes());
             task.setStatus(Task.STATE.todo);
             task.setCategory(event.getTask().getCategory());
+            task.setComplexity(event.getTask().getComplexity());
             task.setDashboardId(event.getTask().getDashboardId());
             task.setDueDate(generateDueDate(event.getTask().getRedundancy(), event.getTask().getDueDate()));
             taskService.createTask(task, userService.retrieveUser(event.getTask().getAssignedTo()));
@@ -49,10 +50,10 @@ public class TaskListener {
                 localDateTime = localDateTime.plusDays(1);
                 break;
             case weekly:
-                localDateTime = localDateTime.plusMonths(1);
+                localDateTime = localDateTime.plusDays(7);
                 break;
             case monthly:
-                localDateTime = localDateTime.plusYears(1);
+                localDateTime = localDateTime.plusMonths(1);
                 break;
         }
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
