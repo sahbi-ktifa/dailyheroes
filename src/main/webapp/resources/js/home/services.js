@@ -59,6 +59,10 @@
             return $http.get(contextPath + '/user/' + username);
         };
 
+        userService.getNextLevelCap = function(username, userLevel) {
+            return $http.get(contextPath + '/user/' + username + '/' + userLevel);
+        };
+
         return userService;
     };
     UserFactory.$inject = ['$http'];

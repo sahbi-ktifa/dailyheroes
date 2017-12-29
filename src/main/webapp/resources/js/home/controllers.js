@@ -100,10 +100,18 @@
     };
     EditTaskCtrl.$inject = ['$scope', '$uibModalInstance', 'task'];
 
-    var ProfileCtrl = function($scope) {
-
+    var ProfileCtrl = function($scope, User) {
+        $scope.loading = true;
+        User.retrieveUser(username).then(function (res) {
+            $scope.user = res.data;
+            $scope.loading = false;
+            User.getNextLevelCap(username, $scope.user.level).then(function (res) {
+                $scope.expToNextLevel = res.data;
+                $scope.percentExpToNextLevel = ($scope.user.currentExp * 100) / $scope.expToNextLevel;
+            });
+        });
     };
-    ProfileCtrl.$inject = ['$scope'];
+    ProfileCtrl.$inject = ['$scope', 'User'];
 
     var NotificationsCtrl = function($scope, Notification, Task) {
         $scope.loading = true;

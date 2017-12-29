@@ -1,5 +1,6 @@
 package fr.efaya.game.todorpg.controller.api;
 
+import fr.efaya.game.todorpg.Constants;
 import fr.efaya.game.todorpg.domain.User;
 import fr.efaya.game.todorpg.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,5 +25,10 @@ public class UserWebServiceController {
     @GetMapping("{username}")
     public User retrieveUser(@PathVariable("username") String username) {
         return userService.retrieveUser(username);
+    }
+
+    @GetMapping("{username}/{userLevel}")
+    public Integer retrieveUserNextLevelCap(@PathVariable("username") String username, @PathVariable("userLevel") Integer userLevel) {
+        return Constants.levelsToExp.get(userLevel + 1);
     }
 }

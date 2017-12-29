@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/interface.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/dashboard.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/notification.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/profile.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
