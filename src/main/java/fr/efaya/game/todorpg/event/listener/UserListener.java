@@ -6,10 +6,12 @@ import fr.efaya.game.todorpg.domain.Notification;
 import fr.efaya.game.todorpg.domain.User;
 import fr.efaya.game.todorpg.event.CompletedTaskEvent;
 import fr.efaya.game.todorpg.event.CreatedTaskEvent;
+import fr.efaya.game.todorpg.event.LevelUpEvent;
 import fr.efaya.game.todorpg.event.ValidatedTaskEvent;
 import fr.efaya.game.todorpg.service.DashboardService;
 import fr.efaya.game.todorpg.service.NotificationService;
 import fr.efaya.game.todorpg.service.UserService;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -26,11 +28,13 @@ public class UserListener {
     private UserService userService;
     private DashboardService dashboardService;
     private NotificationService notificationService;
+    private ApplicationEventPublisher publisher;
 
-    public UserListener(UserService userService, DashboardService dashboardService, NotificationService notificationService) {
+    public UserListener(UserService userService, DashboardService dashboardService, NotificationService notificationService, ApplicationEventPublisher publisher) {
         this.userService = userService;
         this.dashboardService = dashboardService;
         this.notificationService = notificationService;
+        this.publisher = publisher;
     }
 
     @EventListener
@@ -57,6 +61,7 @@ public class UserListener {
         if (ConstantUtils.isLevelingUp(user.getLevel(), user.getCurrentExp())) {
             user.setLevel(user.getLevel() + 1);
             notificationService.saveNotification(new Notification(String.format("Congratulations, you're leveling up! You are now level %s!", user.getLevel()), user.getUsername(), event.getTask().getId()));
+            publisher.publishEvent(new LevelUpEvent(this, event.getTask(), user));
         }
         userService.saveUser(user);
     }

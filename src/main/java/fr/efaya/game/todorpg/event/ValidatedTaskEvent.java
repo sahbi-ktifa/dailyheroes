@@ -7,7 +7,7 @@ import fr.efaya.game.todorpg.domain.User;
  * @author Sahbi Ktifa
  * created on 20/12/2017
  */
-public class ValidatedTaskEvent extends SimpleTaskEvent {
+public class ValidatedTaskEvent extends AbstractEvent {
 
     public ValidatedTaskEvent(Object source, Task task, User user) {
         super(source, task, user);
