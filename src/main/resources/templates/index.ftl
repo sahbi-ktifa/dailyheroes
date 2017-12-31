@@ -36,20 +36,20 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('#!/')}">
-                    <a href="#!/home"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a>
+                    <a href="#!/home"><i class="fa fa-home" aria-hidden="true"></i> <span translate>Dashboard</span></a>
                 </li>
                 <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('/profile')}">
-                    <a href="#!/profile"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+                    <a href="#!/profile"><i class="fa fa-user" aria-hidden="true"></i> <span translate>Profile</span></a>
                 </li>
                 <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('/notifications')}">
                     <a href="#!/notifications">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
-                        Notifications
+                        <span translate>Notifications</span>
                         <span class="badge" ng-class="{'active':notificationsCount > 0}">{{notificationsCount}}</span>
                     </a>
                 </li>
                 <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('/task')}">
-                    <a href="#!/task"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a task</a>
+                    <a href="#!/task"><i class="fa fa-plus-circle" aria-hidden="true"></i> <span translate>Add a task</span></a>
                 </li>
             </ul>
             <div class="logout" ng-click="logout()">

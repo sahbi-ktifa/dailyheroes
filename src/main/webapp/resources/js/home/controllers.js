@@ -58,14 +58,14 @@
             var modalInstance = $uibModal.open({
                 template: '<div>' +
                 '   <div class="modal-header">' +
-                '       <h3 class="modal-title">Edit task</h3>' +
+                '       <h3 class="modal-title" translate>Edit task</h3>' +
                 '   </div>' +
                 '   <div class="modal-body">' +
                 '       <task-form task="$ctrl.task"></task-form>' +
                 '   </div>' +
                 '   <div class="modal-footer">' +
-                '       <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>\n' +
-                '       <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>\n' +
+                '       <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()" translate>Submit</button>\n' +
+                '       <button class="btn btn-danger" type="button" ng-click="$ctrl.cancel()" translate>Cancel</button>\n' +
                 '   </div>' +
                 '</div>',
                 controller: EditTaskCtrl,

@@ -4,7 +4,7 @@
         <span class="sr-only">Loading...</span>
     </div>
     <div class="dashboard-users" ng-if="!loading">
-        <h3>Players</h3>
+        <h3 translate>Players list</h3>
         <ul>
             <li ng-repeat="user in dashboard.users | orderBy:'-currentExp'">
                 <user-presentation username="{{user}}"></user-presentation>
@@ -12,7 +12,7 @@
         </ul>
     </div>
     <div class="dashboard-tasks" ng-if="!loading">
-        <h3>Tasks list</h3>
+        <h3 translate>Tasks list</h3>
         <ul>
             <li ng-repeat="task in tasks">
                 <div class="col-md-5">
@@ -26,10 +26,10 @@
                 </div>
                 <div class="col-md-3">
                     <button type="button" class="btn btn-primary" ng-click="validTask(task)">
-                        <i class="fa fa-check mr-2"></i> I did it
+                        <i class="fa fa-check mr-2"></i> <span translate>I did it</span>
                     </button>
                     <button type="button" class="btn btn-default" ng-click="editTask(task)">
-                        <i class="fa fa-pencil mr-2"></i> Edit
+                        <i class="fa fa-pencil mr-2"></i> <span translate>Edit</span>
                     </button>
                     <button type="button" class="btn btn-danger" ng-click="deleteTask(task)">
                         <i class="fa fa-remove mr-2"></i>

@@ -152,13 +152,13 @@ form .row:first-child .floating-label-form-group {
     text-align: center;
     color: #2c3e50;
 }
-.container .btn-primary {
-    background-color: #18bc9c;
-    border-color: #18bc9c;
+.btn-primary {
+    background-color: #18bc9c !important;
+    border-color: #18bc9c !important;
 }
-.container .btn-primary:hover {
-    background-color: #17bcb1;
-    border-color: #17bcb1;
+.btn-primary:hover {
+    background-color: #6dbcab !important;
+    border-color: #6dbcab !important;
 }
 .container .dashboard-tasks .notes {
     font-style: italic;

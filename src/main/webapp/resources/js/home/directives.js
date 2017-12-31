@@ -8,9 +8,9 @@
             '       <img src="/resources/img/user.png"/>' +
             '   </div>' +
             '   <div class="user-info">' +
-            '       <span>Level {{user.level}}</span>' +
-            '       <span> - </span>' +
             '       <span>{{user.username}}</span>' +
+            '       <span> - </span>' +
+            '       <span translate>Level</span><span> {{user.level}}</span>' +
             '   </div>' +
             '</div>',
             link: function (scope, element, attrs) {
