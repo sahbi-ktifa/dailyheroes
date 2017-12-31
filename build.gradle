@@ -37,6 +37,7 @@ dependencies {
 	compile group: 'org.webjars', name: 'bootstrap', version: '3.3.7-1'
 	compile group: 'org.webjars', name: 'font-awesome', version: '4.7.0'
 	compile group: 'org.webjars', name: 'angular-ui-bootstrap', version: '2.2.0'
+	compile group: 'org.webjars.bower', name: 'angular-gettext', version: '2.2.1'
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

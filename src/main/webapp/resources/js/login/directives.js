@@ -7,7 +7,7 @@
                 user: '='
             },
             template: '<span class="user-check">' +
-            '   <span ng-if="user && !isUnique"><i class="fa fa-times"></i> Username already exists.</span>' +
+            '   <span ng-if="user && !isUnique"><i class="fa fa-times"></i> <span translate>Username already exists.</span></span>' +
             '</span>',
             link: function (scope) {
                 scope.isUnique = false;

@@ -105,9 +105,11 @@ body {
     margin-top: 5px;
     display: block;
     color: #d86f6f;
+    text-align: left;
 }
 .extra-adder {
     margin-bottom: 10px;
     color: #4f9666;
     cursor: pointer;
+    text-align: left;
 }
