@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>ToDo RPG - The game</title>
+    <title>Daily Heroes</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/login.css" />
@@ -14,7 +14,7 @@
 </script>
 <div class="container">
     <div class="container">
-        <h1>ToDo RPG</h1>
+        <h1>Daily Heroes</h1>
         <div class="row">
             <div class="col-md-6 col-md-offset-3" ng-app="LoginApp" ng-controller="LoginCtrl">
                  <#if error??>

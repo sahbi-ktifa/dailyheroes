@@ -3,7 +3,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>ToDo RPG - The game</title>
+    <title>Daily Heroes</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/interface.css" />
@@ -27,7 +27,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="#page-top">TODO RPG - The Game</a>
+            <a class="navbar-brand" href="#page-top">Daily Heroes: Quests for the house!</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -66,7 +66,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                Copyright &copy; ToDoRPG 2018
+                Copyright &copy; Daily Heroes 2018
             </div>
         </div>
     </div>
