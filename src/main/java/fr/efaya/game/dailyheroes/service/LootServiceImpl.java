@@ -1,7 +1,9 @@
 package fr.efaya.game.dailyheroes.service;
 
+import fr.efaya.game.dailyheroes.Constants;
 import fr.efaya.game.dailyheroes.domain.Item;
 import fr.efaya.game.dailyheroes.domain.Loot;
+import fr.efaya.game.dailyheroes.domain.Task;
 import fr.efaya.game.dailyheroes.domain.User;
 import fr.efaya.game.dailyheroes.repository.ItemRepository;
 import fr.efaya.game.dailyheroes.repository.LootRepository;
@@ -32,11 +34,15 @@ public class LootServiceImpl implements LootService {
     }
 
     @Override
-    public Item lootForTask(User user) {
-        List<Item> items = itemRepository.findAllByLevelCapLessThanEqualAndRarityGreaterThanEqualAndRepeatable(user.getLevel(), Math.toIntExact(Math.round(Math.random() * 100)), false);
-        List<Loot> lootedItems = lootRepository.findAllByUsername(user.getUsername());
-        items.removeIf(i -> lootedItems.stream().anyMatch(_i -> _i.getItemId().equals(i.getId())));
-        return doLoot(user, items);
+    public Item lootForTask(User user, Task task) {
+        int dropRate = Constants.complexity.get(task.getComplexity()) * 2;
+        if (Math.random() * 100 <= dropRate) {
+            List<Item> items = itemRepository.findAllByLevelCapLessThanEqualAndRarityGreaterThanEqualAndRepeatable(user.getLevel(), Math.toIntExact(Math.round(Math.random() * 100)), false);
+            List<Loot> lootedItems = lootRepository.findAllByUsername(user.getUsername());
+            items.removeIf(i -> lootedItems.stream().anyMatch(_i -> _i.getItemId().equals(i.getId())));
+            return doLoot(user, items);
+        }
+        return null;
     }
 
     private Item doLoot(User user, List<Item> items) {

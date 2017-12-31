@@ -35,7 +35,7 @@ public class LootListener {
 
     @EventListener
     public void handleValidatedTaskEvent(ValidatedTaskEvent event) {
-        Item item = lootService.lootForTask(event.getUser());
+        Item item = lootService.lootForTask(event.getUser(), event.getTask());
         if (item != null) {
             notificationService.saveNotification(new Notification(String.format("Congratulations, you've been awarded with: '%s'.",
                     item.getName()), event.getUser().getUsername(), event.getTask().getId()));

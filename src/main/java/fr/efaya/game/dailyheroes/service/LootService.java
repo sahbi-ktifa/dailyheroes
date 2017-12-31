@@ -1,6 +1,7 @@
 package fr.efaya.game.dailyheroes.service;
 
 import fr.efaya.game.dailyheroes.domain.Item;
+import fr.efaya.game.dailyheroes.domain.Task;
 import fr.efaya.game.dailyheroes.domain.User;
 
 /**
@@ -9,5 +10,5 @@ import fr.efaya.game.dailyheroes.domain.User;
  */
 public interface LootService {
     Item lootForLevel(User user);
-    Item lootForTask(User user);
+    Item lootForTask(User user, Task task);
 }
