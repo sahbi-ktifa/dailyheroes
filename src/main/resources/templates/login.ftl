@@ -14,7 +14,7 @@
 </script>
 <div class="container">
     <div class="container">
-        <h1>Daily Heroes</h1>
+        <img src="/resources/img/logo1.png"/>
         <div class="row">
             <div class="col-md-6 col-md-offset-3" ng-app="LoginApp" ng-controller="LoginCtrl">
                  <#if error??>

@@ -50,6 +50,11 @@ h6 {
 .navbar-custom .navbar-brand.active {
     color: white;
 }
+.navbar-custom .navbar-brand > img {
+    height: 100px;
+    position: absolute;
+    top: 0;
+}
 .navbar-custom .navbar-nav {
     letter-spacing: 1px;
 }

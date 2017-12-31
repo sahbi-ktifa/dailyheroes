@@ -2,6 +2,9 @@ body {
     padding-top: 90px;
     background-color: #2C3E50;
 }
+.container {
+    text-align: center;
+}
 .container > h1 {
     text-align: center;
     color: white;
