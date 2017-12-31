@@ -1,4 +1,4 @@
-angular.module("LoginApp").run(function (gettextCatalog) {
+angular.module("HomeApp").run(function (gettextCatalog) {
     gettextCatalog.setCurrentLanguage(navigator.language || navigator.userLanguage);
     gettextCatalog.setStrings("fr", {
         'Add an extra player.':'Ajouter un joueur.',

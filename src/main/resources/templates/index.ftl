@@ -27,8 +27,8 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="#page-top">
-                <img src="/resources/img/logo1.png"/>
+            <a class="navbar-brand">
+                <img src="/resources/img/logo1_small.png"/>
             </a>
         </div>
 
@@ -87,9 +87,11 @@
 <script type="text/javascript" src="webjars/angularjs/1.6.6/angular-resource.min.js"></script>
 <script type="text/javascript" src="webjars/angularjs/1.6.6/angular-route.min.js"></script>
 <script type="text/javascript" src="webjars/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="webjars/angular-gettext/2.2.1/dist/angular-gettext.min.js"></script>
 <script type="text/javascript" src="/resources/js/home/app.js"></script>
 <script type="text/javascript" src="/resources/js/home/services.js"></script>
 <script type="text/javascript" src="/resources/js/home/directives.js"></script>
 <script type="text/javascript" src="/resources/js/home/controllers.js"></script>
+<script type="text/javascript" src="/resources/js/home/translations.js"></script>
 </body>
 </html>
