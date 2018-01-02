@@ -28,6 +28,11 @@ public class LootServiceImpl implements LootService {
     }
 
     @Override
+    public List<Loot> retrieveLoots(String username) {
+        return lootRepository.findAllByUsername(username);
+    }
+
+    @Override
     public int lootBasicItems(User user) {
         List<Item> basicItems = itemRepository.findAllByLevelCapLessThanEqualAndRarityGreaterThanEqualAndRepeatable(0, 0, false);
         removeAlreadyLootedItems(user, basicItems);

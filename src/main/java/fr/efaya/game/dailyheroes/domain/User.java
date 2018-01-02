@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @author Sahbi Ktifa
@@ -17,6 +18,7 @@ public class User {
     private Integer level = 1;
     private Integer currentExp = 0;
     private Date creationDate;
+    private Map<String, String> avatar;
 
     public User() {
     }
@@ -64,5 +66,13 @@ public class User {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Map<String, String> getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Map<String, String> avatar) {
+        this.avatar = avatar;
     }
 }

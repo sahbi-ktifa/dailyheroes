@@ -100,8 +100,13 @@
     };
     EditTaskCtrl.$inject = ['$scope', '$uibModalInstance', 'task'];
 
-    var ProfileCtrl = function($scope, User) {
+    var ProfileCtrl = function($scope, User, Loot) {
         $scope.loading = true;
+        Loot.retrieveItemTypes().then(function (res) {
+            $scope.types = res.data.filter(function (type) {
+                return type !== 'other';
+            });
+        });
         User.retrieveUser(username).then(function (res) {
             $scope.user = res.data;
             $scope.loading = false;
@@ -109,9 +114,36 @@
                 $scope.expToNextLevel = res.data;
                 $scope.percentExpToNextLevel = ($scope.user.currentExp * 100) / $scope.expToNextLevel;
             });
+            Loot.retrieveLoots(username).then(function (res) {
+                $scope.rewards = res.data.filter(function (item) {
+                    return item.repeatable === true;
+                });
+                $scope.items = res.data.filter(function (item) {
+                    return item.repeatable === false;
+                });
+            });
         });
+
+        $scope.retrieveClass = function (type) {
+            var _class = '';
+            switch (type) {
+                case 'background':
+                    _class = 'fa-paint-brush';
+                    break;
+                case 'hair':
+                    _class = 'fa-scissors';
+                    break;
+                case 'head':
+                    _class = 'fa-user';
+                    break;
+                case 'eye':
+                    _class = 'fa-eye';
+                    break;
+            }
+            return _class;
+        };
     };
-    ProfileCtrl.$inject = ['$scope', 'User'];
+    ProfileCtrl.$inject = ['$scope', 'User', 'Loot'];
 
     var NotificationsCtrl = function($scope, Notification, Task) {
         $scope.loading = true;

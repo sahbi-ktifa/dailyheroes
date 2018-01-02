@@ -73,7 +73,37 @@
         };
     };
 
+    var avatarItemSelector = function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+              avatar: '=',
+              items: '='
+            },
+            template: '<div class="avatar-selector">' +
+            '   <ul>' +
+            '       <li class="avatar-element" ng-if="elements.length > 0" ng-repeat="element in elements" ng-class="{\'active\':((!user.avatar || !user.avatar[element.itemType]) && element.itemId === \'empty\') || user.avatar[element.itemType] === element.itemId}">' +
+            '           <span><img ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId}}.png" title="{{element.itemName | translate}}"/></span>' +
+            '       </li>' +
+            '   </ul>' +
+            '</div>',
+            link: function (scope, element, attrs) {
+                var refType = attrs.type;
+                scope.$watch('items', function (items) {
+                    if (items) {
+                        scope.elements = scope.items.filter(function (i) {
+                            return i.itemType === refType;
+                        });
+                        scope.elements.unshift({itemId:'empty', itemName:'None', itemType: refType, repeatable: false});
+                    }
+                });
+            }
+        };
+    };
+
     angular.module("HomeApp.directives").directive("userPresentation", userPresentation);
     angular.module("HomeApp.directives").directive("taskForm", taskForm);
     angular.module("HomeApp.directives").directive("categoryIcon", categoryIcon);
+    angular.module("HomeApp.directives").directive("avatarItemSelector", avatarItemSelector);
 }(angular));

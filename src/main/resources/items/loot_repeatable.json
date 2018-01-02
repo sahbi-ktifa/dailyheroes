@@ -4,20 +4,23 @@
     "name":"Tender kiss",
     "levelCap": 1,
     "rarity": 100,
-    "repeatable": true
+    "repeatable": true,
+    "type": "other"
   },
   {
     "id":"r2",
     "name":"Big hug",
     "levelCap": 1,
     "rarity": 80,
-    "repeatable": true
+    "repeatable": true,
+    "type": "other"
   },
   {
     "id":"r3",
     "name":"Chocolate box",
     "levelCap": 1,
     "rarity": 25,
-    "repeatable": true
+    "repeatable": true,
+    "type": "other"
   }
 ]

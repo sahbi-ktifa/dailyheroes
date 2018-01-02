@@ -1,5 +1,6 @@
 package fr.efaya.game.dailyheroes.domain;
 
+import fr.efaya.game.dailyheroes.controller.api.LootWebServiceController;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection = "Items")
 public class Item {
-    
+
     @Id
     private String id;
 
@@ -17,6 +18,7 @@ public class Item {
     private Integer levelCap;
     private Integer rarity;
     private boolean repeatable;
+    private LootWebServiceController.ITEM_TYPE type;
 
     public String getId() {
         return id;
@@ -56,5 +58,13 @@ public class Item {
 
     public void setRepeatable(boolean repeatable) {
         this.repeatable = repeatable;
+    }
+
+    public LootWebServiceController.ITEM_TYPE getType() {
+        return type;
+    }
+
+    public void setType(LootWebServiceController.ITEM_TYPE type) {
+        this.type = type;
     }
 }

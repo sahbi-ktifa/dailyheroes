@@ -86,8 +86,24 @@
     };
     NotificationFactory.$inject = ['$http'];
 
+    var LootFactory = function($http) {
+        var lootService = {};
+
+        lootService.retrieveItemTypes = function() {
+            return $http.get(contextPath + '/loot');
+        };
+
+        lootService.retrieveLoots = function(username) {
+            return $http.get(contextPath + '/loot/' + username);
+        };
+
+        return lootService;
+    };
+    LootFactory.$inject = ['$http'];
+
     angular.module("HomeApp.services").factory("Dashboard", DashboardFactory);
     angular.module("HomeApp.services").factory("Task", TaskFactory);
     angular.module("HomeApp.services").factory("User", UserFactory);
     angular.module("HomeApp.services").factory("Notification", NotificationFactory);
+    angular.module("HomeApp.services").factory("Loot", LootFactory);
 }(angular));
