@@ -78,12 +78,15 @@
             restrict: 'E',
             replace: true,
             scope: {
-              avatar: '=',
+              userRef: '=',
               items: '='
             },
             template: '<div class="avatar-selector">' +
             '   <ul>' +
-            '       <li class="avatar-element" ng-if="elements.length > 0" ng-repeat="element in elements" ng-class="{\'active\':((!user.avatar || !user.avatar[element.itemType]) && element.itemId === \'empty\') || user.avatar[element.itemType] === element.itemId}">' +
+            '       <li class="avatar-element" ng-if="elements.length > 0" ' +
+            '           ng-repeat="element in elements" ' +
+            '           ng-class="{\'active\':((!userRef.avatar || !userRef.avatar[element.itemType]) && element.itemId === \'empty\') || userRef.avatar[element.itemType] === element.itemId}"' +
+            '           ng-click="chooseItem(element)">' +
             '           <span><img ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId}}.png" title="{{element.itemName | translate}}"/></span>' +
             '       </li>' +
             '   </ul>' +
@@ -98,6 +101,13 @@
                         scope.elements.unshift({itemId:'empty', itemName:'None', itemType: refType, repeatable: false});
                     }
                 });
+
+                scope.chooseItem = function (element) {
+                    if (!scope.userRef.avatar) {
+                        scope.userRef.avatar = {};
+                    }
+                    scope.userRef.avatar[refType] = element.itemId;
+                };
             }
         };
     };

@@ -102,6 +102,7 @@
 
     var ProfileCtrl = function($scope, User, Loot) {
         $scope.loading = true;
+        $scope.userUpdate = false;
         Loot.retrieveItemTypes().then(function (res) {
             $scope.types = res.data.filter(function (type) {
                 return type !== 'other';
@@ -141,6 +142,18 @@
                     break;
             }
             return _class;
+        };
+
+        $scope.$watch('user.avatar', function (value) {
+           if (value) {
+               $scope.userUpdate = true;
+           }
+        }, true);
+
+        $scope.updateUser = function () {
+            User.saveUser($scope.user).then(function () {
+               $scope.userUpdate = false;
+            });
         };
     };
     ProfileCtrl.$inject = ['$scope', 'User', 'Loot'];

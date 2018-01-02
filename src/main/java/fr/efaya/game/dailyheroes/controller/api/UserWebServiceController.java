@@ -5,8 +5,12 @@ import fr.efaya.game.dailyheroes.domain.User;
 import fr.efaya.game.dailyheroes.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 /**
  * @author Sahbi Ktifa
@@ -30,5 +34,11 @@ public class UserWebServiceController {
     @GetMapping("{username}/{userLevel}")
     public Integer retrieveUserNextLevelCap(@PathVariable("username") String username, @PathVariable("userLevel") Integer userLevel) {
         return Constants.levelsToExp.get(userLevel + 1);
+    }
+
+    @PostMapping("{username}")
+    public User saveUser(@PathVariable("username") String username, @RequestBody @Valid User user) {
+        user.setUsername(username);
+        return userService.saveUser(user);
     }
 }

@@ -31,6 +31,7 @@ angular.module("HomeApp").run(function (gettextCatalog) {
         'Players list':'Liste des joueurs',
         'Profile':'Profil',
         'Redundancy':'Récurrence',
+        'Save':'Sauvegarder',
         'Submit':'Valider',
         'Task created successfully.':'Tâche crée avec succès.',
         'Task is done':'Tâche réalisée',

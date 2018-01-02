@@ -63,6 +63,10 @@
             return $http.get(contextPath + '/user/' + username + '/' + userLevel);
         };
 
+        userService.saveUser = function(user) {
+            return $http.post(contextPath + '/user/' + user.username, user);
+        };
+
         return userService;
     };
     UserFactory.$inject = ['$http'];

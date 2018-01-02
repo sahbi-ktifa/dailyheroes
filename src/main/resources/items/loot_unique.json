@@ -32,6 +32,22 @@
     "type": "background"
   },
   {
+    "id":"ub5",
+    "name":"background5",
+    "levelCap": 1,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "background"
+  },
+  {
+    "id":"ub6",
+    "name":"background6",
+    "levelCap": 1,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "background"
+  },
+  {
     "id":"u1",
     "name":"head1",
     "levelCap": 0,

@@ -19,6 +19,9 @@
             </div>
             <div class="item-container">
                 <h5>Items</h5>
+                <button type="button" class="btn btn-primary" ng-disabled="!userUpdate" ng-click="updateUser()">
+                    <i class="fa fa-save"></i> <span translate>Save</span>
+                </button>
                 <ul>
                     <uib-tabset>
                         <uib-tab index="$index" ng-repeat="type in types">
@@ -26,7 +29,7 @@
                                 <i class="fa {{retrieveClass(type)}}" aria-hidden="true"></i>
                                 <span>{{type | translate}}</span>
                             </uib-tab-heading>
-                            <avatar-item-selector type="{{type}}" avatar="user" items="items"></avatar-item-selector>
+                            <avatar-item-selector type="{{type}}" user-ref="user" items="items"></avatar-item-selector>
                         </uib-tab>
                     </uib-tabset>
                 </ul>
