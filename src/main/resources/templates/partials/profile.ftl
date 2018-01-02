@@ -6,7 +6,7 @@
     <div class="profile-information" ng-if="!loading">
         <h3 translate>My profile</h3>
         <div class="col-md-4 avatar">
-
+            <h5>Avatar</h5>
         </div>
         <div class="col-md-8 info">
             <div>
@@ -17,6 +17,9 @@
                     <span style="color:white; white-space:nowrap;">{{user.currentExp}} / {{expToNextLevel}}</span>
                 </uib-progressbar>
             </div>
+        </div>
+        <div class="col-md-12">
+            <h5 translate>Gifts and rewards</h5>
         </div>
     </div>
 </div>

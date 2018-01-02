@@ -13,6 +13,7 @@ angular.module("HomeApp").run(function (gettextCatalog) {
         'Due date':'Date limite',
         'Edit':'Modifier',
         'Edit task':'Éditer une tâche',
+        'Gifts and rewards':'Cadeaux et récompenses',
         'I did it':'C\'est fait',
         'Level':'Niveau',
         'Monthly':'Tous les mois',

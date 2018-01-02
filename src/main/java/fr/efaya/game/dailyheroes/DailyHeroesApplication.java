@@ -3,7 +3,12 @@ package fr.efaya.game.dailyheroes;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.efaya.game.dailyheroes.domain.Item;
+import fr.efaya.game.dailyheroes.domain.Notification;
+import fr.efaya.game.dailyheroes.domain.User;
 import fr.efaya.game.dailyheroes.repository.ItemRepository;
+import fr.efaya.game.dailyheroes.repository.UserRepository;
+import fr.efaya.game.dailyheroes.service.LootService;
+import fr.efaya.game.dailyheroes.service.NotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -27,11 +32,13 @@ public class DailyHeroesApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(ItemRepository repository) {
+	CommandLineRunner runner(ItemRepository repository, UserRepository userRepository, LootService lootService, NotificationService notificationService) {
 		return args -> {
 			Iterable<Item> existingItems = repository.findAll();
 			doPrimitiveItemInsertion(repository, existingItems, "/items/loot_repeatable.json");
 			doPrimitiveItemInsertion(repository, existingItems, "/items/loot_unique.json");
+
+			lootPotentialNewBasicItemsForUsers(userRepository, lootService, notificationService);
 		};
 	}
 
@@ -54,4 +61,18 @@ public class DailyHeroesApplication {
 			LOGGER.warn("Unable to save items (" + refFilePath + ") : " + e.getMessage());
         }
 	}
+
+	private void lootPotentialNewBasicItemsForUsers(UserRepository userRepository, LootService lootService, NotificationService notificationService) {
+		Iterable<User> users = userRepository.findAll();
+		if (users != null && !((Collection<User>) users).isEmpty()) {
+			users.forEach(u -> {
+				int count = lootService.lootBasicItems(u);
+				if (count > 0) {
+					notificationService.saveNotification(new Notification("New items have been unlocked, check your profile!", u.getUsername(), null));
+					LOGGER.info(count + " default new items were given to " + u.getUsername());
+				}
+			});
+		}
+	}
+
 }

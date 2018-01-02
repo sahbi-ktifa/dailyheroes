@@ -28,6 +28,20 @@ public class LootServiceImpl implements LootService {
     }
 
     @Override
+    public int lootBasicItems(User user) {
+        List<Item> basicItems = itemRepository.findAllByLevelCapLessThanEqualAndRarityGreaterThanEqualAndRepeatable(0, 0, false);
+        removeAlreadyLootedItems(user, basicItems);
+
+        for (Item basicItem : basicItems) {
+            Loot loot = new Loot();
+            loot.setItemId(basicItem.getId());
+            loot.setUsername(user.getUsername());
+            lootRepository.save(loot);
+        }
+        return basicItems.size();
+    }
+
+    @Override
     public Item lootForLevel(User user) {
         List<Item> items = itemRepository.findAllByLevelCapLessThanEqualAndRarityGreaterThanEqualAndRepeatable(user.getLevel(), Math.toIntExact(Math.round(Math.random() * 100)), true);
         return doLoot(user, items);
@@ -38,8 +52,7 @@ public class LootServiceImpl implements LootService {
         int dropRate = Constants.complexity.get(task.getComplexity()) * 2;
         if (Math.random() * 100 <= dropRate) {
             List<Item> items = itemRepository.findAllByLevelCapLessThanEqualAndRarityGreaterThanEqualAndRepeatable(user.getLevel(), Math.toIntExact(Math.round(Math.random() * 100)), false);
-            List<Loot> lootedItems = lootRepository.findAllByUsername(user.getUsername());
-            items.removeIf(i -> lootedItems.stream().anyMatch(_i -> _i.getItemId().equals(i.getId())));
+            removeAlreadyLootedItems(user, items);
             return doLoot(user, items);
         }
         return null;
@@ -55,5 +68,10 @@ public class LootServiceImpl implements LootService {
             return lootedItem;
         }
         return null;
+    }
+
+    private void removeAlreadyLootedItems(User user, List<Item> basicItems) {
+        List<Loot> lootedItems = lootRepository.findAllByUsername(user.getUsername());
+        basicItems.removeIf(i -> lootedItems.stream().anyMatch(_i -> _i.getItemId().equals(i.getId())));
     }
 }

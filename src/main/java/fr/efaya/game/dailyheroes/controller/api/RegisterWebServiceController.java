@@ -3,8 +3,10 @@ package fr.efaya.game.dailyheroes.controller.api;
 import fr.efaya.game.dailyheroes.domain.Dashboard;
 import fr.efaya.game.dailyheroes.domain.User;
 import fr.efaya.game.dailyheroes.domain.pojo.RegisterCommand;
+import fr.efaya.game.dailyheroes.event.CreatedUserEvent;
 import fr.efaya.game.dailyheroes.service.DashboardService;
 import fr.efaya.game.dailyheroes.service.UserService;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,10 +26,12 @@ public class RegisterWebServiceController {
 
     private UserService userService;
     private DashboardService dashboardService;
+    private ApplicationEventPublisher publisher;
 
-    public RegisterWebServiceController(UserService userService, DashboardService dashboardService) {
+    public RegisterWebServiceController(UserService userService, DashboardService dashboardService, ApplicationEventPublisher publisher) {
         this.userService = userService;
         this.dashboardService = dashboardService;
+        this.publisher = publisher;
     }
 
     @GetMapping("{username}/exist")
@@ -48,6 +52,7 @@ public class RegisterWebServiceController {
             }
             User user = userService.saveUser(new User(username, command.getPassword()));
             dashboard.getUsers().add(user.getUsername());
+            publisher.publishEvent(new CreatedUserEvent(this, null, user));
         }
         dashboardService.saveDashboard(dashboard);
     }

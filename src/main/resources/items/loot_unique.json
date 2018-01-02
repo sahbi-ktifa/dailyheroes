@@ -1,7 +1,35 @@
 [
   {
+    "id":"ub1",
+    "name":"background1",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false
+  },
+  {
+    "id":"ub2",
+    "name":"background2",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false
+  },
+  {
+    "id":"ub3",
+    "name":"background3",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false
+  },
+  {
+    "id":"ub4",
+    "name":"background4",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false
+  },
+  {
     "id":"u1",
-    "name":"Head1",
+    "name":"head1",
     "levelCap": 0,
     "rarity": 100,
     "repeatable": false

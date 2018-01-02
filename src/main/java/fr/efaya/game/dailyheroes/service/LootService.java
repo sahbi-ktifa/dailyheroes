@@ -9,6 +9,7 @@ import fr.efaya.game.dailyheroes.domain.User;
  * created on 29/12/2017
  */
 public interface LootService {
+    int lootBasicItems(User user);
     Item lootForLevel(User user);
     Item lootForTask(User user, Task task);
 }
