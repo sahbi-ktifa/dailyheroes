@@ -63,8 +63,8 @@
             return $http.get(contextPath + '/user/' + username + '/' + userLevel);
         };
 
-        userService.saveUser = function(user) {
-            return $http.post(contextPath + '/user/' + user.username, user);
+        userService.saveUserAvatar = function(username, avatar) {
+            return $http.post(contextPath + '/user/' + username + '/avatar', avatar);
         };
 
         return userService;

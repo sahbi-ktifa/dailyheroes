@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import java.util.Map;
 
 /**
  * @author Sahbi Ktifa
@@ -36,9 +36,10 @@ public class UserWebServiceController {
         return Constants.levelsToExp.get(userLevel + 1);
     }
 
-    @PostMapping("{username}")
-    public User saveUser(@PathVariable("username") String username, @RequestBody @Valid User user) {
-        user.setUsername(username);
-        return userService.saveUser(user);
+    @PostMapping("{username}/avatar")
+    public void saveUserAvatar(@PathVariable("username") String username, @RequestBody Map<String, String> avatarConfig) {
+        User user = userService.retrieveUser(username);
+        user.setAvatar(avatarConfig);
+        userService.saveUser(user);
     }
 }

@@ -7,6 +7,7 @@
         <h3 translate>My profile</h3>
         <div class="col-md-3 avatar">
             <h5>Avatar</h5>
+            <avatar-displayer avatar-config="user.avatar"></avatar-displayer>
         </div>
         <div class="col-md-9 info">
             <div>

@@ -144,14 +144,17 @@
             return _class;
         };
 
+        var init = false;
         $scope.$watch('user.avatar', function (value) {
-           if (value) {
+           if (value && init === true) {
                $scope.userUpdate = true;
+           } else if (value) {
+               init = true;
            }
         }, true);
 
         $scope.updateUser = function () {
-            User.saveUser($scope.user).then(function () {
+            User.saveUserAvatar($scope.user.username, $scope.user.avatar).then(function () {
                $scope.userUpdate = false;
             });
         };
