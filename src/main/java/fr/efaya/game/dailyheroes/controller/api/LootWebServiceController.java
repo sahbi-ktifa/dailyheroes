@@ -7,6 +7,7 @@ import fr.efaya.game.dailyheroes.repository.ItemRepository;
 import fr.efaya.game.dailyheroes.service.LootService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,13 +43,21 @@ public class LootWebServiceController {
         List<LootedItem> lootedItems = new ArrayList<>();
         for (Loot loot : loots) {
             LootedItem lootedItem = new LootedItem();
+            lootedItem.setItemId(loot.getId());
             lootedItem.setItemId(loot.getItemId());
             Item item = itemRepository.findOne(loot.getItemId());
             lootedItem.setItemName(item.getName());
             lootedItem.setRepeatable(item.isRepeatable());
             lootedItem.setItemType(item.getType());
+            lootedItem.setRewardDate(loot.getRewardDate());
+            lootedItem.setReceived(loot.getReceived());
             lootedItems.add(lootedItem);
         }
         return lootedItems;
+    }
+
+    @PostMapping("{lootId}")
+    public void rewardReceived(@PathVariable("lootId") String lootId) {
+        lootService.receiveLoot(lootId);
     }
 }

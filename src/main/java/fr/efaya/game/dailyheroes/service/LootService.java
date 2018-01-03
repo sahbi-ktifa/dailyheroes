@@ -16,4 +16,6 @@ public interface LootService {
     int lootBasicItems(User user);
     Item lootForLevel(User user);
     Item lootForTask(User user, Task task);
+
+    void receiveLoot(String lootId);
 }

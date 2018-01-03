@@ -1,5 +1,5 @@
 (function(angular) {
-    var HomeCtrl = function($scope, Notification) {
+    var HomeCtrl = function($scope, Notification, $interval) {
         $scope.dashboard = {};
         $scope.notificationsCount = 0;
         var checkNotifications = function () {
@@ -20,8 +20,12 @@
         $scope.logout = function () {
             window.location.href = contextPath + '/logout';
         };
+
+        $interval(function() {
+            checkNotifications();
+        }, 20000);
     };
-    HomeCtrl.$inject = ['$scope', 'Notification'];
+    HomeCtrl.$inject = ['$scope', 'Notification', '$interval'];
 
     var DashboardCtrl = function($scope, Dashboard, Task, $uibModal) {
         $scope.loading = true;
@@ -108,13 +112,7 @@
                 return type !== 'other';
             });
         });
-        User.retrieveUser(username).then(function (res) {
-            $scope.user = res.data;
-            $scope.loading = false;
-            User.getNextLevelCap(username, $scope.user.level).then(function (res) {
-                $scope.expToNextLevel = res.data;
-                $scope.percentExpToNextLevel = ($scope.user.currentExp * 100) / $scope.expToNextLevel;
-            });
+        var refreshLoots = function () {
             Loot.retrieveLoots(username).then(function (res) {
                 $scope.rewards = res.data.filter(function (item) {
                     return item.repeatable === true;
@@ -123,6 +121,15 @@
                     return item.repeatable === false;
                 });
             });
+        };
+        User.retrieveUser(username).then(function (res) {
+            $scope.user = res.data;
+            $scope.loading = false;
+            User.getNextLevelCap(username, $scope.user.level).then(function (res) {
+                $scope.expToNextLevel = res.data;
+                $scope.percentExpToNextLevel = ($scope.user.currentExp * 100) / $scope.expToNextLevel;
+            });
+            refreshLoots();
         });
 
         $scope.retrieveClass = function (type) {
@@ -166,6 +173,12 @@
             User.saveUserAvatar($scope.user.username, $scope.user.avatar).then(function () {
                $scope.userUpdate = false;
             });
+        };
+
+        $scope.received = function (reward) {
+            Loot.received(reward).then(function () {
+                refreshLoots();
+            }) ;
         };
     };
     ProfileCtrl.$inject = ['$scope', 'User', 'Loot'];

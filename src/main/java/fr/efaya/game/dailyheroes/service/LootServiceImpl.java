@@ -10,6 +10,7 @@ import fr.efaya.game.dailyheroes.repository.LootRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -39,6 +40,7 @@ public class LootServiceImpl implements LootService {
 
         for (Item basicItem : basicItems) {
             Loot loot = new Loot();
+            loot.setRewardDate(new Date());
             loot.setItemId(basicItem.getId());
             loot.setUsername(user.getUsername());
             lootRepository.save(loot);
@@ -63,10 +65,21 @@ public class LootServiceImpl implements LootService {
         return null;
     }
 
+    @Override
+    public void receiveLoot(String lootId) {
+        Loot loot = lootRepository.findOne(lootId);
+        if (loot != null && !Boolean.TRUE.equals(loot.getReceived())) {
+            loot.setReceived(true);
+            loot.setReceivedDate(new Date());
+            lootRepository.save(loot);
+        }
+    }
+
     private Item doLoot(User user, List<Item> items) {
         if (!CollectionUtils.isEmpty(items)) {
             Item lootedItem = items.get(ThreadLocalRandom.current().nextInt(0, items.size()));
             Loot loot = new Loot();
+            loot.setRewardDate(new Date());
             loot.setItemId(lootedItem.getId());
             loot.setUsername(user.getUsername());
             lootRepository.save(loot);

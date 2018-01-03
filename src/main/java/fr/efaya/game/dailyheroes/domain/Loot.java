@@ -3,6 +3,7 @@ package fr.efaya.game.dailyheroes.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -16,6 +17,9 @@ public class Loot {
 
     private String itemId;
     private String username;
+    private Date rewardDate;
+    private Boolean received;
+    private Date receivedDate;
 
     public Loot() {
         this.id = UUID.randomUUID().toString();
@@ -43,5 +47,29 @@ public class Loot {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Date getRewardDate() {
+        return rewardDate;
+    }
+
+    public void setRewardDate(Date rewardDate) {
+        this.rewardDate = rewardDate;
+    }
+
+    public Boolean getReceived() {
+        return received;
+    }
+
+    public void setReceived(Boolean received) {
+        this.received = received;
+    }
+
+    public Date getReceivedDate() {
+        return receivedDate;
+    }
+
+    public void setReceivedDate(Date receivedDate) {
+        this.receivedDate = receivedDate;
     }
 }

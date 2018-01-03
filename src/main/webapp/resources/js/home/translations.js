@@ -19,6 +19,7 @@ angular.module("HomeApp").run(function (gettextCatalog) {
         'Edit task':'Éditer une tâche',
         'face':'Visage',
         'gadget':'Accessoires',
+        'Got it':'Bien reçu',
         'Gifts and rewards':'Cadeaux et récompenses',
         'hair':'Cheveux',
         'head':'Tête',

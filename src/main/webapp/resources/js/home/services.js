@@ -101,6 +101,10 @@
             return $http.get(contextPath + '/loot/' + username);
         };
 
+        lootService.received = function(loot) {
+            return $http.post(contextPath + '/loot/' + loot.lootId);
+        };
+
         return lootService;
     };
     LootFactory.$inject = ['$http'];
