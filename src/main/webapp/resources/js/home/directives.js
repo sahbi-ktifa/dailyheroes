@@ -82,18 +82,21 @@
               items: '='
             },
             template: '<div class="avatar-selector">' +
-            '   <ul ng-repeat="subType in subTypes">' +
-            '       <li class="avatar-element" ng-if="elements.length > 0" ' +
-            '           ng-repeat="element in elements | filter:subType" ' +
-            '           ng-class="{\'active\':((!userRef.avatar || (!userRef.avatar[element.itemType] && !userRef.avatar[element.itemType + \'-\' + element.subType])) && element.itemId.startsWith(\'empty\'))' +
-            '                || userRef.avatar[element.itemType] === element.itemId || userRef.avatar[element.itemType + \'-\' + element.subType] === element.itemId}"' +
-            '           ng-click="chooseItem(element)">' +
-            '           <span>' +
-            '               <img ng-if="element.itemId.indexOf(\'-\') > -1" ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId.substr(0, element.itemId.indexOf(\'-\'))}}.png" title="{{element.itemName | translate}}"/>' +
-            '               <img ng-if="element.itemId.indexOf(\'-\') === -1" ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId}}.png" title="{{element.itemName | translate}}"/>' +
-            '           </span>' +
-            '       </li>' +
-            '   </ul>' +
+            '   <div ng-repeat="subType in subTypes">' +
+            '       <b ng-if="subType.length > 0">{{subType | translate}}</b>' +
+            '       <ul>' +
+            '           <li class="avatar-element" ng-if="elements.length > 0" ' +
+            '               ng-repeat="element in elements | filter:subType" ' +
+            '               ng-class="{\'active\':((!userRef.avatar || (!userRef.avatar[element.itemType] && !userRef.avatar[element.itemType + \'-\' + element.subType])) && element.itemId.startsWith(\'empty\'))' +
+            '                    || userRef.avatar[element.itemType] === element.itemId || userRef.avatar[element.itemType + \'-\' + element.subType] === element.itemId}"' +
+            '               ng-click="chooseItem(element)">' +
+            '               <span>' +
+            '                   <img ng-if="element.itemId.indexOf(\'-\') > -1" ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId.substr(0, element.itemId.indexOf(\'-\'))}}.png" title="{{element.itemName | translate}}"/>' +
+            '                   <img ng-if="element.itemId.indexOf(\'-\') === -1" ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId}}.png" title="{{element.itemName | translate}}"/>' +
+            '               </span>' +
+            '           </li>' +
+            '       </ul>' +
+            '   </div>' +
             '</div>',
             link: function (scope, element, attrs) {
                 var refType = attrs.type;
