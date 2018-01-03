@@ -13,6 +13,7 @@ public class LootedItem {
     private String itemId;
     private String itemName;
     private LootWebServiceController.ITEM_TYPE itemType;
+    private String subType;
     private boolean repeatable;
     private Date rewardDate;
     private Boolean received;
@@ -55,6 +56,14 @@ public class LootedItem {
 
     public void setItemType(LootWebServiceController.ITEM_TYPE itemType) {
         this.itemType = itemType;
+    }
+
+    public String getSubType() {
+        return subType;
+    }
+
+    public void setSubType(String subType) {
+        this.subType = subType;
     }
 
     public Date getRewardDate() {

@@ -82,12 +82,16 @@
               items: '='
             },
             template: '<div class="avatar-selector">' +
-            '   <ul>' +
+            '   <ul ng-repeat="subType in subTypes">' +
             '       <li class="avatar-element" ng-if="elements.length > 0" ' +
-            '           ng-repeat="element in elements" ' +
-            '           ng-class="{\'active\':((!userRef.avatar || !userRef.avatar[element.itemType]) && element.itemId === \'empty\') || userRef.avatar[element.itemType] === element.itemId}"' +
+            '           ng-repeat="element in elements | filter:subType" ' +
+            '           ng-class="{\'active\':((!userRef.avatar || (!userRef.avatar[element.itemType] && !userRef.avatar[element.itemType + \'-\' + element.subType])) && element.itemId.startsWith(\'empty\'))' +
+            '                || userRef.avatar[element.itemType] === element.itemId || userRef.avatar[element.itemType + \'-\' + element.subType] === element.itemId}"' +
             '           ng-click="chooseItem(element)">' +
-            '           <span><img ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId}}.png" title="{{element.itemName | translate}}"/></span>' +
+            '           <span>' +
+            '               <img ng-if="element.itemId.indexOf(\'-\') > -1" ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId.substr(0, element.itemId.indexOf(\'-\'))}}.png" title="{{element.itemName | translate}}"/>' +
+            '               <img ng-if="element.itemId.indexOf(\'-\') === -1" ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId}}.png" title="{{element.itemName | translate}}"/>' +
+            '           </span>' +
             '       </li>' +
             '   </ul>' +
             '</div>',
@@ -95,10 +99,26 @@
                 var refType = attrs.type;
                 scope.$watch('items', function (items) {
                     if (items) {
+                        scope.subTypes = [];
                         scope.elements = scope.items.filter(function (i) {
                             return i.itemType === refType;
                         });
-                        scope.elements.unshift({itemId:'empty', itemName:'None', itemType: refType, repeatable: false});
+                        var empties = [];
+                        scope.elements.forEach(function (e) {
+                            if (e.subType && scope.subTypes.indexOf(e.subType) < 0) {
+                                scope.subTypes.push(e.subType);
+                                empties.push({itemId:'empty-' + e.subType, itemName:'None', itemType: refType, subType: e.subType, repeatable: false})
+                            }
+                        });
+                        if (scope.subTypes.length === 0) {
+                            scope.subTypes.push('');
+                        }
+                        if (empties.length === 0) {
+                            empties.push({itemId:'empty', itemName:'None', itemType: refType, subType: '', repeatable: false})
+                        }
+                        for (var idx in empties) {
+                            scope.elements.unshift(empties[idx]);
+                        }
                     }
                 });
 
@@ -106,7 +126,15 @@
                     if (!scope.userRef.avatar) {
                         scope.userRef.avatar = {};
                     }
-                    scope.userRef.avatar[refType] = element.itemId;
+                    if (element.itemId.startsWith('empty-')) {
+                        scope.userRef.avatar[refType + '-' + element.subType] = null;
+                    } else if (element.itemId.startsWith('empty')) {
+                        scope.userRef.avatar[refType] = null;
+                    } else if (element.subType) {
+                        scope.userRef.avatar[refType + '-' + element.subType] = element.itemId;
+                    } else {
+                        scope.userRef.avatar[refType] = element.itemId;
+                    }
                 };
             }
         };
@@ -125,8 +153,11 @@
             '       <img class="avatar-background" ng-if="avatarConfig[\'background\']" ng-src="/resources/img/avatar/background/{{avatarConfig[\'background\']}}.png"/>' +
             '       <img class="avatar-head" ng-if="avatarConfig[\'head\']" ng-src="/resources/img/avatar/head/{{avatarConfig[\'head\']}}.png"/>' +
             '       <img class="avatar-hair" ng-if="avatarConfig[\'hair\']" ng-src="/resources/img/avatar/hair/{{avatarConfig[\'hair\']}}.png"/>' +
-            '       <img class="avatar-gadget" ng-if="avatarConfig[\'gadget\']" ng-src="/resources/img/avatar/gadget/{{avatarConfig[\'gadget\']}}.png"/>' +
-            '       <img class="avatar-face" ng-if="avatarConfig[\'face\']" ng-src="/resources/img/avatar/face/{{avatarConfig[\'face\']}}.png"/>' +
+            '       <img class="avatar-gadget" ng-if="avatarConfig[\'gadget-gadget1\']" ng-src="/resources/img/avatar/gadget/{{avatarConfig[\'gadget-gadget1\']}}.png"/>' +
+            '       <img class="avatar-gadget" ng-if="avatarConfig[\'gadget-gadget2\']" ng-src="/resources/img/avatar/gadget/{{avatarConfig[\'gadget-gadget2\']}}.png"/>' +
+            '       <img class="avatar-face" ng-if="avatarConfig[\'face-beard\']" ng-src="/resources/img/avatar/face/{{avatarConfig[\'face-beard\']}}.png"/>' +
+            '       <img class="avatar-face" ng-if="avatarConfig[\'face-eyes\']" ng-src="/resources/img/avatar/face/{{avatarConfig[\'face-eyes\']}}.png"/>' +
+            '       <img class="avatar-face" ng-if="avatarConfig[\'face-lips\']" ng-src="/resources/img/avatar/face/{{avatarConfig[\'face-lips\']}}.png"/>' +
             '       <img class="avatar-clothes" ng-if="avatarConfig[\'clothes\']" ng-src="/resources/img/avatar/clothes/{{avatarConfig[\'clothes\']}}.png"/>' +
             '   </div>' +
             '   <div ng-if="!hasPreview">' +

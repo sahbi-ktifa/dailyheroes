@@ -189,6 +189,16 @@ form .row:first-child .floating-label-form-group {
 /**
     AVATAR DISPLAYER
  */
+.avatar-displayer > div {
+    position: relative;
+    width: 256px;
+    height: 256px;
+}
+.avatar-displayer > div > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 .avatar-displayer .avatar-background {
     z-index: 1;
 }
@@ -198,12 +208,12 @@ form .row:first-child .floating-label-form-group {
 .avatar-displayer .avatar-hair {
     z-index: 3;
 }
-.avatar-displayer .avatar-gadget {
+.avatar-displayer .avatar-face {
     z-index: 4;
 }
-.avatar-displayer .avatar-face {
+.avatar-displayer .avatar-clothes {
     z-index: 5;
 }
-.avatar-displayer .avatar-clothes {
+.avatar-displayer .avatar-gadget {
     z-index: 6;
 }

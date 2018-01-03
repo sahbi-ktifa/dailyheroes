@@ -49,6 +49,7 @@ public class LootWebServiceController {
             lootedItem.setItemName(item.getName());
             lootedItem.setRepeatable(item.isRepeatable());
             lootedItem.setItemType(item.getType());
+            lootedItem.setSubType(item.getSubType());
             lootedItem.setRewardDate(loot.getRewardDate());
             lootedItem.setReceived(loot.getReceived());
             lootedItems.add(lootedItem);
