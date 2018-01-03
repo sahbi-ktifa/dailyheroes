@@ -3,9 +3,16 @@
     right: 0;
     top: 20px;
 }
+.profile-container .reward-container {
+    margin-top: 25px;
+}
 .profile-container .reward-container ul {
     list-style: none;
 }
+.profile-container .reward-container ul li .reward {
+    color: #d9534f;
+}
+
 .profile-container .item-container ul{
     padding-left: 0;
 }

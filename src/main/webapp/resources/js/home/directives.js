@@ -5,7 +5,7 @@
             replace: true,
             template: '<div class="user-container">' +
             '   <div class="user-avatar">' +
-            '       <img src="/resources/img/user.png"/>' +
+            '       <avatar-displayer avatar-config="user.avatar"></avatar-displayer>' +
             '   </div>' +
             '   <div class="user-info">' +
             '       <span>{{user.username}}</span>' +
@@ -112,8 +112,41 @@
         };
     };
 
+    var avatarDisplayer = function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                avatarConfig: '=',
+                avatarId: '='
+            },
+            template: '<div class="avatar-displayer">' +
+            '   <div ng-if="hasPreview">' +
+            '       <img class="avatar-background" ng-if="avatarConfig[\'background\']" ng-src="/resources/img/avatar/background/{{avatarConfig[\'background\']}}.png"/>' +
+            '       <img class="avatar-head" ng-if="avatarConfig[\'head\']" ng-src="/resources/img/avatar/head/{{avatarConfig[\'head\']}}.png"/>' +
+            '       <img class="avatar-hair" ng-if="avatarConfig[\'hair\']" ng-src="/resources/img/avatar/hair/{{avatarConfig[\'hair\']}}.png"/>' +
+            '       <img class="avatar-gadget" ng-if="avatarConfig[\'gadget\']" ng-src="/resources/img/avatar/gadget/{{avatarConfig[\'gadget\']}}.png"/>' +
+            '       <img class="avatar-face" ng-if="avatarConfig[\'face\']" ng-src="/resources/img/avatar/face/{{avatarConfig[\'face\']}}.png"/>' +
+            '       <img class="avatar-clothes" ng-if="avatarConfig[\'clothes\']" ng-src="/resources/img/avatar/clothes/{{avatarConfig[\'clothes\']}}.png"/>' +
+            '   </div>' +
+            '   <div ng-if="!hasPreview">' +
+            '       <img src="/resources/img/user.png"/>' +
+            '   </div>' +
+            '</div>',
+            link: function (scope) {
+                scope.hasPreview = false;
+                scope.$watch('avatarConfig', function (value) {
+                    if (value) {
+                       scope.hasPreview = true;
+                    }
+                });
+            }
+        };
+    };
+
     angular.module("HomeApp.directives").directive("userPresentation", userPresentation);
     angular.module("HomeApp.directives").directive("taskForm", taskForm);
     angular.module("HomeApp.directives").directive("categoryIcon", categoryIcon);
     angular.module("HomeApp.directives").directive("avatarItemSelector", avatarItemSelector);
+    angular.module("HomeApp.directives").directive("avatarDisplayer", avatarDisplayer);
 }(angular));

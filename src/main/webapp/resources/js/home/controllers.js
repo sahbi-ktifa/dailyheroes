@@ -140,6 +140,15 @@
                 case 'eye':
                     _class = 'fa-eye';
                     break;
+                case 'gadget':
+                    _class = 'fa-star';
+                    break;
+                case 'clothes':
+                    _class = 'fa-tags';
+                    break;
+                case 'face':
+                    _class = 'fa-smile-o';
+                    break;
             }
             return _class;
         };

@@ -40,8 +40,7 @@
             <h5 translate>Gifts and rewards</h5>
             <ul>
                 <li ng-if="rewards && rewards.length > 0" ng-repeat="reward in rewards">
-                    <img ng-src="/resources/img/reward/{{reward.itemId}}.png" title="{{reward.itemName | translate}}"/>
-                    <span>{{reward.itemName | translate}}</span>
+                    <i class="fa fa-gift fa-2x reward" aria-hidden="true"></i> <span>{{reward.itemName | translate}}</span>
                 </li>
                 <li ng-if="rewards && rewards.length === 0" class="no-reward">
                     <span translate>No gift or reward unlocked, keep playing to do so.</span>

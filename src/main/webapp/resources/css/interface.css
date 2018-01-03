@@ -186,3 +186,24 @@ form .row:first-child .floating-label-form-group {
 .popover-title {
     color: #2c3e50;
 }
+/**
+    AVATAR DISPLAYER
+ */
+.avatar-displayer .avatar-background {
+    z-index: 1;
+}
+.avatar-displayer .avatar-head {
+    z-index: 2;
+}
+.avatar-displayer .avatar-hair {
+    z-index: 3;
+}
+.avatar-displayer .avatar-gadget {
+    z-index: 4;
+}
+.avatar-displayer .avatar-face {
+    z-index: 5;
+}
+.avatar-displayer .avatar-clothes {
+    z-index: 6;
+}
