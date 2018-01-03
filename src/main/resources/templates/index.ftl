@@ -64,11 +64,23 @@
     <div ng-view></div>
 </div>
 
+<script type="text/ng-template" id="credits.html">
+    <div>
+        <a target="_blank" href="https://www.freepik.com/free-vector/colorful-pack-of-medieval-knights_1363411.htm">Logo inspired by Freepik</a>
+    </div>
+    <div>
+        <a target="_blank" href="https://www.freepik.com/free-photos-vectors/people">Avatar resources created by Kubanek - Freepik.com</a>
+    </div>
+</script>
+
+<script type="text/ng-template" id="contribute.html">
+    <a target="_blank" href="https://github.com/sahbi-ktifa/dailyheroes">Contribute @ GitHub</a>
+</script>
 <div class="footer navbar-fixed-bottom">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                Copyright &copy; Daily Heroes 2018
+                Copyright &copy; Daily Heroes 2018 - <a class="credit-line" uib-popover-template="'credits.html'" popover-title="{{'Credits' | translate}}" translate>Credits</a> - <a class="contribute-line" uib-popover-template="'contribute.html'" popover-title="{{'Contribute' | translate}}" translate>Contribute</a>
             </div>
         </div>
     </div>

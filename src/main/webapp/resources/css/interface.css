@@ -180,3 +180,9 @@ form .row:first-child .floating-label-form-group {
 .badge.active {
     background-color: #f0ad4e;
 }
+.credit-line, .contribute-line {
+    cursor: pointer;
+}
+.popover-title {
+    color: #2c3e50;
+}
