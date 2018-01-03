@@ -2,6 +2,8 @@ angular.module("HomeApp").run(function (gettextCatalog) {
     gettextCatalog.setCurrentLanguage(navigator.language || navigator.userLanguage);
     gettextCatalog.setStrings("fr", {
         'Add a task':'Ajouter une tâche',
+        'Are you sure that you performed this task?':'Avez-vous réellement réalisé cette tâche ?',
+        'Are you sure that you want to delete this task?':'Voulez-vous vraiment supprimer cette tâche ?',
         'background':'Arrière-plan',
         'beard':'Barbe / moustache',
         'Cancel':'Annuler',

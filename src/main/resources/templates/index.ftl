@@ -60,7 +60,7 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-<div class="container app">
+<div class="container app" ng-swipe-left="goToNext()" ng-swipe-right="goToPrevious()">
     <div ng-view></div>
 </div>
 
@@ -100,6 +100,7 @@
 <script type="text/javascript" src="webjars/angularjs/1.6.6/angular-route.min.js"></script>
 <script type="text/javascript" src="webjars/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js"></script>
 <script type="text/javascript" src="webjars/angular-gettext/2.2.1/dist/angular-gettext.min.js"></script>
+<script type="text/javascript" src="webjars/angular-touch/1.6.7/angular-touch.min.js"></script>
 <script type="text/javascript" src="/resources/js/home/app.js"></script>
 <script type="text/javascript" src="/resources/js/home/services.js"></script>
 <script type="text/javascript" src="/resources/js/home/directives.js"></script>

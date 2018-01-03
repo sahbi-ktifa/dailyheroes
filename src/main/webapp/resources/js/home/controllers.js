@@ -1,7 +1,9 @@
 (function(angular) {
-    var HomeCtrl = function($scope, Notification, $interval) {
+    var HomeCtrl = function($scope, Notification, $interval, $location) {
         $scope.dashboard = {};
         $scope.notificationsCount = 0;
+        var routes = ['/', '/profile', '/notifications', '/task'];
+
         var checkNotifications = function () {
             Notification.checkNotifications(username).then(function (res) {
                 $scope.notificationsCount = res.data;
@@ -21,13 +23,29 @@
             window.location.href = contextPath + '/logout';
         };
 
+        $scope.goToPrevious = function () {
+            var idx = routes.indexOf($location.path()) - 1;
+            if (idx < 0) {
+                idx = 0;
+            }
+            $location.path(routes[idx]);
+        };
+
+        $scope.goToNext = function () {
+            var idx = routes.indexOf($location.path()) + 1;
+            if (idx > routes.length) {
+                idx = routes.length;
+            }
+            $location.path(routes[idx]);
+        };
+
         $interval(function() {
             checkNotifications();
         }, 20000);
     };
-    HomeCtrl.$inject = ['$scope', 'Notification', '$interval'];
+    HomeCtrl.$inject = ['$scope', 'Notification', '$interval', '$location'];
 
-    var DashboardCtrl = function($scope, Dashboard, Task, $uibModal) {
+    var DashboardCtrl = function($scope, Dashboard, Task, $uibModal, gettextCatalog) {
         $scope.loading = true;
         $scope.tasks = [];
         var refreshTasks = function () {
@@ -43,7 +61,7 @@
         });
 
         $scope.validTask = function (task) {
-            if (confirm('Are you sure that you performed this task?')) {
+            if (confirm(gettextCatalog.getString('Are you sure that you performed this task?'))) {
                 Task.validTask(task.id).then(function () {
                     refreshTasks();
                 });
@@ -51,7 +69,7 @@
         };
 
         $scope.deleteTask = function (task) {
-            if (confirm('Are you sure that you want to delete this task?')) {
+            if (confirm(gettextCatalog.getString('Are you sure that you want to delete this task?'))) {
                 Task.deleteTask(task.id).then(function () {
                     refreshTasks();
                 });
@@ -88,7 +106,7 @@
             });
         };
     };
-    DashboardCtrl.$inject = ['$scope', 'Dashboard', 'Task', '$uibModal'];
+    DashboardCtrl.$inject = ['$scope', 'Dashboard', 'Task', '$uibModal', 'gettextCatalog'];
 
     var EditTaskCtrl = function($scope, $uibModalInstance, task) {
         var $ctrl = this;
