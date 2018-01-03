@@ -205,10 +205,10 @@ form .row:first-child .floating-label-form-group {
 .avatar-displayer .avatar-head {
     z-index: 2;
 }
-.avatar-displayer .avatar-hair {
+.avatar-displayer .avatar-face {
     z-index: 3;
 }
-.avatar-displayer .avatar-face {
+.avatar-displayer .avatar-hair {
     z-index: 4;
 }
 .avatar-displayer .avatar-clothes {
