@@ -38,7 +38,7 @@ public class RegisterWebServiceController {
     public void checkUser(@PathVariable("username") String username) throws InstanceAlreadyExistsException {
         User user = userService.retrieveUser(username);
         if (user != null) {
-            throw new InstanceAlreadyExistsException();
+            throw new InstanceAlreadyExistsException(username);
         }
     }
 
