@@ -1,0 +1,18 @@
+[
+  {
+    "id":"uhair1",
+    "name":"hair1",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair2",
+    "name":"hair2",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "hair"
+  }
+]

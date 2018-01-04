@@ -1,0 +1,10 @@
+[
+  {
+    "id":"u1",
+    "name":"head1",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "head"
+  }
+]

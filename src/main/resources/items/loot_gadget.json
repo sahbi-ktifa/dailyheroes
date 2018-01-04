@@ -1,0 +1,20 @@
+[
+  {
+    "id":"ugadget1",
+    "name":"glasses",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "gadget",
+    "subType": "gadget1"
+  },
+  {
+    "id":"ugadget2",
+    "name":"earings",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "gadget",
+    "subType": "gadget2"
+  }
+]

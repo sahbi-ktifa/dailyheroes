@@ -1,0 +1,48 @@
+[
+  {
+    "id":"uface1",
+    "name":"beard",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "face",
+    "subType": "beard"
+  },
+  {
+    "id":"uface2",
+    "name":"eyes1",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "face",
+    "subType": "eyes"
+  },
+  {
+    "id":"uface3",
+    "name":"lips1",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "face",
+    "subType": "lips"
+  },
+  {
+    "id":"uface4",
+    "name":"lips2",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "face",
+    "subType": "lips"
+  },
+  {
+    "id":"uface5_animated",
+    "name":"eyes2",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "face",
+    "subType": "eyes"
+  }
+
+]

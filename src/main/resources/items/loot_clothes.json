@@ -1,0 +1,18 @@
+[
+  {
+    "id":"uclothes1",
+    "name":"thsirt1",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "clothes"
+  },
+  {
+    "id":"uclothes2",
+    "name":"thsirt2",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "clothes"
+  }
+]

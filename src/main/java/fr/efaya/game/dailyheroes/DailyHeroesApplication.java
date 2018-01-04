@@ -16,6 +16,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.util.CollectionUtils;
 
 import java.io.IOException;
@@ -36,17 +38,19 @@ public class DailyHeroesApplication {
 	CommandLineRunner runner(ItemRepository repository, UserRepository userRepository, LootService lootService, NotificationService notificationService) {
 		return args -> {
 			Iterable<Item> existingItems = repository.findAll();
-			doPrimitiveItemInsertion(repository, existingItems, "/items/loot_repeatable.json");
-			doPrimitiveItemInsertion(repository, existingItems, "/items/loot_unique.json");
-
+			PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+			Resource[] resources = resolver.getResources("classpath:items/loot_*.json");
+			for (Resource resource : resources) {
+				doPrimitiveItemInsertion(repository, existingItems, resource);
+			}
 			lootPotentialNewBasicItemsForUsers(userRepository, lootService, notificationService);
 		};
 	}
 
-	private void doPrimitiveItemInsertion(ItemRepository repository, Iterable<Item> existingItems, String refFilePath) {
+	private void doPrimitiveItemInsertion(ItemRepository repository, Iterable<Item> existingItems, Resource resource) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		TypeReference<List<Item>> typeReference = new TypeReference<List<Item>>(){};
-		InputStream inputStream = TypeReference.class.getResourceAsStream(refFilePath);
+		InputStream inputStream = resource.getInputStream();
 		try {
             List<Item> items = mapper.readValue(inputStream,typeReference);
             if (existingItems != null && ((Collection<Item>)existingItems).size() > 0) {
@@ -54,12 +58,12 @@ public class DailyHeroesApplication {
             }
 			if (!CollectionUtils.isEmpty(items)) {
 				repository.save(items);
-				LOGGER.info("Items saved for: " + refFilePath + " !");
+				LOGGER.info("Items saved for: " + resource.getFilename() + " !");
 			} else {
-				LOGGER.info("No more items to save for: " + refFilePath + " !");
+				LOGGER.info("No more items to save for: " + resource.getFilename() + " !");
 			}
         } catch (IOException e){
-			LOGGER.warn("Unable to save items (" + refFilePath + ") : " + e.getMessage());
+			LOGGER.warn("Unable to save items (" + resource.getFilename() + ") : " + e.getMessage());
         }
 	}
 
