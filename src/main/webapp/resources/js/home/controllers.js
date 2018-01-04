@@ -7,6 +7,8 @@
         var checkNotifications = function () {
             Notification.checkNotifications(username).then(function (res) {
                 $scope.notificationsCount = res.data;
+            }).catch(function (reason) {
+                console.log('Unable to check notifications: ' + (reason.data ? reason.data : 'Unknown error.'));
             });
         };
 
