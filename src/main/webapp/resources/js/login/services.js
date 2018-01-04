@@ -11,7 +11,7 @@
                     }
                 }
             }
-            return $http.post(contextPath + '/register', {password: data.password, playerNames: players});
+            return $http.post(contextPath + '/register', {password: data.password, playerNames: players, dashboardName: data.dashboard});
         };
 
         registrationService.checkUser = function(username) {

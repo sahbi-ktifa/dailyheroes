@@ -1,11 +1,11 @@
 package fr.efaya.game.dailyheroes.event.listener;
 
-import fr.efaya.game.dailyheroes.domain.builder.NotificationBuilder;
-import fr.efaya.game.dailyheroes.event.CompletedTaskEvent;
 import fr.efaya.game.dailyheroes.ConstantUtils;
 import fr.efaya.game.dailyheroes.domain.Dashboard;
 import fr.efaya.game.dailyheroes.domain.Notification;
 import fr.efaya.game.dailyheroes.domain.User;
+import fr.efaya.game.dailyheroes.domain.builder.NotificationBuilder;
+import fr.efaya.game.dailyheroes.event.CompletedTaskEvent;
 import fr.efaya.game.dailyheroes.event.CreatedTaskEvent;
 import fr.efaya.game.dailyheroes.event.LevelUpEvent;
 import fr.efaya.game.dailyheroes.event.ValidatedTaskEvent;
@@ -16,6 +16,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +41,7 @@ public class UserListener {
 
     @EventListener
     public void handleCreatedTaskEvent(CreatedTaskEvent event) {
-        List<String> users = addNotification(event.getUser());
+        List<String> users = retrieveUsersInDashboard(event.getUser(), event.getTask().getDashboardId());
         for (String _username : users) {
             Notification notification = NotificationBuilder.newInstance()
                     .withMessage("has created a task, check if you can do it:")
@@ -55,7 +56,7 @@ public class UserListener {
 
     @EventListener
     public void handleCompletedTaskEvent(CompletedTaskEvent event) {
-        List<String> users = addNotification(event.getUser());
+        List<String> users = retrieveUsersInDashboard(event.getUser(), event.getTask().getDashboardId());
         for (String _username : users) {
             Notification notification = NotificationBuilder.newInstance()
                     .withMessage("has completed a task, please review it:")
@@ -98,28 +99,38 @@ public class UserListener {
     @EventListener
     public void notifyOtherPlayersThatOneIsLevelingUp(LevelUpEvent event) {
         String username = event.getUser().getUsername();
-        Dashboard dashboard = dashboardService.retrieveDashboardForUser(username);
-        for (String user : dashboard.getUsers()) {
-            if (!user.equals(username)) {
-                Notification notification = NotificationBuilder.newInstance()
-                        .withMessage("is now level")
-                        .forUser(user)
-                        .from(username)
-                        .withSuffix(String.valueOf(event.getUser().getLevel()))
-                        .build();
+        List<Dashboard> dashboards = dashboardService.retrieveDashboardsForUser(username);
+        for (Dashboard dashboard : dashboards) {
+            for (String user : dashboard.getUsers()) {
+                if (!user.equals(username)) {
+                    Notification notification = NotificationBuilder.newInstance()
+                            .withMessage("is now level")
+                            .forUser(user)
+                            .from(username)
+                            .withSuffix(String.valueOf(event.getUser().getLevel()))
+                            .build();
 
-                notificationService.saveNotification(notification);
+                    notificationService.saveNotification(notification);
+                }
             }
         }
 
     }
 
-    private List<String> addNotification(User user) {
+    private List<String> retrieveUsersInDashboard(User user, String dashboardId) {
         String username = user.getUsername();
-        Dashboard dashboard = dashboardService.retrieveDashboardForUser(username);
+        List<Dashboard> dashboards = dashboardService.retrieveDashboardsForUser(username);
 
-        return dashboard.getUsers().stream()
-                .filter(u -> !u.equals(username))
-                .collect(Collectors.toList());
+        Dashboard dashboard = dashboards.stream()
+                .filter(d -> d.getId().equals(dashboardId))
+                .findFirst()
+                .orElse(null);
+        if (dashboard != null) {
+            return dashboard.getUsers().stream()
+                    .filter(u -> !u.equals(username))
+                    .collect(Collectors.toList());
+        } else {
+            return Collections.emptyList();
+        }
     }
 }

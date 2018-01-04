@@ -9,6 +9,7 @@ import java.util.List;
 public class RegisterCommand {
     private List<String> playerNames;
     private String password;
+    private String dashboardName;
 
     public List<String> getPlayerNames() {
         return playerNames;
@@ -24,5 +25,13 @@ public class RegisterCommand {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDashboardName() {
+        return dashboardName;
+    }
+
+    public void setDashboardName(String dashboardName) {
+        this.dashboardName = dashboardName;
     }
 }

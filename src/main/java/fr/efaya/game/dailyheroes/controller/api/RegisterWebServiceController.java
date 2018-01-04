@@ -4,6 +4,7 @@ import fr.efaya.game.dailyheroes.domain.Dashboard;
 import fr.efaya.game.dailyheroes.domain.User;
 import fr.efaya.game.dailyheroes.domain.pojo.RegisterCommand;
 import fr.efaya.game.dailyheroes.event.CreatedUserEvent;
+import fr.efaya.game.dailyheroes.event.UserAddedInDashboard;
 import fr.efaya.game.dailyheroes.service.DashboardService;
 import fr.efaya.game.dailyheroes.service.UserService;
 import org.springframework.context.ApplicationEventPublisher;
@@ -45,14 +46,17 @@ public class RegisterWebServiceController {
     @PostMapping
     public void registrationProcess(@RequestBody RegisterCommand command) {
         Dashboard dashboard = new Dashboard();
+        dashboard.setName(command.getDashboardName());
         for (String username : command.getPlayerNames()) {
             User existingUser = userService.retrieveUser(username);
             if (existingUser != null) {
-                username += Math.random() * 100;
+                dashboard.getPendingUsers().add(username);
+                publisher.publishEvent(new UserAddedInDashboard(this, null, existingUser, dashboard));
+            } else {
+                User user = userService.saveUser(new User(username, command.getPassword()));
+                dashboard.getUsers().add(user.getUsername());
+                publisher.publishEvent(new CreatedUserEvent(this, null, user));
             }
-            User user = userService.saveUser(new User(username, command.getPassword()));
-            dashboard.getUsers().add(user.getUsername());
-            publisher.publishEvent(new CreatedUserEvent(this, null, user));
         }
         dashboardService.saveDashboard(dashboard);
     }

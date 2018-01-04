@@ -5,6 +5,7 @@ angular.module("LoginApp").run(function (gettextCatalog) {
         'An error occured, please try again later.':'Une erreur s\'est produite, merci de réessayer ultérieurement.',
         'Confirm Password':'Confirmer le mot de passe',
         'Create a game':'Créer une partie',
+        'Enter dashboard name':'Saisir le nom de la partie',
         'Enter extra player name':'Saisir le nom du joueur supplémentaire',
         'Enter player 1 name':'Saisir le nom du joueur 1',
         'Enter player 2 name':'Saisir le nom du joueur 2',
@@ -15,6 +16,6 @@ angular.module("LoginApp").run(function (gettextCatalog) {
         'Registration complete, you can now log in.':'Enregistrement terminé, vous pouvez vous connecter.',
         'Unknown user or incorrect password.':'Nom d\'utilisateur inconnu ou mot de passe incorrect.',
         'Username':'Nom d\'utilisateur',
-        'Username already exists.':'Ce nom d\'utilisateur existe déjà.'
+        'WARNING, user already exists and will be added to your game.':'ATTENTION, cet utilisateur existe déjà et sera ajouté à votre partie.'
     });
 });

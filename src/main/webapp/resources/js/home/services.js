@@ -2,8 +2,16 @@
     var DashboardFactory = function($http) {
         var dashboardService = {};
 
-        dashboardService.retrieveDashboardForUser = function(username) {
-            return $http.get(contextPath + '/dashboard/' + username);
+        dashboardService.retrieveDashboard = function(dashboardId) {
+            return $http.get(contextPath + '/dashboard/' + dashboardId);
+        };
+
+        dashboardService.retrieveDashboardsForUser = function() {
+            return $http.get(contextPath + '/dashboard');
+        };
+
+        dashboardService.joinDashboard = function(notificationId, dashboardId) {
+            return $http.post(contextPath + '/dashboard/' + notificationId + '/' + dashboardId);
         };
 
         return dashboardService;

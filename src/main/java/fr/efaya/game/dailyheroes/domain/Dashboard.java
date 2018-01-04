@@ -7,6 +7,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Sahbi Ktifa
@@ -15,11 +16,15 @@ import java.util.List;
 @Document(collection = "Dashboards")
 public class Dashboard {
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
+
+    private String name;
 
     @NotNull
     @Min(2)
     private List<String> users = new ArrayList<>();
+
+    private List<String> pendingUsers = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -29,11 +34,19 @@ public class Dashboard {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<String> getUsers() {
         return users;
     }
 
-    public void setUsers(List<String> users) {
-        this.users = users;
+    public List<String> getPendingUsers() {
+        return pendingUsers;
     }
 }

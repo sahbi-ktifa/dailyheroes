@@ -6,6 +6,7 @@ angular.module("HomeApp").run(function (gettextCatalog) {
         'has created a task, check if you can do it:':'a créé une nouvelle tâche, peut-être pouvez-vous la réaliser :',
         'has validated a task, well done:':'a validé une tâche, bien joué :',
         'is now level':'est maintenant niveau',
-        'New items have been unlocked, check your profile!':'De nouveaux items ont été dévérouillés, aller voir votre profil!'
+        'New items have been unlocked, check your profile!':'De nouveaux items ont été dévérouillés, aller voir votre profil!',
+        'You were added in a new game, join it now:':'Vous avez été ajouté à une nouvelle partie, rejoignez-là dès maintenant :'
     });
 });

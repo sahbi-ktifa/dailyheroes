@@ -19,6 +19,7 @@ public class User {
     private Integer currentExp = 0;
     private Date creationDate;
     private Map<String, String> avatar;
+    private String favoriteDashboard;
 
     public User() {
     }
@@ -74,5 +75,13 @@ public class User {
 
     public void setAvatar(Map<String, String> avatar) {
         this.avatar = avatar;
+    }
+
+    public String getFavoriteDashboard() {
+        return favoriteDashboard;
+    }
+
+    public void setFavoriteDashboard(String favoriteDashboard) {
+        this.favoriteDashboard = favoriteDashboard;
     }
 }

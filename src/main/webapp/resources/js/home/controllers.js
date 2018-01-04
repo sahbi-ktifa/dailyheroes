@@ -1,8 +1,20 @@
 (function(angular) {
-    var HomeCtrl = function($scope, Notification, $interval, $location) {
+    var HomeCtrl = function($scope, User, Dashboard, Notification, $interval, $location) {
         $scope.dashboard = {};
+        $scope.selectedDashboard = null;
         $scope.notificationsCount = 0;
         var routes = ['/', '/profile', '/notifications', '/task'];
+
+        User.retrieveUser(username).then(function (res) {
+            $scope.selectedDashboard = res.data.favoriteDashboard;
+            if (!$scope.selectedDashboard) {
+                Dashboard.retrieveDashboardsForUser().then(function (response) {
+                    if (response.data) {
+                        $scope.selectedDashboard = response.data[0].id;
+                    }
+                });
+            }
+        });
 
         var checkNotifications = function () {
             Notification.checkNotifications(username).then(function (res) {
@@ -15,6 +27,10 @@
         $scope.$on('$locationChangeStart', function($event, next) {
             $scope.currentRoute = next;
             checkNotifications();
+        });
+
+        $scope.$on('changeDashboard', function (e, id) {
+            $scope.selectedDashboard = id;
         });
 
         $scope.$on('notificationConsumed', function () {
@@ -45,7 +61,7 @@
             checkNotifications();
         }, 20000);
     };
-    HomeCtrl.$inject = ['$scope', 'Notification', '$interval', '$location'];
+    HomeCtrl.$inject = ['$scope', 'User', 'Dashboard', 'Notification', '$interval', '$location'];
 
     var DashboardCtrl = function($scope, Dashboard, Task, $uibModal, gettextCatalog) {
         $scope.loading = true;
@@ -57,10 +73,20 @@
             });
         };
 
-        Dashboard.retrieveDashboardForUser(username).then(function (response) {
-            $scope.dashboard = response.data;
-            refreshTasks();
-        });
+        var refreshDashboard = function () {
+            Dashboard.retrieveDashboard($scope.selectedDashboard).then(function (response) {
+                if (response.data) {
+                    $scope.dashboard = response.data;
+                    refreshTasks();
+                }
+            });
+        };
+
+        $scope.$watch('selectedDashboard', function (value) {
+            if (value) {
+                refreshDashboard();
+            }
+        }, true);
 
         $scope.validTask = function (task) {
             if (confirm(gettextCatalog.getString('Are you sure that you performed this task?'))) {
@@ -203,7 +229,7 @@
     };
     ProfileCtrl.$inject = ['$scope', 'User', 'Loot'];
 
-    var NotificationsCtrl = function($scope, Notification, Task) {
+    var NotificationsCtrl = function($scope, Notification, Task, Dashboard) {
         $scope.loading = true;
         var retrieveNotifications = function () {
             Notification.retrieveNotifications(username).then(function (res) {
@@ -228,17 +254,20 @@
                 $scope.$emit('notificationConsumed');
             });
         };
-    };
-    NotificationsCtrl.$inject = ['$scope', 'Notification', 'Task'];
 
-    var CreateTaskCtrl = function($scope, Task, Dashboard) {
+        $scope.joinGame = function (notification) {
+            Dashboard.joinDashboard(notification.id, notification.extra['dashboardId']).then(function () {
+                retrieveNotifications();
+                $scope.$emit('notificationConsumed');
+            });
+        };
+    };
+    NotificationsCtrl.$inject = ['$scope', 'Notification', 'Task', 'Dashboard'];
+
+    var CreateTaskCtrl = function($scope, Task) {
         $scope.task = {};
         $scope.success = false;
-        var refId = null;
-
-        Dashboard.retrieveDashboardForUser(username).then(function (response) {
-            refId = response.data.id;
-        });
+        var refId = $scope.selectedDashboard;
 
         $scope.createTask = function () {
             $scope.success = false;
@@ -250,7 +279,7 @@
             });
         };
     };
-    CreateTaskCtrl.$inject = ['$scope', 'Task', 'Dashboard'];
+    CreateTaskCtrl.$inject = ['$scope', 'Task'];
 
     angular.module("HomeApp.controllers").controller("HomeCtrl", HomeCtrl);
     angular.module("HomeApp.controllers").controller("DashboardCtrl", DashboardCtrl);

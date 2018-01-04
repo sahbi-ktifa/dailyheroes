@@ -103,8 +103,9 @@ body {
 }
 .user-check {
     margin-top: 5px;
+    margin-left: 10px;
     display: block;
-    color: #d86f6f;
+    color: #d89369;
     text-align: left;
 }
 .extra-adder {

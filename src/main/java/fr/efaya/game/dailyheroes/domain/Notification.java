@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Sahbi Ktifa
@@ -29,6 +31,8 @@ public class Notification {
     private Boolean requireValidation;
 
     private Boolean validated;
+
+    private Map<String, String> extra = new HashMap<>();
 
     public String getId() {
         return id;
@@ -108,5 +112,13 @@ public class Notification {
 
     public void setValidated(Boolean validated) {
         this.validated = validated;
+    }
+
+    public Map<String, String> getExtra() {
+        return extra;
+    }
+
+    public void setExtra(Map<String, String> extra) {
+        this.extra = extra;
     }
 }

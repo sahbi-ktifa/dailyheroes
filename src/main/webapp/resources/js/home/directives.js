@@ -5,18 +5,18 @@
             replace: true,
             template: '<div class="user-container">' +
             '   <div class="user-avatar">' +
-            '       <avatar-displayer avatar-config="user.avatar"></avatar-displayer>' +
+            '       <avatar-displayer avatar-config="refUser.avatar"></avatar-displayer>' +
             '   </div>' +
             '   <div class="user-info">' +
-            '       <span>{{user.username}}</span>' +
+            '       <span>{{refUser.username}}</span>' +
             '       <span> - </span>' +
-            '       <span translate>Level</span><span> {{user.level}}</span>' +
+            '       <span translate>Level</span><span> {{refUser.level}}</span>' +
             '   </div>' +
             '</div>',
             link: function (scope, element, attrs) {
                 var username = attrs.username;
                 User.retrieveUser(username).then(function (res) {
-                    scope.user = res.data;
+                    scope.refUser = res.data;
                 });
             }
         };
@@ -178,9 +178,41 @@
         };
     };
 
+    var dashboardSelector = function (Dashboard) {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '<div class="dashboard-selector" ng-show="availableDashboards.length > 0">' +
+            '       <label translate>Change dashboard:</label>' +
+            '       <select class="form-control" ng-change="changeDashboard()" ng-model="currentDashboard" ng-options="d.id as d.name for d in availableDashboards"></select>' +
+            '   </div>',
+            link: function (scope) {
+                scope.availableDashboards = [];
+                scope.$watch('dashboard', function (dashboard) {
+                    if (dashboard) {
+                        scope.currentDashboard = scope.dashboard.id;
+                        Dashboard.retrieveDashboardsForUser().then(function (res) {
+                            scope.availableDashboards = res.data.filter(function (d) {
+                                return d.id !== dashboard.id;
+                            });
+                        });
+                    }
+                });
+
+                scope.changeDashboard = function () {
+                    if (scope.currentDashboard) {
+                        scope.$emit('changeDashboard', scope.currentDashboard);
+                    }
+                };
+            }
+        };
+    };
+    dashboardSelector.$inject = ['Dashboard'];
+
     angular.module("HomeApp.directives").directive("userPresentation", userPresentation);
     angular.module("HomeApp.directives").directive("taskForm", taskForm);
     angular.module("HomeApp.directives").directive("categoryIcon", categoryIcon);
     angular.module("HomeApp.directives").directive("avatarItemSelector", avatarItemSelector);
     angular.module("HomeApp.directives").directive("avatarDisplayer", avatarDisplayer);
+    angular.module("HomeApp.directives").directive("dashboardSelector", dashboardSelector);
 }(angular));

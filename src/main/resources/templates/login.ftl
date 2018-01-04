@@ -65,17 +65,21 @@
                                         <user-check user="form.player2"></user-check>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" ng-model="form.password" name="password" tabindex="3"
+                                        <input type="text" name="dashboard" tabindex="3" class="form-control" ng-model="form.dashboard" ng-minlength="4"
+                                               placeholder="{{'Enter dashboard name' | translate}}" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" ng-model="form.password" name="password" tabindex="4"
                                                class="form-control" placeholder="{{'Password' | translate}}" ng-minlength="6" required="required">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" ng-model="form.confirmPassword" name="confirm-password" id="confirm-password"
-                                               tabindex="4" class="form-control" placeholder="{{'Confirm Password' | translate}}" required="required">
+                                               tabindex="5" class="form-control" placeholder="{{'Confirm Password' | translate}}" required="required">
                                     </div>
 
                                     <div ng-if="form.extraPlayers.length > 0">
                                         <div class="form-group" ng-repeat="player in form.extraPlayers track by $index">
-                                            <input type="text" class="form-control" ng-model="player.value" ng-minlength="4" placeholder="{{'Enter extra player name' | translate}}">
+                                            <input type="text" class="form-control" tabindex="$index + 6" ng-model="player.value" ng-minlength="4" placeholder="{{'Enter extra player name' | translate}}">
                                             <user-check user="player.value"></user-check>
                                         </div>
                                     </div>

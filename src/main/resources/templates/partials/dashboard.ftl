@@ -3,10 +3,11 @@
         <i class="fa fa-refresh fa-spin fa-5x fa-fw"></i>
         <span class="sr-only">Loading...</span>
     </div>
+    <dashboard-selector ng-if="!loading"></dashboard-selector>
     <div class="dashboard-users" ng-if="!loading">
         <h3 translate>Players list</h3>
         <ul>
-            <li ng-repeat="user in dashboard.users | orderBy:'-currentExp'">
+            <li ng-repeat="user in dashboard.users | orderBy">
                 <user-presentation username="{{user}}"></user-presentation>
             </li>
         </ul>
@@ -36,7 +37,7 @@
                     </button>
                 </div>
             </li>
-            <li ng-if="tasks.length === 0">No tasks available. Add one !</li>
+            <li ng-if="tasks.length === 0" translate>No tasks available. Add one!</li>
         </ul>
     </div>
 </div>

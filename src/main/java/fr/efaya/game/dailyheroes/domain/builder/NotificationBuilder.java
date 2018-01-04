@@ -50,6 +50,11 @@ public class NotificationBuilder {
         return this;
     }
 
+    public NotificationBuilder addExtra(String key, String value) {
+        this.notification.getExtra().put(key, value);
+        return this;
+    }
+
     public Notification build() {
         this.notification.setId(UUID.randomUUID().toString());
         this.notification.setCreationDate(new Date());

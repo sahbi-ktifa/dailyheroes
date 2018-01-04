@@ -17,8 +17,11 @@
                     <i ng-if="notification.suffix"> {{notification.suffix}}!</i>
                 </div>
                 <div class="validation col-md-2" ng-if="notification.requireValidation === true && notification.validated !== true">
-                    <button type="button" class="btn btn-primary" ng-click="validTask(notification)">
+                    <button ng-if="notification.taskId" type="button" class="btn btn-primary" ng-click="validTask(notification)">
                         <i class="fa fa-check mr-2"></i> <span translate>Task is done</span>
+                    </button>
+                    <button ng-if="!notification.taskId" type="button" class="btn btn-primary" ng-click="joinGame(notification)">
+                        <i class="fa fa-check mr-2"></i> <span translate>Join game</span>
                     </button>
                 </div>
             </li>
