@@ -66,6 +66,18 @@ public class UserListener {
         userService.saveUser(user);
     }
 
+    @EventListener
+    public void notifyOtherPlayersThatOneIsLevelingUp(LevelUpEvent event) {
+        String username = event.getUser().getUsername();
+        Dashboard dashboard = dashboardService.retrieveDashboardForUser(username);
+        for (String user : dashboard.getUsers()) {
+            if (!user.equals(username)) {
+                notificationService.saveNotification(new Notification(String.format("Woah, %s is now level %s!", username, event.getUser().getLevel()), username, null));
+            }
+        }
+
+    }
+
     private List<String> addNotification(User user) {
         String username = user.getUsername();
         Dashboard dashboard = dashboardService.retrieveDashboardForUser(username);
