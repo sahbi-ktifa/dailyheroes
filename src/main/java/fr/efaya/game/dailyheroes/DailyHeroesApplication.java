@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.efaya.game.dailyheroes.domain.Item;
 import fr.efaya.game.dailyheroes.domain.Notification;
 import fr.efaya.game.dailyheroes.domain.User;
+import fr.efaya.game.dailyheroes.domain.builder.NotificationBuilder;
 import fr.efaya.game.dailyheroes.repository.ItemRepository;
 import fr.efaya.game.dailyheroes.repository.UserRepository;
 import fr.efaya.game.dailyheroes.service.LootService;
@@ -68,7 +69,11 @@ public class DailyHeroesApplication {
 			users.forEach(u -> {
 				int count = lootService.lootBasicItems(u);
 				if (count > 0) {
-					notificationService.saveNotification(new Notification("New items have been unlocked, check your profile!", u.getUsername(), null));
+					Notification notification = NotificationBuilder.newInstance()
+							.withMessage("New items have been unlocked, check your profile!")
+							.forUser(u.getUsername())
+							.build();
+					notificationService.saveNotification(notification);
 					LOGGER.info(count + " default new items were given to " + u.getUsername());
 				}
 			});

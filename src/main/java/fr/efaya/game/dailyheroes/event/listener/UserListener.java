@@ -1,5 +1,6 @@
 package fr.efaya.game.dailyheroes.event.listener;
 
+import fr.efaya.game.dailyheroes.domain.builder.NotificationBuilder;
 import fr.efaya.game.dailyheroes.event.CompletedTaskEvent;
 import fr.efaya.game.dailyheroes.ConstantUtils;
 import fr.efaya.game.dailyheroes.domain.Dashboard;
@@ -41,7 +42,14 @@ public class UserListener {
     public void handleCreatedTaskEvent(CreatedTaskEvent event) {
         List<String> users = addNotification(event.getUser());
         for (String _username : users) {
-            notificationService.saveNotification(new Notification(event.getMessage(), _username, event.getTask().getId()));
+            Notification notification = NotificationBuilder.newInstance()
+                    .withMessage("has created a task, check if you can do it:")
+                    .forUser(_username)
+                    .withTask(event.getTask().getId())
+                    .from(event.getUser().getUsername())
+                    .withSuffix(event.getTask().getName())
+                    .build();
+            notificationService.saveNotification(notification);
         }
     }
 
@@ -49,7 +57,15 @@ public class UserListener {
     public void handleCompletedTaskEvent(CompletedTaskEvent event) {
         List<String> users = addNotification(event.getUser());
         for (String _username : users) {
-            notificationService.saveNotification(new Notification(event.getMessage(), _username, event.getTask().getId(), true));
+            Notification notification = NotificationBuilder.newInstance()
+                    .withMessage("has completed a task, please review it:")
+                    .forUser(_username)
+                    .withTask(event.getTask().getId())
+                    .requireValidation(true)
+                    .from(event.getUser().getUsername())
+                    .withSuffix(event.getTask().getName())
+                    .build();
+            notificationService.saveNotification(notification);
         }
     }
 
@@ -57,10 +73,23 @@ public class UserListener {
     public void handleValidatedTaskEvent(ValidatedTaskEvent event) {
         User user = userService.retrieveUser(event.getTask().getAssignedTo());
         user.setCurrentExp(user.getCurrentExp() + event.getTask().getExp());
-        notificationService.saveNotification(new Notification(event.getMessage(), user.getUsername(), event.getTask().getId()));
+        Notification notification = NotificationBuilder.newInstance()
+                .withMessage("has validated a task, well done:")
+                .forUser(user.getUsername())
+                .withTask(event.getTask().getId())
+                .from(event.getUser().getUsername())
+                .withSuffix(event.getTask().getName())
+                .build();
+        notificationService.saveNotification(notification);
         if (ConstantUtils.isLevelingUp(user.getLevel(), user.getCurrentExp())) {
             user.setLevel(user.getLevel() + 1);
-            notificationService.saveNotification(new Notification(String.format("Congratulations, you're leveling up! You are now level %s!", user.getLevel()), user.getUsername(), event.getTask().getId()));
+            Notification _notification = NotificationBuilder.newInstance()
+                    .withMessage("Congratulations, you are leveling up! You are now level")
+                    .forUser(user.getUsername())
+                    .withTask(event.getTask().getId())
+                    .withSuffix(String.valueOf(user.getLevel()))
+                    .build();
+            notificationService.saveNotification(_notification);
             publisher.publishEvent(new LevelUpEvent(this, event.getTask(), user));
         }
         userService.saveUser(user);
@@ -72,7 +101,14 @@ public class UserListener {
         Dashboard dashboard = dashboardService.retrieveDashboardForUser(username);
         for (String user : dashboard.getUsers()) {
             if (!user.equals(username)) {
-                notificationService.saveNotification(new Notification(String.format("Woah, %s is now level %s!", username, event.getUser().getLevel()), username, null));
+                Notification notification = NotificationBuilder.newInstance()
+                        .withMessage("is now level")
+                        .forUser(user)
+                        .from(username)
+                        .withSuffix(String.valueOf(event.getUser().getLevel()))
+                        .build();
+
+                notificationService.saveNotification(notification);
             }
         }
 

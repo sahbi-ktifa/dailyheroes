@@ -19,8 +19,6 @@ public abstract class AbstractEvent extends ApplicationEvent {
         this.user = user;
     }
 
-    public abstract String getMessage();
-
     public Task getTask() {
         return task;
     }

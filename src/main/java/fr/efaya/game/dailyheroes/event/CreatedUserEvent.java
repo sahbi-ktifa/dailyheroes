@@ -13,8 +13,4 @@ public class CreatedUserEvent extends AbstractEvent {
         super(source, task, user);
     }
 
-    @Override
-    public String getMessage() {
-        return null;
-    }
 }

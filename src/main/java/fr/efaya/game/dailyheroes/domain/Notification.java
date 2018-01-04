@@ -4,7 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * @author Sahbi Ktifa
@@ -17,7 +16,9 @@ public class Notification {
 
     private Date creationDate;
 
+    private String from;
     private String message;
+    private String suffix;
 
     private String taskId;
 
@@ -28,26 +29,6 @@ public class Notification {
     private Boolean requireValidation;
 
     private Boolean validated;
-
-    public Notification() {
-    }
-
-    public Notification(String message, String username, String taskId) {
-        this.id = UUID.randomUUID().toString();
-        this.message = message;
-        this.creationDate = new Date();
-        this.username = username;
-        this.taskId = taskId;
-    }
-
-    public Notification(String message, String username, String taskId, boolean requireValidation) {
-        this.id = UUID.randomUUID().toString();
-        this.creationDate = new Date();
-        this.message = message;
-        this.username = username;
-        this.requireValidation = requireValidation;
-        this.taskId = taskId;
-    }
 
     public String getId() {
         return id;
@@ -65,12 +46,28 @@ public class Notification {
         this.creationDate = creationDate;
     }
 
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
     }
 
     public String getTaskId() {

@@ -10,7 +10,11 @@
                 <div class="col-md-12" ng-class="{'unread': notification.read === 0,
                  'col-md-10': notification.requireValidation === true && notification.validated !== true}"
                      ng-click="consume(notification)">
-                    <span>{{notification.creationDate | date:'dd/MM/yyyy'}} - {{notification.message}}</span>
+                    <span>{{notification.creationDate | date:'dd/MM/yyyy'}}</span>
+                    <span> - </span>
+                    <b ng-if="notification.from">{{notification.from}} </b>
+                    <span>{{notification.message | translate}}</span>
+                    <i ng-if="notification.suffix"> {{notification.suffix}}!</i>
                 </div>
                 <div class="validation col-md-2" ng-if="notification.requireValidation === true && notification.validated !== true">
                     <button type="button" class="btn btn-primary" ng-click="validTask(notification)">

@@ -12,9 +12,4 @@ public class ValidatedTaskEvent extends AbstractEvent {
     public ValidatedTaskEvent(Object source, Task task, User user) {
         super(source, task, user);
     }
-
-    @Override
-    public String getMessage() {
-        return String.format("%s has validated task : '%s', well done!", getUser().getUsername(), getTask().getName());
-    }
 }

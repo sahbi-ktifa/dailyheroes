@@ -3,6 +3,7 @@ package fr.efaya.game.dailyheroes.event.listener;
 import fr.efaya.game.dailyheroes.domain.Item;
 import fr.efaya.game.dailyheroes.domain.Notification;
 import fr.efaya.game.dailyheroes.domain.User;
+import fr.efaya.game.dailyheroes.domain.builder.NotificationBuilder;
 import fr.efaya.game.dailyheroes.event.CreatedUserEvent;
 import fr.efaya.game.dailyheroes.event.LevelUpEvent;
 import fr.efaya.game.dailyheroes.event.ValidatedTaskEvent;
@@ -33,8 +34,13 @@ public class LootListener {
     public void handleLevelUpEvent(LevelUpEvent event) {
         Item item = lootService.lootForLevel(event.getUser());
         if (item != null) {
-            notificationService.saveNotification(new Notification(String.format("Congratulations, you've been awarded with: '%s'.",
-                    item.getName()), event.getUser().getUsername(), event.getTask().getId()));
+            Notification notification = NotificationBuilder.newInstance()
+                    .withMessage("Congratulations, you have been awarded with:")
+                    .withSuffix(item.getName())
+                    .forUser(event.getUser().getUsername())
+                    .withTask(event.getTask().getId())
+                    .build();
+            notificationService.saveNotification(notification);
         }
     }
 
@@ -44,8 +50,12 @@ public class LootListener {
         if (user != null) {
             Item item = lootService.lootForTask(user, event.getTask());
             if (item != null) {
-                notificationService.saveNotification(new Notification(String.format("Congratulations, you've been awarded with: '%s'.",
-                        item.getName()), user.getUsername(), null));
+                Notification notification = NotificationBuilder.newInstance()
+                        .withMessage("Congratulations, you have been awarded with:")
+                        .withSuffix(item.getName())
+                        .forUser(user.getUsername())
+                        .build();
+                notificationService.saveNotification(notification);
             }
         }
     }
@@ -54,7 +64,11 @@ public class LootListener {
     public void lootBasicItems(CreatedUserEvent event) {
         int count = lootService.lootBasicItems(event.getUser());
         if (count > 0) {
-            notificationService.saveNotification(new Notification("New items have been unlocked, check your profile!", event.getUser().getUsername(), null));
+            Notification notification = NotificationBuilder.newInstance()
+                    .withMessage("New items have been unlocked, check your profile!")
+                    .forUser(event.getUser().getUsername())
+                    .build();
+            notificationService.saveNotification(notification);
         }
     }
 }

@@ -106,5 +106,6 @@
 <script type="text/javascript" src="/resources/js/home/directives.js"></script>
 <script type="text/javascript" src="/resources/js/home/controllers.js"></script>
 <script type="text/javascript" src="/resources/js/home/translations.js"></script>
+<script type="text/javascript" src="/resources/js/home/notification_translations.js"></script>
 </body>
 </html>

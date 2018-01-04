@@ -12,9 +12,4 @@ public class CompletedTaskEvent extends AbstractEvent {
     public CompletedTaskEvent(Object source, Task task, User user) {
         super(source, task, user);
     }
-
-    @Override
-    public String getMessage() {
-        return String.format("%s has completed task: '%s', please review it.", getUser().getUsername(), getTask().getName());
-    }
 }

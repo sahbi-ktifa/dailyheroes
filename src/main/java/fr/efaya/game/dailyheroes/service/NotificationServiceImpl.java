@@ -2,6 +2,8 @@ package fr.efaya.game.dailyheroes.service;
 
 import fr.efaya.game.dailyheroes.domain.Notification;
 import fr.efaya.game.dailyheroes.repository.NotificationRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,7 +38,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public List<Notification> retrieveNotifications(String username) {
-        return repository.findAllByUsername(username);
+        return repository.findAllByUsername(username, new PageRequest(0, 40, new Sort(new Sort.Order(Sort.Direction.DESC, "creationDate"))));
     }
 
     @Override

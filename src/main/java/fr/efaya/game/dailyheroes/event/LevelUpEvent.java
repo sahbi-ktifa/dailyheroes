@@ -12,9 +12,4 @@ public class LevelUpEvent extends AbstractEvent {
     public LevelUpEvent(Object source, Task task, User user) {
         super(source, task, user);
     }
-
-    @Override
-    public String getMessage() {
-        return null;
-    }
 }

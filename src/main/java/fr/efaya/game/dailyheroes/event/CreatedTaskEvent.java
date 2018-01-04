@@ -12,9 +12,4 @@ public class CreatedTaskEvent extends AbstractEvent {
     public CreatedTaskEvent(Object source, Task task, User user) {
         super(source, task, user);
     }
-
-    @Override
-    public String getMessage() {
-        return String.format("%s has created a task named: '%s', check if you can do it!", getUser().getUsername(), getTask().getName());
-    }
 }
