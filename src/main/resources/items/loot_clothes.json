@@ -1,7 +1,7 @@
 [
   {
     "id":"uclothes1",
-    "name":"thsirt1",
+    "name":"tshirt1",
     "levelCap": 0,
     "rarity": 100,
     "repeatable": false,
@@ -9,9 +9,89 @@
   },
   {
     "id":"uclothes2",
-    "name":"thsirt2",
+    "name":"tshirt2",
     "levelCap": 0,
     "rarity": 100,
+    "repeatable": false,
+    "type": "clothes"
+  },
+  {
+    "id":"uclothes3",
+    "name":"tshirt3",
+    "levelCap": 1,
+    "rarity": 75,
+    "repeatable": false,
+    "type": "clothes"
+  },
+  {
+    "id":"uclothes4",
+    "name":"tshirt4",
+    "levelCap": 1,
+    "rarity": 75,
+    "repeatable": false,
+    "type": "clothes"
+  },
+  {
+    "id":"uclothes5",
+    "name":"tshirt5",
+    "levelCap": 2,
+    "rarity": 75,
+    "repeatable": false,
+    "type": "clothes"
+  },
+  {
+    "id":"uclothes6",
+    "name":"tshirt6",
+    "levelCap": 2,
+    "rarity": 75,
+    "repeatable": false,
+    "type": "clothes"
+  },
+  {
+    "id":"uclothes7",
+    "name":"tshirt7",
+    "levelCap": 2,
+    "rarity": 75,
+    "repeatable": false,
+    "type": "clothes"
+  },
+  {
+    "id":"uclothes8",
+    "name":"tshirt8",
+    "levelCap": 3,
+    "rarity": 70,
+    "repeatable": false,
+    "type": "clothes"
+  },
+  {
+    "id":"uclothes9",
+    "name":"tshirt9",
+    "levelCap": 4,
+    "rarity": 70,
+    "repeatable": false,
+    "type": "clothes"
+  },
+  {
+    "id":"uclothes10",
+    "name":"tshirt10",
+    "levelCap": 5,
+    "rarity": 70,
+    "repeatable": false,
+    "type": "clothes"
+  },
+  {
+    "id":"uclothes11",
+    "name":"tshirt11",
+    "levelCap": 5,
+    "rarity": 70,
+    "repeatable": false,
+    "type": "clothes"
+  },
+  {
+    "id":"uclothes12",
+    "name":"tshirt12",
+    "levelCap": 6,
+    "rarity": 60,
     "repeatable": false,
     "type": "clothes"
   }

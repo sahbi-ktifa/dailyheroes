@@ -43,6 +43,33 @@
     "repeatable": false,
     "type": "face",
     "subType": "eyes"
+  },
+  {
+    "id":"uface6",
+    "name":"beard2",
+    "levelCap": 1,
+    "rarity": 80,
+    "repeatable": false,
+    "type": "face",
+    "subType": "beard"
+  },
+  {
+    "id":"uface7",
+    "name":"beard3",
+    "levelCap": 2,
+    "rarity": 85,
+    "repeatable": false,
+    "type": "face",
+    "subType": "beard"
+  },
+  {
+    "id":"uface8",
+    "name":"lips3",
+    "levelCap": 4,
+    "rarity": 50,
+    "repeatable": false,
+    "type": "face",
+    "subType": "lips"
   }
 
 ]

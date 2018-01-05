@@ -16,5 +16,77 @@
     "repeatable": false,
     "type": "gadget",
     "subType": "gadget2"
+  },
+  {
+    "id":"ugadget3",
+    "name":"earings2",
+    "levelCap": 2,
+    "rarity": 85,
+    "repeatable": false,
+    "type": "gadget",
+    "subType": "gadget2"
+  },
+  {
+    "id":"ugadget4",
+    "name":"glasses2",
+    "levelCap": 2,
+    "rarity": 85,
+    "repeatable": false,
+    "type": "gadget",
+    "subType": "gadget1"
+  },
+  {
+    "id":"ugadget5",
+    "name":"glasses3",
+    "levelCap": 2,
+    "rarity": 85,
+    "repeatable": false,
+    "type": "gadget",
+    "subType": "gadget1"
+  },
+  {
+    "id":"ugadget6",
+    "name":"glasses4",
+    "levelCap": 4,
+    "rarity": 70,
+    "repeatable": false,
+    "type": "gadget",
+    "subType": "gadget1"
+  },
+  {
+    "id":"ugadget7",
+    "name":"glasses5",
+    "levelCap": 4,
+    "rarity": 70,
+    "repeatable": false,
+    "type": "gadget",
+    "subType": "gadget1"
+  },
+  {
+    "id":"ugadget8",
+    "name":"glasses6",
+    "levelCap": 6,
+    "rarity": 70,
+    "repeatable": false,
+    "type": "gadget",
+    "subType": "gadget1"
+  },
+  {
+    "id":"ugadget9",
+    "name":"glasses7",
+    "levelCap": 8,
+    "rarity": 50,
+    "repeatable": false,
+    "type": "gadget",
+    "subType": "gadget1"
+  },
+  {
+    "id":"ugadget10",
+    "name":"necklace",
+    "levelCap": 6,
+    "rarity": 50,
+    "repeatable": false,
+    "type": "gadget",
+    "subType": "gadget2"
   }
 ]

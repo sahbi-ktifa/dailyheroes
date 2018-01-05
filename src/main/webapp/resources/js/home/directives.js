@@ -86,7 +86,7 @@
             '   <div ng-repeat="subType in subTypes">' +
             '       <b ng-if="subType.length > 0">{{subType | translate}}</b>' +
             '       <ul>' +
-            '           <li class="avatar-element" ng-if="elements.length > 0" ' +
+            '           <li class="avatar-element {{element.itemType}} {{element.subType}}" ng-if="elements.length > 0"' +
             '               ng-repeat="element in elements | filter:subType" ' +
             '               ng-class="{\'active\':((!userRef.avatar || (!userRef.avatar[element.itemType] && !userRef.avatar[element.itemType + \'-\' + element.subType])) && element.itemId.startsWith(\'empty\'))' +
             '                    || userRef.avatar[element.itemType] === element.itemId || userRef.avatar[element.itemType + \'-\' + element.subType] === element.itemId,' +
@@ -137,7 +137,7 @@
                 });
 
                 scope.chooseItem = function (element) {
-                    if (scope.isLocked(element)) {
+                    if (element.itemId.indexOf('empty') !== 0 && scope.isLocked(element)) {
                         return;
                     }
                     if (!scope.userRef.avatar) {

@@ -14,5 +14,85 @@
     "rarity": 100,
     "repeatable": false,
     "type": "hair"
+  },
+  {
+    "id":"uhair3",
+    "name":"hair3",
+    "levelCap": 1,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair4",
+    "name":"hair4",
+    "levelCap": 2,
+    "rarity": 90,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair5",
+    "name":"hair5",
+    "levelCap": 2,
+    "rarity": 90,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair6",
+    "name":"hair6",
+    "levelCap": 4,
+    "rarity": 90,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair7",
+    "name":"hair7",
+    "levelCap": 4,
+    "rarity": 90,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair8",
+    "name":"hair8",
+    "levelCap": 5,
+    "rarity": 60,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair9",
+    "name":"hair9",
+    "levelCap": 5,
+    "rarity": 60,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair10",
+    "name":"hair10",
+    "levelCap": 6,
+    "rarity": 60,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair11",
+    "name":"hair11",
+    "levelCap": 7,
+    "rarity": 85,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair12",
+    "name":"hair12",
+    "levelCap": 8,
+    "rarity": 75,
+    "repeatable": false,
+    "type": "hair"
   }
 ]

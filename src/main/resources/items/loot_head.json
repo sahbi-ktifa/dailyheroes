@@ -6,5 +6,13 @@
     "rarity": 100,
     "repeatable": false,
     "type": "head"
+  },
+  {
+    "id":"uhead2",
+    "name":"head2",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "head"
   }
 ]
