@@ -43,6 +43,7 @@ angular.module("HomeApp").run(function (gettextCatalog) {
         'No tasks available. Add one!':'Aucune tâche définie. N\'hésitez pas à en ajouter !',
         'Players list':'Liste des joueurs',
         'Profile':'Profil',
+        'Received on':'Reçu le',
         'Redundancy':'Récurrence',
         'Save':'Sauvegarder',
         'Submit':'Valider',

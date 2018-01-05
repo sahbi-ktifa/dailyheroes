@@ -39,9 +39,11 @@
         <div class="reward-container col-md-12">
             <h5 translate>Gifts and rewards</h5>
             <ul>
-                <li ng-if="rewards && rewards.length > 0" ng-repeat="reward in rewards">
+                <li ng-if="rewards && rewards.length > 0" ng-repeat="reward in rewards | orderBy:'-rewardDate'">
                     <div class="col-md-10">
-                        <i class="fa fa-gift fa-2x reward" aria-hidden="true"></i> <span>{{reward.itemName | translate}}</span>
+                        <i class="fa fa-gift fa-2x reward" aria-hidden="true"> </i>
+                        <span>{{reward.itemName | translate}}</span>
+                        <span style="font-style: italic;" ng-if="reward.received === true && reward.rewardDate">({{'Received on' | translate}} {{reward.rewardDate | date:'dd/MM/yyyy'}})</span>
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn-primary" ng-if="reward.received !== true" ng-click="received(reward)" translate>Got it</button>
