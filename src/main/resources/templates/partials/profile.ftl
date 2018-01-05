@@ -30,7 +30,7 @@
                                 <i class="fa {{retrieveClass(type)}}" aria-hidden="true"></i>
                                 <span>{{type | translate}}</span>
                             </uib-tab-heading>
-                            <avatar-item-selector type="{{type}}" user-ref="user" items="items"></avatar-item-selector>
+                            <avatar-item-selector type="{{type}}" user-ref="user" items="items" unlocked="unlocked"></avatar-item-selector>
                         </uib-tab>
                     </uib-tabset>
                 </ul>

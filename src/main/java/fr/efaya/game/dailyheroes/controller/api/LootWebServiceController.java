@@ -3,6 +3,7 @@ package fr.efaya.game.dailyheroes.controller.api;
 import fr.efaya.game.dailyheroes.domain.Item;
 import fr.efaya.game.dailyheroes.domain.Loot;
 import fr.efaya.game.dailyheroes.domain.pojo.LootedItem;
+import fr.efaya.game.dailyheroes.domain.pojo.LootedItemBuilder;
 import fr.efaya.game.dailyheroes.repository.ItemRepository;
 import fr.efaya.game.dailyheroes.service.LootService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,21 +38,31 @@ public class LootWebServiceController {
         return ITEM_TYPE.values();
     }
 
-    @GetMapping("{username}")
+    @GetMapping("items")
+    public List<LootedItem> retrieveItems() {
+        List<LootedItem> lootedItems = new ArrayList<>();
+        Iterable<Item> items = itemRepository.findAll();
+        if (items != null) {
+            items.forEach(item -> {
+                LootedItem lootedItem = LootedItemBuilder.newInstance()
+                        .usingItem(item)
+                        .build();
+                lootedItems.add(lootedItem);
+            });
+        }
+        return lootedItems;
+    }
+
+    @GetMapping("{username}/me")
     public List<LootedItem> retrieveLootsForUser(@PathVariable("username") String username) {
         List<Loot> loots = lootService.retrieveLoots(username);
         List<LootedItem> lootedItems = new ArrayList<>();
         for (Loot loot : loots) {
-            LootedItem lootedItem = new LootedItem();
-            lootedItem.setItemId(loot.getId());
-            lootedItem.setItemId(loot.getItemId());
             Item item = itemRepository.findOne(loot.getItemId());
-            lootedItem.setItemName(item.getName());
-            lootedItem.setRepeatable(item.isRepeatable());
-            lootedItem.setItemType(item.getType());
-            lootedItem.setSubType(item.getSubType());
-            lootedItem.setRewardDate(loot.getRewardDate());
-            lootedItem.setReceived(loot.getReceived());
+            LootedItem lootedItem = LootedItemBuilder.newInstance()
+                    .withLoot(loot)
+                    .usingItem(item)
+                    .build();
             lootedItems.add(lootedItem);
         }
         return lootedItems;

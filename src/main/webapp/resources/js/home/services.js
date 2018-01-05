@@ -105,8 +105,12 @@
             return $http.get(contextPath + '/loot');
         };
 
+        lootService.retrieveItems = function() {
+            return $http.get(contextPath + '/loot/items');
+        };
+
         lootService.retrieveLoots = function(username) {
-            return $http.get(contextPath + '/loot/' + username);
+            return $http.get(contextPath + '/loot/' + username + '/me');
         };
 
         lootService.received = function(loot) {

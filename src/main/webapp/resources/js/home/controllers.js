@@ -163,8 +163,13 @@
                 $scope.rewards = res.data.filter(function (item) {
                     return item.repeatable === true;
                 });
-                $scope.items = res.data.filter(function (item) {
+                $scope.unlocked = res.data.filter(function (item) {
                     return item.repeatable === false;
+                });
+                Loot.retrieveItems().then(function (res) {
+                    $scope.items = res.data.filter(function (item) {
+                        return item.repeatable === false;
+                    });
                 });
             });
         };

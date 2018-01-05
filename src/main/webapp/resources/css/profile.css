@@ -40,6 +40,10 @@
     width: 55px;
     height: 55px;
 }
+.profile-container .item-container .avatar-selector .avatar-element.locked {
+    opacity: 0.6;
+    cursor: initial;
+}
 .profile-container .item-container button {
     position: absolute;
     right: 15px;

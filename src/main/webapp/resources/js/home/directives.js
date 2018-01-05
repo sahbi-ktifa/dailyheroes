@@ -79,7 +79,8 @@
             replace: true,
             scope: {
               userRef: '=',
-              items: '='
+              items: '=',
+              unlocked: '='
             },
             template: '<div class="avatar-selector">' +
             '   <div ng-repeat="subType in subTypes">' +
@@ -88,7 +89,8 @@
             '           <li class="avatar-element" ng-if="elements.length > 0" ' +
             '               ng-repeat="element in elements | filter:subType" ' +
             '               ng-class="{\'active\':((!userRef.avatar || (!userRef.avatar[element.itemType] && !userRef.avatar[element.itemType + \'-\' + element.subType])) && element.itemId.startsWith(\'empty\'))' +
-            '                    || userRef.avatar[element.itemType] === element.itemId || userRef.avatar[element.itemType + \'-\' + element.subType] === element.itemId}"' +
+            '                    || userRef.avatar[element.itemType] === element.itemId || userRef.avatar[element.itemType + \'-\' + element.subType] === element.itemId,' +
+        '                       \'locked\':isLocked(element)}"' +
             '               ng-click="chooseItem(element)">' +
             '               <span>' +
             '                   <img ng-if="element.itemId.indexOf(\'-\') > -1" ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId.substr(0, element.itemId.indexOf(\'-\'))}}.{{element.itemId.indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}" title="{{element.itemName | translate}}"/>' +
@@ -122,10 +124,22 @@
                         for (var idx in empties) {
                             scope.elements.unshift(empties[idx]);
                         }
+
+                        scope.isLocked = function (element) {
+                            if (element && scope.unlocked.filter(function (i) {
+                                    return i.itemId === element.itemId;
+                                }).length === 0) {
+                                return true;
+                            }
+                            return false;
+                        };
                     }
                 });
 
                 scope.chooseItem = function (element) {
+                    if (scope.isLocked(element)) {
+                        return;
+                    }
                     if (!scope.userRef.avatar) {
                         scope.userRef.avatar = {};
                     }

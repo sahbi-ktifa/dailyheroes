@@ -18,6 +18,9 @@ public class LootedItem {
     private Date rewardDate;
     private Boolean received;
 
+    protected LootedItem() {
+    }
+
     public String getLootId() {
         return lootId;
     }
