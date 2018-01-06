@@ -32,8 +32,8 @@
     cursor: pointer;
     border: 1px solid lightgray;
     border-radius: 5px;
-    width: 55px;
-    height: 55px;
+    width: 70px;
+    height: 70px;
     overflow: hidden;
 }
 .profile-container .item-container .avatar-selector .avatar-element > span {
@@ -51,27 +51,36 @@
 }
 .profile-container .item-container .avatar-selector .avatar-element.gadget > span > img,
 .profile-container .item-container .avatar-selector .avatar-element.face > span > img {
-    bottom: -15px;
+    bottom: -10px;
+    left: -15px;
 }
 .profile-container .item-container .avatar-selector .avatar-element.hair > span > img {
-    bottom: -12px;
+    bottom: 0;
     width: 70px;
-    left: -12px;
+    left: -2px;
 }
 .profile-container .item-container .avatar-selector .avatar-element.head > span > img {
-    width: 60px;
-    left: -5px;
+    width: 70px;
+    left: 0;
+}
+.profile-container .item-container .avatar-selector .avatar-element.clothes > span > img {
+    left: -16px;
 }
 .profile-container .item-container .avatar-selector .avatar-element.active {
     border: 2px solid #2c3e50;
 }
 .profile-container .item-container .avatar-selector .avatar-element img {
-    width: 55px;
-    height: 55px;
+    width: 70px;
+    height: 70px;
 }
 .profile-container .item-container .avatar-selector .avatar-element.locked {
     opacity: 0.6;
     cursor: initial;
+    background-color: lightgray;
+}
+.profile-container .item-container .avatar-selector .avatar-element.locked span.badge {
+    margin-left: 45px;
+    background-color: orange;
 }
 .profile-container .item-container button {
     position: absolute;

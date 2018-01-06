@@ -1,5 +1,6 @@
 package fr.efaya.game.dailyheroes.domain.pojo;
 
+import fr.efaya.game.dailyheroes.Constants;
 import fr.efaya.game.dailyheroes.domain.Item;
 import fr.efaya.game.dailyheroes.domain.Loot;
 
@@ -31,6 +32,13 @@ public class LootedItemBuilder {
         this.lootedItem.setRepeatable(item.isRepeatable());
         this.lootedItem.setItemType(item.getType());
         this.lootedItem.setSubType(item.getSubType());
+        this.lootedItem.setAvailableAt(item.getLevelCap());
+        for (Integer rarity : Constants.rarity.keySet()) {
+            if (item.getRarity() <= rarity) {
+                this.lootedItem.setRarity(Constants.rarity.get(rarity));
+                break;
+            }
+        }
         return this;
     }
 

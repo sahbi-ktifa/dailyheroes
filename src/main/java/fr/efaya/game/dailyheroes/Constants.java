@@ -40,4 +40,12 @@ public class Constants {
         put(4, 40);
         put(5, 45);
     }};
+
+    public static Map<Integer, String> rarity = new HashMap<Integer, String>() {{
+        put(5, "legendary");
+        put(15, "epic");
+        put(25, "rare");
+        put(60, "uncommon");
+        put(100, "common");
+    }};
 }

@@ -86,15 +86,16 @@
             '   <div ng-repeat="subType in subTypes">' +
             '       <b ng-if="subType.length > 0">{{subType | translate}}</b>' +
             '       <ul>' +
-            '           <li class="avatar-element {{element.itemType}} {{element.subType}}" ng-if="elements.length > 0"' +
-            '               ng-repeat="element in elements | filter:subType" ' +
+            '           <li class="avatar-element {{element.itemType}} {{element.subType}} {{element.rarity}}" ng-if="elements.length > 0"' +
+            '               ng-repeat="element in elements | filter:subType | orderBy:[\'-locked\',\'availableAt\',\'rarity\']" ' +
             '               ng-class="{\'active\':((!userRef.avatar || (!userRef.avatar[element.itemType] && !userRef.avatar[element.itemType + \'-\' + element.subType])) && element.itemId.startsWith(\'empty\'))' +
             '                    || userRef.avatar[element.itemType] === element.itemId || userRef.avatar[element.itemType + \'-\' + element.subType] === element.itemId,' +
-        '                       \'locked\':isLocked(element)}"' +
+        '                       \'locked\':element.locked === true}"' +
             '               ng-click="chooseItem(element)">' +
             '               <span>' +
             '                   <img ng-if="element.itemId.indexOf(\'-\') > -1" ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId.substr(0, element.itemId.indexOf(\'-\'))}}.{{element.itemId.indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}" title="{{element.itemName | translate}}"/>' +
             '                   <img ng-if="element.itemId.indexOf(\'-\') === -1" ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId}}.{{element.itemId.indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}" title="{{element.itemName | translate}}"/>' +
+            '                   <span class="badge btn-warning" ng-if="element.locked">{{element.availableAt}}</span>' +
             '               </span>' +
             '           </li>' +
             '       </ul>' +
@@ -105,39 +106,35 @@
                 scope.$watch('items', function (items) {
                     if (items) {
                         scope.subTypes = [];
-                        scope.elements = scope.items.filter(function (i) {
-                            return i.itemType === refType;
+                        scope.elements = scope.items.filter(function (element) {
+                            if (scope.unlocked.filter(function (i) {
+                                    return i.itemId === element.itemId;
+                                }).length === 0) {
+                                element.locked = true;
+                            }
+                            return element.itemType === refType;
                         });
                         var empties = [];
                         scope.elements.forEach(function (e) {
                             if (e.subType && scope.subTypes.indexOf(e.subType) < 0) {
                                 scope.subTypes.push(e.subType);
-                                empties.push({itemId:'empty-' + e.subType, itemName:'None', itemType: refType, subType: e.subType, repeatable: false})
+                                empties.push({itemId:'empty-' + e.subType, itemName:'None', itemType: refType, subType: e.subType, repeatable: false, availableAt: 0, rarity: 0})
                             }
                         });
                         if (scope.subTypes.length === 0) {
                             scope.subTypes.push('');
                         }
                         if (empties.length === 0) {
-                            empties.push({itemId:'empty', itemName:'None', itemType: refType, subType: '', repeatable: false})
+                            empties.push({itemId:'empty', itemName:'None', itemType: refType, subType: '', repeatable: false, availableAt: 0, rarity: 0})
                         }
                         for (var idx in empties) {
                             scope.elements.unshift(empties[idx]);
                         }
-
-                        scope.isLocked = function (element) {
-                            if (element && scope.unlocked.filter(function (i) {
-                                    return i.itemId === element.itemId;
-                                }).length === 0) {
-                                return true;
-                            }
-                            return false;
-                        };
                     }
                 });
 
                 scope.chooseItem = function (element) {
-                    if (element.itemId.indexOf('empty') !== 0 && scope.isLocked(element)) {
+                    if (element.locked === true) {
                         return;
                     }
                     if (!scope.userRef.avatar) {

@@ -12,6 +12,8 @@ public class LootedItem {
     private String lootId;
     private String itemId;
     private String itemName;
+    private Integer availableAt;
+    private String rarity;
     private LootWebServiceController.ITEM_TYPE itemType;
     private String subType;
     private boolean repeatable;
@@ -83,5 +85,21 @@ public class LootedItem {
 
     public void setReceived(Boolean received) {
         this.received = received;
+    }
+
+    public Integer getAvailableAt() {
+        return availableAt;
+    }
+
+    public void setAvailableAt(Integer availableAt) {
+        this.availableAt = availableAt;
+    }
+
+    public String getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
     }
 }
