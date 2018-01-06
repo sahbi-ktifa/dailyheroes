@@ -56,7 +56,7 @@ public class LootServiceImpl implements LootService {
 
     @Override
     public Item lootForTask(User user, Task task) {
-        int dropRate = Constants.complexity.get(task.getComplexity()) * 2;
+        int dropRate = (Constants.complexity.get(task.getComplexity()) * 2) + 10;
         if (Math.random() * 100 <= dropRate) {
             List<Item> items = itemRepository.findAllByLevelCapLessThanEqualAndRarityGreaterThanEqualAndRepeatable(user.getLevel(), Math.toIntExact(Math.round(Math.random() * 100)), false);
             removeAlreadyLootedItems(user, items);
