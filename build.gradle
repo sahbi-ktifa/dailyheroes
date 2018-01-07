@@ -42,3 +42,10 @@ dependencies {
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+processResources {
+	filesMatching('application.properties') {
+		expand(project.properties)
+	}
+}
+

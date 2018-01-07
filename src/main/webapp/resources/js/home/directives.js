@@ -220,10 +220,26 @@
     };
     dashboardSelector.$inject = ['Dashboard'];
 
+    var version = function ($http) {
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {},
+            template: '<span style="font-style: italic;color: lightgrey;">{{version}}</span>',
+            link: function (scope) {
+                $http.get(contextPath + '/version').then(function (res) {
+                    scope.version = res.data;
+                });
+            }
+        };
+    };
+    version.$inject = ['$http'];
+
     angular.module("HomeApp.directives").directive("userPresentation", userPresentation);
     angular.module("HomeApp.directives").directive("taskForm", taskForm);
     angular.module("HomeApp.directives").directive("categoryIcon", categoryIcon);
     angular.module("HomeApp.directives").directive("avatarItemSelector", avatarItemSelector);
     angular.module("HomeApp.directives").directive("avatarDisplayer", avatarDisplayer);
     angular.module("HomeApp.directives").directive("dashboardSelector", dashboardSelector);
+    angular.module("HomeApp.directives").directive("version", version);
 }(angular));
