@@ -26,7 +26,7 @@
   {
     "id":"uhair4",
     "name":"hair4",
-    "levelCap": 2,
+    "levelCap": 1,
     "rarity": 90,
     "repeatable": false,
     "type": "hair"
