@@ -8,4 +8,4 @@
 * JDK 8
 * MongoDB 3.x
 
-Use `java -jar target/dailyheroes-0.0.1-SNAPSHOT.jar` to start or `gradlew bootRun`
+Use `java -jar target/dailyheroes-0.0.1-SNAPSHOT.jar -spring.profiles.active=prod` to start or `gradlew bootRun`
