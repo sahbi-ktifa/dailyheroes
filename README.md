@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sahbi-ktifa/dailyheroes.svg?branch=develop)](https://travis-ci.org/sahbi-ktifa/dailyheroes)
+
 # Daily Heroes: Quests for the house !
 
 ## How to run it ?
