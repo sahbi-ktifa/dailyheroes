@@ -1,0 +1,7 @@
+---
+applications:
+  - name: dailyheroes-dev
+    buildpack: java_buildpack
+    path: libs/dailyheroes-0.0.1-SNAPSHOT.jar
+    services:
+      - dailyheroes-dev
