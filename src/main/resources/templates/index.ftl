@@ -4,6 +4,19 @@
 <html>
 <head>
     <title>Daily Heroes</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Daily Heroes: Quests for the house! is a multiplayer game to play with your family and/or your friends. Do tasks, earn experience and get rewards every tasks or levels accomplished.">
+    <meta name="keywords" content="Daily Heroes,quests,tasks,game,multiplayer,family">
+    <meta name="author" content="Sahbi KTIFA, Alexandre Gauthier">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/resources/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/resources/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/resources/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/resources/favicon/manifest.json">
+    <link rel="mask-icon" href="/resources/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/interface.css" />

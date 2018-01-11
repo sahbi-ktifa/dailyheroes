@@ -46,5 +46,13 @@
     "rarity": 100,
     "repeatable": false,
     "type": "background"
+  },
+  {
+    "id":"ub7_animated",
+    "name":"background7",
+    "levelCap": 3,
+    "rarity": 24,
+    "repeatable": false,
+    "type": "background"
   }
 ]
