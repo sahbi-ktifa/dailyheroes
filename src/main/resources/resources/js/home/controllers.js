@@ -223,6 +223,8 @@
         $scope.updateUser = function () {
             User.saveUserAvatar($scope.user.username, $scope.user.avatar).then(function () {
                $scope.userUpdate = false;
+            }).catch(function (reason) {
+               console.log(reason);
             });
         };
 

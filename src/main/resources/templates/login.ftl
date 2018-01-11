@@ -32,8 +32,8 @@
                  <#if error??>
                     <div class="notif alert alert-danger" ng-if="!success" translate>Unknown user or incorrect password.</div>
                  </#if>
-            <div class="notif alert alert-danger" ng-if="error" ng-click="clearError()">{{error | translate}}</div>
-            <div class="notif alert alert-success" ng-if="success" ng-click="clearSuccess()">{{success | translate}}</div>
+            <div class="notif alert alert-danger ng-cloak" ng-if="error" ng-click="clearError()">{{error | translate}}</div>
+            <div class="notif alert alert-success  ng-cloak" ng-if="success" ng-click="clearSuccess()">{{success | translate}}</div>
             <div class="panel panel-login">
                 <div class="panel-heading">
                     <div class="row">
@@ -67,12 +67,12 @@
                             </form>
                             <form name="registerForm" role="form" ng-if="registerTab" ng-controller="RegistrationCtrl">
                                 <div class="form-group">
-                                    <input type="text" name="player1" tabindex="1" class="form-control" ng-model="form.player1" ng-minlength="4"
+                                    <input type="text" name="player1" tabindex="1" class="form-control ng-cloak" ng-model="form.player1" ng-minlength="4"
                                            placeholder="{{'Enter player 1 name' | translate}}" required="required">
                                     <user-check user="form.player1"></user-check>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="player2" tabindex="2" class="form-control" ng-model="form.player2" ng-minlength="4"
+                                    <input type="text" name="player2" tabindex="2" class="form-control ng-cloak" ng-model="form.player2" ng-minlength="4"
                                            placeholder="{{'Enter player 2 name' | translate}}" required="required">
                                     <user-check user="form.player2"></user-check>
                                 </div>

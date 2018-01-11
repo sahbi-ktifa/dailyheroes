@@ -58,7 +58,7 @@
                     <a href="#!/notifications">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                         <span translate>Notifications</span>
-                        <span class="badge" ng-class="{'active':notificationsCount > 0}">{{notificationsCount}}</span>
+                        <span class="badge ng-cloak" ng-class="{'active':notificationsCount > 0}">{{notificationsCount}}</span>
                     </a>
                 </li>
                 <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('/task')}">

@@ -26,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/info").permitAll()
+                .antMatchers("/favicon/**").permitAll()
                 .antMatchers("/register/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

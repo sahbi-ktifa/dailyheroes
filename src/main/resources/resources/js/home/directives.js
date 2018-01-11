@@ -228,7 +228,7 @@
             template: '<span style="font-style: italic;color: lightgrey;">{{version}}</span>',
             link: function (scope) {
                 $http.get(contextPath + '/info').then(function (res) {
-                    scope.version = res.data.build.version;
+                    scope.version = res.data.build ? res.data.build.version : 'SNAPSHOT';
                 });
             }
         };
