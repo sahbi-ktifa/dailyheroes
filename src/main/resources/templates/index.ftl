@@ -10,19 +10,19 @@
     <meta name="author" content="Sahbi KTIFA, Alexandre Gauthier">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/resources/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/resources/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/resources/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/resources/favicon/manifest.json">
-    <link rel="mask-icon" href="/resources/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="/resources/css/interface.css" />
-    <link rel="stylesheet" type="text/css" href="/resources/css/dashboard.css" />
-    <link rel="stylesheet" type="text/css" href="/resources/css/notification.css" />
-    <link rel="stylesheet" type="text/css" href="/resources/css/profile.css" />
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/interface.css" />
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="/css/notification.css" />
+    <link rel="stylesheet" type="text/css" href="/css/profile.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
@@ -41,7 +41,7 @@
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand">
-                <img src="/resources/img/logo1_small.png"/>
+                <img src="/img/logo1_small.png"/>
             </a>
         </div>
 
@@ -114,12 +114,12 @@
 <script type="text/javascript" src="webjars/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js"></script>
 <script type="text/javascript" src="webjars/angular-gettext/2.2.1/dist/angular-gettext.min.js"></script>
 <script type="text/javascript" src="webjars/angular-touch/1.6.7/angular-touch.min.js"></script>
-<script type="text/javascript" src="/resources/js/home/app.js"></script>
-<script type="text/javascript" src="/resources/js/home/services.js"></script>
-<script type="text/javascript" src="/resources/js/home/directives.js"></script>
-<script type="text/javascript" src="/resources/js/home/controllers.js"></script>
-<script type="text/javascript" src="/resources/js/home/translations.js"></script>
-<script type="text/javascript" src="/resources/js/home/notification_translations.js"></script>
-<script type="text/javascript" src="/resources/js/home/loot_translations.js"></script>
+<script type="text/javascript" src="/js/home/app.js"></script>
+<script type="text/javascript" src="/js/home/services.js"></script>
+<script type="text/javascript" src="/js/home/directives.js"></script>
+<script type="text/javascript" src="/js/home/controllers.js"></script>
+<script type="text/javascript" src="/js/home/translations.js"></script>
+<script type="text/javascript" src="/js/home/notification_translations.js"></script>
+<script type="text/javascript" src="/js/home/loot_translations.js"></script>
 </body>
 </html>

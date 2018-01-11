@@ -93,8 +93,8 @@
         '                       \'locked\':element.locked === true}"' +
             '               ng-click="chooseItem(element)">' +
             '               <span>' +
-            '                   <img ng-if="element.itemId.indexOf(\'-\') > -1" ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId.substr(0, element.itemId.indexOf(\'-\'))}}.{{element.itemId.indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}" title="{{element.itemName | translate}}"/>' +
-            '                   <img ng-if="element.itemId.indexOf(\'-\') === -1" ng-src="/resources/img/avatar/{{element.itemType}}/{{element.itemId}}.{{element.itemId.indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}" title="{{element.itemName | translate}}"/>' +
+            '                   <img ng-if="element.itemId.indexOf(\'-\') > -1" ng-src="/img/avatar/{{element.itemType}}/{{element.itemId.substr(0, element.itemId.indexOf(\'-\'))}}.{{element.itemId.indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}" title="{{element.itemName | translate}}"/>' +
+            '                   <img ng-if="element.itemId.indexOf(\'-\') === -1" ng-src="/img/avatar/{{element.itemType}}/{{element.itemId}}.{{element.itemId.indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}" title="{{element.itemName | translate}}"/>' +
             '                   <span class="badge btn-warning" ng-if="element.locked">{{element.availableAt}}</span>' +
             '               </span>' +
             '           </li>' +
@@ -164,18 +164,18 @@
             },
             template: '<div class="avatar-displayer">' +
             '   <div ng-if="hasPreview">' +
-            '       <img class="avatar-background" ng-if="avatarConfig[\'background\']" ng-src="/resources/img/avatar/background/{{avatarConfig[\'background\']}}.{{avatarConfig[\'background\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
-            '       <img class="avatar-head" ng-if="avatarConfig[\'head\']" ng-src="/resources/img/avatar/head/{{avatarConfig[\'head\']}}.{{avatarConfig[\'head\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
-            '       <img class="avatar-hair" ng-if="avatarConfig[\'hair\']" ng-src="/resources/img/avatar/hair/{{avatarConfig[\'hair\']}}.{{avatarConfig[\'hair\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
-            '       <img class="avatar-gadget" ng-if="avatarConfig[\'gadget-gadget1\']" ng-src="/resources/img/avatar/gadget/{{avatarConfig[\'gadget-gadget1\']}}.{{avatarConfig[\'gadget-gadget1\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
-            '       <img class="avatar-gadget" ng-if="avatarConfig[\'gadget-gadget2\']" ng-src="/resources/img/avatar/gadget/{{avatarConfig[\'gadget-gadget2\']}}.{{avatarConfig[\'gadget-gadget2\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
-            '       <img class="avatar-face" ng-if="avatarConfig[\'face-beard\']" ng-src="/resources/img/avatar/face/{{avatarConfig[\'face-beard\']}}.{{avatarConfig[\'face-beard\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
-            '       <img class="avatar-face" ng-if="avatarConfig[\'face-eyes\']" ng-src="/resources/img/avatar/face/{{avatarConfig[\'face-eyes\']}}.{{avatarConfig[\'face-eyes\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
-            '       <img class="avatar-face" ng-if="avatarConfig[\'face-lips\']" ng-src="/resources/img/avatar/face/{{avatarConfig[\'face-lips\']}}.{{avatarConfig[\'face-lips\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
-            '       <img class="avatar-clothes" ng-if="avatarConfig[\'clothes\']" ng-src="/resources/img/avatar/clothes/{{avatarConfig[\'clothes\']}}.{{avatarConfig[\'clothes\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
+            '       <img class="avatar-background" ng-if="avatarConfig[\'background\']" ng-src="/img/avatar/background/{{avatarConfig[\'background\']}}.{{avatarConfig[\'background\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
+            '       <img class="avatar-head" ng-if="avatarConfig[\'head\']" ng-src="/img/avatar/head/{{avatarConfig[\'head\']}}.{{avatarConfig[\'head\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
+            '       <img class="avatar-hair" ng-if="avatarConfig[\'hair\']" ng-src="/img/avatar/hair/{{avatarConfig[\'hair\']}}.{{avatarConfig[\'hair\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
+            '       <img class="avatar-gadget" ng-if="avatarConfig[\'gadget-gadget1\']" ng-src="/img/avatar/gadget/{{avatarConfig[\'gadget-gadget1\']}}.{{avatarConfig[\'gadget-gadget1\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
+            '       <img class="avatar-gadget" ng-if="avatarConfig[\'gadget-gadget2\']" ng-src="/img/avatar/gadget/{{avatarConfig[\'gadget-gadget2\']}}.{{avatarConfig[\'gadget-gadget2\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
+            '       <img class="avatar-face" ng-if="avatarConfig[\'face-beard\']" ng-src="/img/avatar/face/{{avatarConfig[\'face-beard\']}}.{{avatarConfig[\'face-beard\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
+            '       <img class="avatar-face" ng-if="avatarConfig[\'face-eyes\']" ng-src="/img/avatar/face/{{avatarConfig[\'face-eyes\']}}.{{avatarConfig[\'face-eyes\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
+            '       <img class="avatar-face" ng-if="avatarConfig[\'face-lips\']" ng-src="/img/avatar/face/{{avatarConfig[\'face-lips\']}}.{{avatarConfig[\'face-lips\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
+            '       <img class="avatar-clothes" ng-if="avatarConfig[\'clothes\']" ng-src="/img/avatar/clothes/{{avatarConfig[\'clothes\']}}.{{avatarConfig[\'clothes\'].indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}"/>' +
             '   </div>' +
             '   <div ng-if="!hasPreview">' +
-            '       <img src="/resources/img/user.png"/>' +
+            '       <img src="/img/user.png"/>' +
             '   </div>' +
             '</div>',
             link: function (scope) {
@@ -227,8 +227,8 @@
             scope: {},
             template: '<span style="font-style: italic;color: lightgrey;">{{version}}</span>',
             link: function (scope) {
-                $http.get(contextPath + '/version').then(function (res) {
-                    scope.version = res.data;
+                $http.get(contextPath + '/info').then(function (res) {
+                    scope.version = res.data.build.version;
                 });
             }
         };

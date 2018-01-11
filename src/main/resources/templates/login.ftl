@@ -9,16 +9,16 @@
     <meta name="author" content="Sahbi KTIFA, Alexandre Gauthier">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/resources/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/resources/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/resources/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/resources/favicon/manifest.json">
-    <link rel="mask-icon" href="/resources/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="/resources/css/login.css" />
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/login.css" />
 </head>
 
 <body>
@@ -26,7 +26,7 @@
     var contextPath = window.location.origin + '${contextPath}';
 </script>
 <div class="container">
-    <img src="/resources/img/logo1.png"/>
+    <img src="/img/logo1.png"/>
     <div class="row">
         <div class="col-md-6 col-md-offset-3" ng-app="LoginApp" ng-controller="LoginCtrl">
                  <#if error??>
@@ -117,10 +117,10 @@
 <script type="text/javascript" src="webjars/angularjs/1.6.6/angular.min.js"></script>
 <script type="text/javascript" src="webjars/angularjs/1.6.6/angular-resource.min.js"></script>
 <script type="text/javascript" src="webjars/angular-gettext/2.2.1/dist/angular-gettext.min.js"></script>
-<script type="text/javascript" src="/resources/js/login/app.js"></script>
-<script type="text/javascript" src="/resources/js/login/services.js"></script>
-<script type="text/javascript" src="/resources/js/login/directives.js"></script>
-<script type="text/javascript" src="/resources/js/login/controllers.js"></script>
-<script type="text/javascript" src="/resources/js/login/translations.js"></script>
+<script type="text/javascript" src="/js/login/app.js"></script>
+<script type="text/javascript" src="/js/login/services.js"></script>
+<script type="text/javascript" src="/js/login/directives.js"></script>
+<script type="text/javascript" src="/js/login/controllers.js"></script>
+<script type="text/javascript" src="/js/login/translations.js"></script>
 </body>
 </html>

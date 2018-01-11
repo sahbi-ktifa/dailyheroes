@@ -1,13 +1,13 @@
 <!doctype html>
 <html>
 <head>
-    <title>Hello Angular</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+    <title>An error occured</title>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
 </head>
 
 <body>
 <div class="container">
-    <h1>Greeting error</h1>
+    <h1>An error occurred, please contact your administrator.</h1>
 </div>
 <script type="text/javascript" src="webjars/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>

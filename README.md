@@ -8,4 +8,9 @@
 * JDK 8
 * MongoDB 3.x
 
-Use `java -jar target/dailyheroes-0.0.1-SNAPSHOT.jar -spring.profiles.active=prod` to start or `gradlew bootRun`
+Use `java -jar build/libs/dailyheroes-0.0.1-SNAPSHOT.jar` to start or `gradlew bootRun`
+
+## Deploy to Pivotal CloudFoundry
+
+cf login
+cf push dailyheroes(-dev) -p build/libs/***.jar
