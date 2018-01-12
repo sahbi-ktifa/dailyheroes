@@ -10,6 +10,7 @@
                 <div class="col-md-12" ng-class="{'unread': notification.read === 0,
                  'col-md-10': notification.requireValidation === true && notification.validated !== true}"
                      ng-click="consume(notification)">
+                    <i ng-if="notification.extra.icon" class="fa {{notification.extra.icon}}"></i>
                     <span>{{notification.creationDate | date:'dd/MM/yyyy'}}</span>
                     <span> - </span>
                     <b ng-if="notification.from">{{notification.from}} </b>

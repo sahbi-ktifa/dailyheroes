@@ -159,20 +159,6 @@ form .row:first-child .floating-label-form-group {
     background-color: #6dbcab !important;
     border-color: #6dbcab !important;
 }
-.container .dashboard-tasks .notes {
-    font-style: italic;
-}
-.container .dashboard-users ul {
-    list-style-type:none;
-    white-space:nowrap;
-    overflow-x:auto;
-}
-.container .dashboard-users .fa-star.yellow {
-    color: #f5f54d;
-}
-.container .dashboard-users .fa-star-o {
-    cursor: pointer;
-}
 .container .logout i {
     color: #d9534f;
 }

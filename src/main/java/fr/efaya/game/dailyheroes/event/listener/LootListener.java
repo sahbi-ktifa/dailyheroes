@@ -39,6 +39,7 @@ public class LootListener {
                     .withSuffix(item.getName())
                     .forUser(event.getUser().getUsername())
                     .withTask(event.getTask().getId())
+                    .addExtra("icon", "fa-gift")
                     .build();
             notificationService.saveNotification(notification);
         }
@@ -54,6 +55,7 @@ public class LootListener {
                         .withMessage("Congratulations, you have been awarded with:")
                         .withSuffix(item.getName())
                         .forUser(user.getUsername())
+                        .addExtra("icon", "fa-gift")
                         .build();
                 notificationService.saveNotification(notification);
             }
@@ -67,6 +69,7 @@ public class LootListener {
             Notification notification = NotificationBuilder.newInstance()
                     .withMessage("New items have been unlocked, check your profile!")
                     .forUser(event.getUser().getUsername())
+                    .addExtra("icon", "fa-gift")
                     .build();
             notificationService.saveNotification(notification);
         }

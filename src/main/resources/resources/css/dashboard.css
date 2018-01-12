@@ -13,3 +13,17 @@
     position: absolute;
     right: 10px;
 }
+.container .dashboard-tasks .notes {
+    font-style: italic;
+}
+.container .dashboard-users ul {
+    list-style-type:none;
+    white-space:nowrap;
+    overflow-x:auto;
+}
+.container .dashboard-users .fa-star.yellow {
+    color: #f5f54d;
+}
+.container .dashboard-users .fa-star-o {
+    cursor: pointer;
+}

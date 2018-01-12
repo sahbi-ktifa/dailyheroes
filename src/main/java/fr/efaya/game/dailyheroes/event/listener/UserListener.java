@@ -49,6 +49,7 @@ public class UserListener {
                     .withTask(event.getTask().getId())
                     .from(event.getUser().getUsername())
                     .withSuffix(event.getTask().getName())
+                    .addExtra("icon", "fa-plus-circle")
                     .build();
             notificationService.saveNotification(notification);
         }
@@ -65,6 +66,7 @@ public class UserListener {
                     .requireValidation(true)
                     .from(event.getUser().getUsername())
                     .withSuffix(event.getTask().getName())
+                    .addExtra("icon", "fa-check-circle-o")
                     .build();
             notificationService.saveNotification(notification);
         }
@@ -80,6 +82,7 @@ public class UserListener {
                 .withTask(event.getTask().getId())
                 .from(event.getUser().getUsername())
                 .withSuffix(event.getTask().getName())
+                .addExtra("icon", "fa-check-circle-o")
                 .build();
         notificationService.saveNotification(notification);
         if (ConstantUtils.isLevelingUp(user.getLevel(), user.getCurrentExp())) {
@@ -89,6 +92,7 @@ public class UserListener {
                     .forUser(user.getUsername())
                     .withTask(event.getTask().getId())
                     .withSuffix(String.valueOf(user.getLevel()))
+                    .addExtra("icon", "fa-level-up")
                     .build();
             notificationService.saveNotification(_notification);
             publisher.publishEvent(new LevelUpEvent(this, event.getTask(), user));
@@ -108,6 +112,7 @@ public class UserListener {
                             .forUser(user)
                             .from(username)
                             .withSuffix(String.valueOf(event.getUser().getLevel()))
+                            .addExtra("icon", "fa-level-up")
                             .build();
 
                     notificationService.saveNotification(notification);

@@ -76,6 +76,7 @@ public class DailyHeroesApplication {
 					Notification notification = NotificationBuilder.newInstance()
 							.withMessage("New items have been unlocked, check your profile!")
 							.forUser(u.getUsername())
+							.addExtra("icon", "fa-gift")
 							.build();
 					notificationService.saveNotification(notification);
 					LOGGER.info(count + " default new items were given to " + u.getUsername());

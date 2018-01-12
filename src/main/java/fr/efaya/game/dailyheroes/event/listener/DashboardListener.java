@@ -28,6 +28,7 @@ public class DashboardListener {
                 .withSuffix(event.getDashboard().getName())
                 .requireValidation(true)
                 .addExtra("dashboardId", event.getDashboard().getId())
+                .addExtra("icon", "fa-sign-in")
                 .build();
         notificationService.saveNotification(notification);
     }

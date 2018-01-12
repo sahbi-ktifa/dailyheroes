@@ -9,3 +9,22 @@
 .notifications-container .notifications-list ul li div.unread {
     font-weight: bold;
 }
+.notifications-container .notifications-list ul li div i {
+    margin-right: 10px;
+}
+.notifications-container .notifications-list ul li div i.fa-gift {
+    color: #d9534f;
+}
+.notifications-container .notifications-list ul li div i.fa-sign-in,
+.notifications-container .notifications-list ul li div i.fa-plus-circle {
+    color: #4f9666;
+}
+.notifications-container .notifications-list ul li div > i.fa-check-circle-o {
+    color: #d89369;
+}
+.notifications-container .notifications-list ul li div > i.fa-check-circle {
+    color: #1CA347;
+}
+.notifications-container .notifications-list ul li div > i.fa-level-up {
+    color: #f5f54d;
+}
