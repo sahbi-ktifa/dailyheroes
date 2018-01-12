@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/register").permitAll()
                 .antMatchers("/info").permitAll()
                 .antMatchers("/favicon/**").permitAll()
+                .antMatchers("/favicon.*").permitAll()
                 .antMatchers("/register/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -39,16 +40,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         //Web resources
         web.ignoring().antMatchers("/css/**");
         web.ignoring().antMatchers("/scripts/**");
         web.ignoring().antMatchers("/img/**");
+        web.ignoring().antMatchers("/favicon/**");
     }
 
     @Autowired
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth){
         auth.authenticationProvider(this.customAuthenticationProvider);
     }
 }
