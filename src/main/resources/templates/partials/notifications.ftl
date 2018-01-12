@@ -1,4 +1,4 @@
-<div class="notifications-container">
+<div class="notifications-container" ng-swipe-left="goToNext()" ng-swipe-right="goToPrevious()">
     <div class="loading" ng-if="loading">
         <i class="fa fa-refresh fa-spin fa-5x fa-fw"></i>
         <span class="sr-only">Loading...</span>

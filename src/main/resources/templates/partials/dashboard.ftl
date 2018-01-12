@@ -15,7 +15,7 @@
             </li>
         </ul>
     </div>
-    <div class="dashboard-tasks" ng-if="!loading">
+    <div class="dashboard-tasks" ng-if="!loading" ng-swipe-left="goToNext()" ng-swipe-right="goToPrevious()">
         <h3 translate>Tasks list</h3>
         <ul>
             <li ng-repeat="task in tasks">

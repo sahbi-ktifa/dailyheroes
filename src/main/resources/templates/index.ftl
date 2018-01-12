@@ -64,16 +64,18 @@
                 <li class="page-scroll rounded" ng-class="{'active':currentRoute.endsWith('/task')}">
                     <a href="#!/task"><i class="fa fa-plus-circle" aria-hidden="true"></i> <span translate>Add a task</span></a>
                 </li>
+                <li class="page-scroll rounded logout">
+                    <a href="#" ng-click="logout()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> ${user}
+                    </a>
+                </li>
             </ul>
-            <div class="logout" ng-click="logout()">
-                <i class="fa fa-sign-out"></i> ${user}
-            </div>
         </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
 </nav>
-<div class="container app" ng-swipe-left="goToNext()" ng-swipe-right="goToPrevious()">
+<div class="container app">
     <div ng-view></div>
 </div>
 

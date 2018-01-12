@@ -50,7 +50,7 @@ angular.module("HomeApp").run(function (gettextCatalog) {
         'Submit':'Valider',
         'Task created successfully.':'Tâche crée avec succès.',
         'Task is done':'Tâche réalisée',
-        'Tasks list':'Liste des tâches disponibles',
+        'Tasks list':'Tâches disponibles',
         'Today':'Aujourd\'hui',
         'Weekly':'Toutes les semaines'
     });

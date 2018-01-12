@@ -1,10 +1,14 @@
 .notifications-container .notifications-list ul {
     list-style: none;
+    padding-left: 0;
 }
-.notifications-container .notifications-list ul li div {
+.notifications-container .notifications-list ul li {
     border-bottom: 1px dashed lightgray;
     cursor: pointer;
-    line-height: 50px;
+}
+.notifications-container .notifications-list ul li div {
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 .notifications-container .notifications-list ul li div.unread {
     font-weight: bold;
@@ -27,4 +31,16 @@
 }
 .notifications-container .notifications-list ul li div > i.fa-level-up {
     color: #f5f54d;
+}
+@media (min-width: 768px) {
+    .notifications-container .notifications-list ul li {
+        border: none;
+    }
+    .notifications-container .notifications-list ul li div {
+        border-bottom: 1px dashed lightgray;
+    }
+    .notifications-container .notifications-list ul li div.validation {
+        padding: 3px 0;
+    }
+
 }

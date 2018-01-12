@@ -41,6 +41,7 @@ h6 {
 }
 .navbar-custom .navbar-brand {
     color: white;
+    position: relative;
 }
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus,
@@ -53,6 +54,7 @@ h6 {
     height: 100px;
     position: absolute;
     top: 0;
+    max-height: 100%;
 }
 .navbar-custom .navbar-nav {
     letter-spacing: 1px;
@@ -90,32 +92,12 @@ h6 {
     color: white;
     border-color: #18BC9C;
 }
-@media (min-width: 768px) {
-    .navbar-custom {
-        padding: 25px 0;
-        -webkit-transition: padding 0.3s;
-        -moz-transition: padding 0.3s;
-        transition: padding 0.3s;
-    }
-    .navbar-custom .navbar-brand {
-        font-size: 2em;
-        -webkit-transition: all 0.3s;
-        -moz-transition: all 0.3s;
-        transition: all 0.3s;
-    }
-    .navbar-custom.affix {
-        padding: 10px 0;
-    }
-    .navbar-custom.affix .navbar-brand {
-        font-size: 1.5em;
-    }
-}
 form .row:first-child .floating-label-form-group {
     border-top: 1px solid #eeeeee;
 }
 .footer {
     color: white;
-    padding: 25px 0;
+    padding: 0;
     background-color: #233140;
     text-align: center;
 }
@@ -138,13 +120,16 @@ form .row:first-child .floating-label-form-group {
     outline: none;
 }
 .container.app {
-    padding-top: calc(6rem + 90px);
-    padding-bottom: calc(6rem + 45px);
+    padding-top: calc(5rem);
+    padding-bottom: calc(6rem);
 }
 @media (min-width: 992px) {
     .container.app {
         padding-top: calc(6rem + 45px);
         padding-bottom: calc(6rem + 45px);
+    }
+    .navbar .navbar-brand {
+        position: initial;
     }
 }
 .container .loading {
@@ -161,12 +146,6 @@ form .row:first-child .floating-label-form-group {
 }
 .container .logout i {
     color: #d9534f;
-}
-.container .logout {
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    right: 15px;
 }
 .badge.active {
     background-color: #f0ad4e;
@@ -207,4 +186,27 @@ form .row:first-child .floating-label-form-group {
 }
 .avatar-displayer .avatar-gadget {
     z-index: 6;
+}
+@media (min-width: 768px) {
+    .navbar-custom {
+        padding: 25px 0;
+        -webkit-transition: padding 0.3s;
+        -moz-transition: padding 0.3s;
+        transition: padding 0.3s;
+    }
+    .navbar-custom .navbar-brand {
+        font-size: 2em;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    .navbar-custom.affix {
+        padding: 10px 0;
+    }
+    .navbar-custom.affix .navbar-brand {
+        font-size: 1.5em;
+    }
+    .footer {
+        padding: 25px 0;
+    }
 }

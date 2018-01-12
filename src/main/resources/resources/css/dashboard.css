@@ -1,5 +1,6 @@
 .dashboard-container ul {
     list-style: none;
+    padding-left: 0;
 }
 .dashboard-container .dashboard-users ul {
     text-align: center;
@@ -16,6 +17,15 @@
 .container .dashboard-tasks .notes {
     font-style: italic;
 }
+.container .dashboard-tasks ul li div span i.fa-2x {
+    color: #60adf1;
+}
+.container .dashboard-tasks ul li div.col-md-4 {
+    display: none;
+}
+.container .dashboard-tasks ul li div.col-md-3 {
+    text-align: right;
+}
 .container .dashboard-users ul {
     list-style-type:none;
     white-space:nowrap;
@@ -26,4 +36,24 @@
 }
 .container .dashboard-users .fa-star-o {
     cursor: pointer;
+}
+.dashboard-container .dashboard-selector label {
+    display: none;
+}
+.dashboard-container .dashboard-selector select {
+    margin-top: -5px;
+}
+@media (min-width: 768px) {
+    .dashboard-container ul {
+        padding-left: initial;
+    }
+    .dashboard-container .dashboard-selector label {
+        display: block;
+    }
+    .dashboard-container .dashboard-selector select {
+        margin-top: initial;
+    }
+    .container .dashboard-tasks ul li div.col-md-4 {
+        display: block;
+    }
 }

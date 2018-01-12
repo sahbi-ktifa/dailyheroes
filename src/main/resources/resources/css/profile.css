@@ -8,6 +8,7 @@
 }
 .profile-container .reward-container ul {
     list-style: none;
+    padding-left: 0;
 }
 .profile-container .reward-container ul li .reward {
     color: #d9534f;
@@ -85,5 +86,13 @@
 .profile-container .item-container button {
     position: absolute;
     right: 15px;
-    top: 90px;
+    top: 72px;
+}
+@media (min-width: 768px) {
+    .profile-container .item-container button {
+        top: 90px;
+    }
+    .profile-container .reward-container ul {
+        padding-left: initial;
+    }
 }

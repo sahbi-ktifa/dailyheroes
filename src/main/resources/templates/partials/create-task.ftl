@@ -1,4 +1,4 @@
-<div>
+<div ng-swipe-left="goToNext()" ng-swipe-right="goToPrevious()">
     <h3 translate>Add a task</h3>
     <div class="alert alert-success" ng-if="success === true" translate>Task created successfully.</div>
     <form name="taskCreation">
