@@ -2,11 +2,13 @@
     var HomeCtrl = function($scope, User, Dashboard, Notification, $interval, $location) {
         $scope.dashboard = {};
         $scope.selectedDashboard = null;
+        $scope.favoriteDashboard = null;
         $scope.notificationsCount = 0;
         var routes = ['/', '/profile', '/notifications', '/task'];
 
         User.retrieveUser(username).then(function (res) {
             $scope.selectedDashboard = res.data.favoriteDashboard;
+            $scope.favoriteDashboard = res.data.favoriteDashboard;
             if (!$scope.selectedDashboard) {
                 Dashboard.retrieveDashboardsForUser().then(function (response) {
                     if (response.data) {
@@ -131,6 +133,12 @@
                  Task.updateTask(task).then(function () {
                      refreshTasks();
                  });
+            });
+        };
+
+        $scope.favoriteMe = function () {
+            Dashboard.favoriteMe($scope.selectedDashboard).then(function() {
+                $scope.favoriteDashboard = $scope.selectedDashboard;
             });
         };
     };

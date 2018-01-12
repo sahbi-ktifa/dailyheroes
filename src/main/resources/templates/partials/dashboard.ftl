@@ -5,7 +5,10 @@
     </div>
     <dashboard-selector ng-if="!loading"></dashboard-selector>
     <div class="dashboard-users" ng-if="!loading">
-        <h3 translate>Players list</h3>
+        <h3>{{dashboard.name}}
+            <i ng-if="favoriteDashboard && favoriteDashboard === selectedDashboard" title="{{'Favorite dashboard' | translate}}" class="fa fa-star yellow"></i>
+            <i ng-if="favoriteDashboard && favoriteDashboard !== selectedDashboard" title="{{'Choose as my favorite dashboard' | translate}}" class="fa fa-star-o" ng-click="favoriteMe()"></i>
+        </h3>
         <ul>
             <li ng-repeat="user in dashboard.users | orderBy">
                 <user-presentation username="{{user}}"></user-presentation>

@@ -167,6 +167,12 @@ form .row:first-child .floating-label-form-group {
     white-space:nowrap;
     overflow-x:auto;
 }
+.container .dashboard-users .fa-star.yellow {
+    color: #f5f54d;
+}
+.container .dashboard-users .fa-star-o {
+    cursor: pointer;
+}
 .container .logout i {
     color: #d9534f;
 }

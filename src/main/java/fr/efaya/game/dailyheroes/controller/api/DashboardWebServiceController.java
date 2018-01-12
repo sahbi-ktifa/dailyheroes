@@ -47,6 +47,15 @@ public class DashboardWebServiceController {
         return null;
     }
 
+    @PostMapping("{dashboardId}")
+    public void favoriteMe(@PathVariable("dashboardId") String dashboardId, Principal principal) {
+        User user = userService.retrieveUser(principal.getName());
+        if (!user.getFavoriteDashboard().equals(dashboardId)) {
+            user.setFavoriteDashboard(dashboardId);
+            userService.saveUser(user);
+        }
+    }
+
     @PostMapping("{notificationId}/{dashboardId}")
     public void joinAnotherDashboard(@PathVariable("notificationId") String notificationId, @PathVariable("dashboardId") String dashboardId, Principal principal) {
         Dashboard dashboard = dashboardService.retrieveDashboard(dashboardId);

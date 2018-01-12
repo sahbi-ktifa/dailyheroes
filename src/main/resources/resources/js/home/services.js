@@ -14,6 +14,10 @@
             return $http.post(contextPath + '/dashboard/' + notificationId + '/' + dashboardId);
         };
 
+        dashboardService.favoriteMe = function(dashboardId) {
+            return $http.post(contextPath + '/dashboard/' + dashboardId);
+        };
+
         return dashboardService;
     };
     DashboardFactory.$inject = ['$http'];
