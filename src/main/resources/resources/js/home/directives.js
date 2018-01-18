@@ -48,7 +48,7 @@
             scope: {
                 ref: '='
             },
-            template: '<span><i ng-if="ref && icon" class="fa {{class}} fa-2x"></i></span>',
+            template: '<span><i ng-if="ref && icon" class="fa {{class}}"></i></span>',
             link: function (scope) {
                 scope.class = '';
                 switch (scope.ref) {

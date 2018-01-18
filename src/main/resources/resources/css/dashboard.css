@@ -17,7 +17,10 @@
 .container .dashboard-tasks .notes {
     font-style: italic;
 }
-.container .dashboard-tasks ul li div span i.fa-2x {
+.container .dashboard-tasks ul li > div {
+    padding: 0;
+}
+.container .dashboard-tasks ul li div span i.fa {
     color: #60adf1;
 }
 .container .dashboard-tasks ul li div.col-md-4 {

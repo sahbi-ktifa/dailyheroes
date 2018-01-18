@@ -95,7 +95,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                Copyright &copy; Daily Heroes 2018 - <a class="credit-line" uib-popover-template="'credits.html'" popover-title="{{'Credits' | translate}}" translate>Credits</a> - <a class="contribute-line" uib-popover-template="'contribute.html'" popover-title="{{'Contribute' | translate}}" translate>Contribute</a> - <version></version>
+                Copyright &copy; Daily Heroes 2018 - <a class="credit-line" uib-popover-template="'credits.html'" popover-title="{{'Credits' | translate}}" translate>Credits</a><i class="spacer"> - </i><a class="contribute-line" uib-popover-template="'contribute.html'" popover-title="{{'Contribute' | translate}}" translate>Contribute</a><i class="spacer"> - </i><version></version>
             </div>
         </div>
     </div>

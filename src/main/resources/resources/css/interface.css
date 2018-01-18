@@ -150,8 +150,12 @@ form .row:first-child .floating-label-form-group {
 .badge.active {
     background-color: #f0ad4e;
 }
+.spacer{
+    display: none;
+}
 .credit-line, .contribute-line {
     cursor: pointer;
+    display: none;
 }
 .popover-title {
     color: #2c3e50;
@@ -208,5 +212,8 @@ form .row:first-child .floating-label-form-group {
     }
     .footer {
         padding: 25px 0;
+    }
+    .credit-line, .contribute-line, .spacer {
+        display: inline;
     }
 }

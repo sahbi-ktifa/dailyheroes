@@ -41,7 +41,7 @@ angular.module("HomeApp").run(function (gettextCatalog) {
         'Name *':'Nom *',
         'No gift or reward unlocked, keep playing to do so.':'Aucun cadeau ou récompense disponible, continuez à jouer pour les débloquer !',
         'None':'Aucun',
-        'Notifications list':'Liste des notifications',
+        'Notifications list':'Notifications',
         'No tasks available. Add one!':'Aucune tâche définie. N\'hésitez pas à en ajouter !',
         'Profile':'Profil',
         'Received on':'Reçu le',

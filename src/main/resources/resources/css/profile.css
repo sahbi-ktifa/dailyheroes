@@ -22,7 +22,7 @@
     font-style: italic;
 }
 .profile-container .item-container .avatar-selector {
-    padding: 15px;
+    padding: 15px 0;
 }
 .profile-container .item-container .avatar-selector ul {
     list-style: none;
@@ -68,7 +68,8 @@
     left: -16px;
 }
 .profile-container .item-container .avatar-selector .avatar-element.active {
-    border: 2px solid #2c3e50;
+    box-shadow: 0 0 5px #f5d09c;
+    border: 3px solid #f5d09c;
 }
 .profile-container .item-container .avatar-selector .avatar-element img {
     width: 70px;
@@ -80,8 +81,10 @@
     background-color: lightgray;
 }
 .profile-container .item-container .avatar-selector .avatar-element.locked span.badge {
+    position: absolute;
     margin-left: 45px;
     background-color: orange;
+    top: 2px;
 }
 .profile-container .item-container button {
     position: absolute;
