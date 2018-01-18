@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 group = 'fr.efaya.game'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0.BETA'
 sourceCompatibility = 1.8
 
 repositories {
