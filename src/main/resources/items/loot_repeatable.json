@@ -22,5 +22,37 @@
     "rarity": 25,
     "repeatable": true,
     "type": "other"
+  },
+  {
+    "id":"r4",
+    "name":"Flowers",
+    "levelCap": 2,
+    "rarity": 25,
+    "repeatable": true,
+    "type": "other"
+  },
+  {
+    "id":"r5",
+    "name":"Little book or magazine",
+    "levelCap": 3,
+    "rarity": 50,
+    "repeatable": true,
+    "type": "other"
+  },
+  {
+    "id":"r6",
+    "name":"Homemade diner with candles",
+    "levelCap": 4,
+    "rarity": 60,
+    "repeatable": true,
+    "type": "other"
+  },
+  {
+    "id":"r7",
+    "name":"Massage",
+    "levelCap": 5,
+    "rarity": 20,
+    "repeatable": true,
+    "type": "other"
   }
 ]

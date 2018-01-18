@@ -8,8 +8,40 @@
     "type": "hair"
   },
   {
+    "id":"uhair1-2",
+    "name":"hair1-2",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair1-3",
+    "name":"hair1-3",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
     "id":"uhair2",
     "name":"hair2",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair2-2",
+    "name":"hair2-2",
+    "levelCap": 0,
+    "rarity": 100,
+    "repeatable": false,
+    "type": "hair"
+  },
+  {
+    "id":"uhair2-3",
+    "name":"hair2-3",
     "levelCap": 0,
     "rarity": 100,
     "repeatable": false,
