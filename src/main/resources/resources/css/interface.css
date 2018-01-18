@@ -131,6 +131,9 @@ form .row:first-child .floating-label-form-group {
     .navbar .navbar-brand {
         position: initial;
     }
+    .navbar-custom .navbar-toggle {
+        display: none;
+    }
 }
 .container .loading {
     text-align: center;

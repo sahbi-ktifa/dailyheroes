@@ -27,7 +27,7 @@
 .profile-container .item-container .avatar-selector ul {
     list-style: none;
     max-height: 250px;
-    overflow: scroll;
+    overflow: auto;
 }
 .profile-container .item-container .avatar-selector .avatar-element {
     display: inline-block;
