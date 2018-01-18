@@ -93,8 +93,8 @@
         '                       \'locked\':element.locked === true}"' +
             '               ng-click="chooseItem(element)">' +
             '               <span>' +
-            '                   <img ng-if="element.itemId.indexOf(\'-\') > -1" ng-src="/img/avatar/{{element.itemType}}/{{element.itemId.substr(0, element.itemId.indexOf(\'-\'))}}.{{element.itemId.indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}" title="{{element.itemName | translate}}"/>' +
-            '                   <img ng-if="element.itemId.indexOf(\'-\') === -1" ng-src="/img/avatar/{{element.itemType}}/{{element.itemId}}.{{element.itemId.indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}" title="{{element.itemName | translate}}"/>' +
+            '                   <img ng-if="element.itemId.indexOf(\'empty\') > -1" ng-src="/img/avatar/{{element.itemType}}/empty.png" title="{{element.itemName | translate}}"/>' +
+            '                   <img ng-if="element.itemId.indexOf(\'empty\') === -1" ng-src="/img/avatar/{{element.itemType}}/{{element.itemId}}.{{element.itemId.indexOf(\'animated\') > -1 ? \'gif\' : \'png\'}}" title="{{element.itemName | translate}}"/>' +
             '                   <span class="badge btn-warning" ng-if="element.locked">{{element.availableAt}}</span>' +
             '               </span>' +
             '           </li>' +
