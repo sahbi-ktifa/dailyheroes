@@ -1,5 +1,5 @@
 angular.module("LoginApp").run(function (gettextCatalog) {
-    gettextCatalog.setCurrentLanguage(navigator.language || navigator.userLanguage);
+    gettextCatalog.setCurrentLanguage(language);
     gettextCatalog.setStrings("fr", {
         'Add an extra player.':'Ajouter un joueur.',
         'An error occured, please try again later.':'Une erreur s\'est produite, merci de réessayer ultérieurement.',
@@ -12,10 +12,13 @@ angular.module("LoginApp").run(function (gettextCatalog) {
         'Join game':'Rejoindre une partie',
         'Log In':'Connexion',
         'Password':'Mot de passe',
+        'Password should be at least 6 characters long.':'Le mot de passe doit au minimum faire 6 caractères.',
+        'Passwords do not match.':'Les mots de passes ne correspondent pas.',
         'Register':'S\'enregister',
         'Registration complete, you can now log in.':'Enregistrement terminé, vous pouvez vous connecter.',
         'Unknown user or incorrect password.':'Nom d\'utilisateur inconnu ou mot de passe incorrect.',
         'Username':'Nom d\'utilisateur',
+        'Username should be at least 4 characters long.':'Le nom d\'utilisateur doit au minimum faire 4 caractères.',
         'WARNING, user already exists and will be added to your game.':'ATTENTION, cet utilisateur existe déjà et sera ajouté à votre partie.'
     });
 });

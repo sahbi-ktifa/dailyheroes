@@ -5,15 +5,13 @@
     </div>
     <div class="form-group">
         <label for="category" class="col-sm-3 control-label" translate>Category</label>
-        <input type="text" ng-if="edit" class="form-control" ng-model="task.category" readonly="readonly"/>
-        <select id="category" class="form-control" ng-model="task.category" ng-options="c as c for c in categories" ng-if="!edit">
+        <select id="category" class="form-control" ng-model="task.category" ng-options="c as c | translate for c in categories">
             <option value=""></option>
         </select>
     </div>
     <div class="form-group">
         <label for="complexity" class="col-sm-3 control-label" translate>Complexity</label>
-        <span uib-rating ng-model="task.complexity" max="5" aria-labelledby="default-rating" read-only="true" ng-if="edit"></span>
-        <span uib-rating ng-model="task.complexity" max="5" aria-labelledby="default-rating" ng-if="!edit"></span>
+        <span uib-rating ng-model="task.complexity" max="5" aria-labelledby="default-rating" ></span>
     </div>
     <div class="form-group">
         <label for="notes" class="col-sm-3 control-label">Notes</label>

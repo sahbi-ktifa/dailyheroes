@@ -55,9 +55,9 @@ public class TaskWebServiceController {
     }
 
     @PostMapping("{taskId}")
-    public Task updateTask(@PathVariable("taskId") String taskId, @RequestBody @Valid Task task) {
+    public Task updateTask(@PathVariable("taskId") String taskId, @RequestBody @Valid Task task, Principal principal) {
         task.setId(taskId);
-        return taskService.updateTask(task);
+        return taskService.updateTask(task, principal.getName());
     }
 
     @PostMapping("{taskId}/valid")
