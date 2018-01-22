@@ -10,7 +10,15 @@
     margin-left: 15px;
     margin-right: 15px;
 }
+.dashboard-container .dashboard-users h3 > span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    display: inline-block;
+}
 .dashboard-container .dashboard-selector {
+    max-width: 150px;
     position: absolute;
     right: 10px;
 }
@@ -33,6 +41,11 @@
     list-style-type:none;
     white-space:nowrap;
     overflow-x:auto;
+}
+.container .dashboard-users .fa-star-o,
+.container .dashboard-users .fa-star {
+    position: absolute;
+    margin-left: 5px;
 }
 .container .dashboard-users .fa-star.yellow {
     color: #f5f54d;

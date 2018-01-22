@@ -109,12 +109,17 @@ body {
     top: 10px;
     right: 10px;
 }
-.user-check {
+.check-warning {
     margin-top: 5px;
     margin-left: 10px;
-    display: block;
-    color: #d89369;
     text-align: left;
+    color: #d89369;
+}
+.check-info {
+    margin-top: 5px;
+    margin-left: 10px;
+    text-align: left;
+    color: #6fcad8;
 }
 .extra-adder {
     margin-bottom: 10px;

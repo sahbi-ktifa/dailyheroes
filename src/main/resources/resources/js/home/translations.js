@@ -1,7 +1,8 @@
 angular.module("HomeApp").run(function (gettextCatalog) {
-    gettextCatalog.setCurrentLanguage(navigator.language || navigator.userLanguage);
+    gettextCatalog.setCurrentLanguage(language);
     gettextCatalog.setStrings("fr", {
         'Add a task':'Ajouter une tâche',
+        'administrative':'Administratif',
         'Are you sure that you performed this task?':'Avez-vous réellement réalisé cette tâche ?',
         'Are you sure that you want to delete this task?':'Voulez-vous vraiment supprimer cette tâche ?',
         'background':'Arrière-plan',
@@ -9,6 +10,7 @@ angular.module("HomeApp").run(function (gettextCatalog) {
         'Cancel':'Annuler',
         'Category':'Catégorie',
         'Change dashboard:':'Changer de partie :',
+        'cleaning':'Ménage',
         'Clear':'Vider',
         'Close':'Fermer',
         'clothes':'Vêtements',
@@ -19,12 +21,14 @@ angular.module("HomeApp").run(function (gettextCatalog) {
         'Credits':'Crédits',
         'Daily':'Tous les jours',
         'Dashboard':'Accueil',
+        'DIY':'Bricolage',
         'Due date':'Date limite',
         'Edit':'Modifier',
         'Edit task':'Éditer une tâche',
         'eyes':'Yeux',
         'face':'Visage',
         'Favorite dashboard':'Partie favorite',
+        'fun':'Fun',
         'gadget':'Accessoires',
         'gadget1':'Accessoires 1',
         'gadget2':'Accessoires 2',

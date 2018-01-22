@@ -21,10 +21,12 @@ import java.util.UUID;
 @Service
 public class TaskServiceImpl implements TaskService {
     private TaskRepository repository;
+    private UserService userService;
     private ApplicationEventPublisher publisher;
 
-    public TaskServiceImpl(TaskRepository repository, ApplicationEventPublisher publisher) {
+    public TaskServiceImpl(TaskRepository repository, UserService userService, ApplicationEventPublisher publisher) {
         this.repository = repository;
+        this.userService = userService;
         this.publisher = publisher;
     }
 
@@ -38,20 +40,24 @@ public class TaskServiceImpl implements TaskService {
         task.setId(UUID.randomUUID().toString());
         task.setCreationDate(new Date());
         Integer complexity = Constants.complexity.get(task.getComplexity()) - ((user.getLevel() - 1) * 4);
-        Integer exp = (complexity * Constants.levelsToExp.get(user.getLevel() + 1)) / 100;
-        task.setExp(exp);
+        task.setExp(calcExpPerComplexity(user, complexity));
         task = repository.save(task);
         publisher.publishEvent(new CreatedTaskEvent(this, task, user));
         return task;
     }
 
     @Override
-    public Task updateTask(Task task) {
+    public Task updateTask(Task task, String username) {
         Task _task = repository.findOne(task.getId());
         _task.setNotes(task.getNotes());
         _task.setName(task.getName());
         _task.setDueDate(task.getDueDate());
+        _task.setCategory(task.getCategory());
         _task.setRedundancy(task.getRedundancy());
+        if (!task.getComplexity().equals(_task.getComplexity())) {
+            _task.setComplexity(task.getComplexity());
+            _task.setExp(calcExpPerComplexity(userService.retrieveUser(username), task.getComplexity()));
+        }
         return repository.save(_task);
     }
 
@@ -83,5 +89,9 @@ public class TaskServiceImpl implements TaskService {
         Task task = repository.findOne(taskId);
         repository.delete(taskId);
         return task;
+    }
+
+    private Integer calcExpPerComplexity(User user, Integer complexity) {
+        return (complexity * Constants.levelsToExp.get(user.getLevel() + 1)) / 100;
     }
 }

@@ -1,5 +1,6 @@
 <#assign user = principal />
 <#assign contextPath = path />
+<#assign language = language />
 <!doctype html>
 <html>
 <head>
@@ -31,6 +32,7 @@
 <script type="text/javascript">
     var contextPath = window.location.origin + '${contextPath}';
     var username = '${user}';
+    var language = '${language}';
 </script>
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">

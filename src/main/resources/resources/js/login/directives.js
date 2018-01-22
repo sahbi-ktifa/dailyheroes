@@ -7,7 +7,8 @@
                 user: '='
             },
             template: '<span class="user-check">' +
-            '   <span ng-if="user && !isUnique"><i class="fa fa-exclamation"></i> <span translate>WARNING, user already exists and will be added to your game.</span></span>' +
+            '   <div ng-if="user && user.length > 3 && !isUnique" class="check-warning"><i class="fa fa-exclamation"></i> <span translate>WARNING, user already exists and will be added to your game.</span></div>' +
+            '   <div ng-if="user && user.length < 4" class="check-info"><i class="fa fa-info"></i> <span translate>Username should be at least 4 characters long.</span></div>' +
             '</span>',
             link: function (scope) {
                 scope.isUnique = false;

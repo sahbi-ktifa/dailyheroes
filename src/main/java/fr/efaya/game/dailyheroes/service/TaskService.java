@@ -12,7 +12,7 @@ import java.util.List;
 public interface TaskService {
     List<Task> retrieveTasks(String dashboardId, Task.STATE status);
     Task createTask(Task task, User user);
-    Task updateTask(Task task);
+    Task updateTask(Task task, String username);
     Task completeTask(String taskId, User user);
     Task validTask(String taskId, User user);
     Task deleteTask(String taskId);

@@ -1,4 +1,5 @@
 <#assign contextPath = path />
+<#assign language = language />
 <!doctype html>
 <html>
 <head>
@@ -24,6 +25,7 @@
 <body>
 <script type="text/javascript">
     var contextPath = window.location.origin + '${contextPath}';
+    var language = '${language}';
 </script>
 <div class="container">
     <img src="/img/logo1.png"/>
@@ -68,25 +70,27 @@
                             <form name="registerForm" role="form" ng-if="registerTab" ng-controller="RegistrationCtrl">
                                 <div class="form-group">
                                     <input type="text" name="player1" tabindex="1" class="form-control" ng-model="form.player1" ng-minlength="4"
-                                           placeholder="{{'Enter player 1 name' | translate}}" required="required">
+                                           placeholder="{{'Enter player 1 name' | translate}}" required="required" ng-model-options="{ allowInvalid: true}">
                                     <user-check user="form.player1"></user-check>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="player2" tabindex="2" class="form-control" ng-model="form.player2" ng-minlength="4"
-                                           placeholder="{{'Enter player 2 name' | translate}}" required="required">
+                                           placeholder="{{'Enter player 2 name' | translate}}" required="required" ng-model-options="{ allowInvalid: true}">
                                     <user-check user="form.player2"></user-check>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="dashboard" tabindex="3" class="form-control" ng-model="form.dashboard" ng-minlength="4"
+                                    <input type="text" name="dashboard" tabindex="3" class="form-control" ng-model="form.dashboard" ng-minlength="1"
                                            placeholder="{{'Enter dashboard name' | translate}}" required="required">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" ng-model="form.password" name="password" tabindex="4"
                                            class="form-control" placeholder="{{'Password' | translate}}" ng-minlength="6" required="required">
+                                    <div ng-if="form.password.length > 0 && form.password.length < 6" class="check-info"><i class="fa fa-info"></i> <span translate>Password should be at least 6 characters long.</span></div>
                                 </div>
                                 <div class="form-group">
                                     <input type="password" ng-model="form.confirmPassword" name="confirm-password" id="confirm-password"
                                            tabindex="5" class="form-control" placeholder="{{'Confirm Password' | translate}}" required="required">
+                                    <div ng-if="form.confirmPassword.length > 0 && form.password !== form.confirmPassword " class="check-info"><i class="fa fa-info"></i> <span translate>Passwords do not match.</span></div>
                                 </div>
 
                                 <div ng-if="form.extraPlayers.length > 0">

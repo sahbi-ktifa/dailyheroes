@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Date;
 import java.util.Map;
@@ -24,20 +25,21 @@ public class ApplicationViewController {
     private String context;
 
     @RequestMapping("/login")
-    public String login(Map<String, Object> model, @RequestParam(required = false) String error) {
+    public String login(Map<String, Object> model, @RequestParam(required = false) String error, HttpServletRequest request) {
         addContext(model);
         model.put("error", error);
+        model.put("language", request.getLocale().getLanguage());
         return "login";
     }
 
     @RequestMapping(path = "/index", method = RequestMethod.GET)
-    public ModelAndView getIndexPage(Principal principal) {
-        return retrieveHomePageMav(principal);
+    public ModelAndView getIndexPage(Principal principal, HttpServletRequest request) {
+        return retrieveHomePageMav(principal, request);
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public ModelAndView getHomePage(Principal principal) {
-        return retrieveHomePageMav(principal);
+    public ModelAndView getHomePage(Principal principal, HttpServletRequest request) {
+        return retrieveHomePageMav(principal, request);
     }
 
     @RequestMapping(path = "/partials/{partial}.html", method = RequestMethod.GET)
@@ -45,9 +47,10 @@ public class ApplicationViewController {
         return "partials/" + partial;
     }
 
-    private ModelAndView retrieveHomePageMav(Principal principal) {
+    private ModelAndView retrieveHomePageMav(Principal principal, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("index", "principal", principal.getName());
         addContext(mav.getModel());
+        mav.getModel().put("language", request.getLocale().getLanguage());
         return mav;
     }
 
