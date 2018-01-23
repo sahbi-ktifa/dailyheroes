@@ -75,7 +75,7 @@ public class UserListener {
     @EventListener
     public void handleValidatedTaskEvent(ValidatedTaskEvent event) {
         User user = userService.retrieveUser(event.getTask().getAssignedTo());
-        user.setCurrentExp(user.getCurrentExp() + event.getTask().getExp());
+        user.setCurrentExp(user.getCurrentExp() + ConstantUtils.calcExpPerComplexity(user.getLevel(), event.getTask().getComplexity()));
         Notification notification = NotificationBuilder.newInstance()
                 .withMessage("has validated a task, well done:")
                 .forUser(user.getUsername())

@@ -26,7 +26,7 @@ public class TaskWebServiceController {
     private TaskService taskService;
     private UserService userService;
 
-    public enum TASK_TYPE {administrative, fun, DIY, cleaning}
+    public enum TASK_TYPE {administrative, fun, DIY, cleaning, shopping}
     public enum TASK_REDUNDANCY {daily, weekly, monthly}
 
     public TaskWebServiceController(TaskService taskService, UserService userService) {

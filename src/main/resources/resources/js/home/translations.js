@@ -51,6 +51,7 @@ angular.module("HomeApp").run(function (gettextCatalog) {
         'Received on':'Reçu le',
         'Redundancy':'Récurrence',
         'Save':'Sauvegarder',
+        'shopping':'Courses',
         'Submit':'Valider',
         'Task created successfully.':'Tâche crée avec succès.',
         'Task is done':'Tâche réalisée',

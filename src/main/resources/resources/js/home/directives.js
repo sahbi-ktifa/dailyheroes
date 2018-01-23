@@ -68,6 +68,10 @@
                         scope.icon = true;
                         scope.class = 'fa-bath';
                         break;
+                    case 'shopping':
+                        scope.icon = true;
+                        scope.class = 'fa-shopping-cart';
+                        break;
                 }
             }
         };

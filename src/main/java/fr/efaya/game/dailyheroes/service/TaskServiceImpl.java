@@ -1,11 +1,10 @@
 package fr.efaya.game.dailyheroes.service;
 
 import fr.efaya.game.dailyheroes.domain.Task;
+import fr.efaya.game.dailyheroes.domain.User;
 import fr.efaya.game.dailyheroes.event.CompletedTaskEvent;
 import fr.efaya.game.dailyheroes.event.CreatedTaskEvent;
 import fr.efaya.game.dailyheroes.event.ValidatedTaskEvent;
-import fr.efaya.game.dailyheroes.Constants;
-import fr.efaya.game.dailyheroes.domain.User;
 import fr.efaya.game.dailyheroes.repository.TaskRepository;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -21,12 +20,10 @@ import java.util.UUID;
 @Service
 public class TaskServiceImpl implements TaskService {
     private TaskRepository repository;
-    private UserService userService;
     private ApplicationEventPublisher publisher;
 
-    public TaskServiceImpl(TaskRepository repository, UserService userService, ApplicationEventPublisher publisher) {
+    public TaskServiceImpl(TaskRepository repository, ApplicationEventPublisher publisher) {
         this.repository = repository;
-        this.userService = userService;
         this.publisher = publisher;
     }
 
@@ -39,8 +36,6 @@ public class TaskServiceImpl implements TaskService {
     public Task createTask(Task task, User user) {
         task.setId(UUID.randomUUID().toString());
         task.setCreationDate(new Date());
-        Integer complexity = Constants.complexity.get(task.getComplexity()) - ((user.getLevel() - 1) * 4);
-        task.setExp(calcExpPerComplexity(user, complexity));
         task = repository.save(task);
         publisher.publishEvent(new CreatedTaskEvent(this, task, user));
         return task;
@@ -54,10 +49,7 @@ public class TaskServiceImpl implements TaskService {
         _task.setDueDate(task.getDueDate());
         _task.setCategory(task.getCategory());
         _task.setRedundancy(task.getRedundancy());
-        if (!task.getComplexity().equals(_task.getComplexity())) {
-            _task.setComplexity(task.getComplexity());
-            _task.setExp(calcExpPerComplexity(userService.retrieveUser(username), task.getComplexity()));
-        }
+        _task.setComplexity(task.getComplexity());
         return repository.save(_task);
     }
 
@@ -89,9 +81,5 @@ public class TaskServiceImpl implements TaskService {
         Task task = repository.findOne(taskId);
         repository.delete(taskId);
         return task;
-    }
-
-    private Integer calcExpPerComplexity(User user, Integer complexity) {
-        return (complexity * Constants.levelsToExp.get(user.getLevel() + 1)) / 100;
     }
 }
