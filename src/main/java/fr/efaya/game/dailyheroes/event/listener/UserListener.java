@@ -5,6 +5,8 @@ import fr.efaya.game.dailyheroes.domain.Dashboard;
 import fr.efaya.game.dailyheroes.domain.Notification;
 import fr.efaya.game.dailyheroes.domain.User;
 import fr.efaya.game.dailyheroes.domain.builder.NotificationBuilder;
+import fr.efaya.game.dailyheroes.event.AbstractEvent;
+import fr.efaya.game.dailyheroes.event.AutoValidatedTaskEvent;
 import fr.efaya.game.dailyheroes.event.CompletedTaskEvent;
 import fr.efaya.game.dailyheroes.event.CreatedTaskEvent;
 import fr.efaya.game.dailyheroes.event.LevelUpEvent;
@@ -43,39 +45,46 @@ public class UserListener {
     public void handleCreatedTaskEvent(CreatedTaskEvent event) {
         List<String> users = retrieveUsersInDashboard(event.getUser(), event.getTask().getDashboardId());
         for (String _username : users) {
-            Notification notification = NotificationBuilder.newInstance()
-                    .withMessage("has created a task, check if you can do it:")
-                    .forUser(_username)
-                    .withTask(event.getTask().getId())
-                    .from(event.getUser().getUsername())
-                    .withSuffix(event.getTask().getName())
-                    .addExtra("icon", "fa-plus-circle")
-                    .build();
-            notificationService.saveNotification(notification);
+            if (!_username.equals(event.getUser().getUsername())) {
+                Notification notification = NotificationBuilder.newInstance()
+                        .withMessage("has created a task, check if you can do it:")
+                        .forUser(_username)
+                        .withTask(event.getTask().getId())
+                        .from(event.getUser().getUsername())
+                        .withSuffix(event.getTask().getName())
+                        .addExtra("icon", "fa-plus-circle")
+                        .build();
+                notificationService.saveNotification(notification);
+            }
         }
     }
 
     @EventListener
     public void handleCompletedTaskEvent(CompletedTaskEvent event) {
-        List<String> users = retrieveUsersInDashboard(event.getUser(), event.getTask().getDashboardId());
-        for (String _username : users) {
-            Notification notification = NotificationBuilder.newInstance()
-                    .withMessage("has completed a task, please review it:")
-                    .forUser(_username)
-                    .withTask(event.getTask().getId())
-                    .requireValidation(true)
-                    .from(event.getUser().getUsername())
-                    .withSuffix(event.getTask().getName())
-                    .addExtra("icon", "fa-check-circle-o")
-                    .build();
-            notificationService.saveNotification(notification);
+        List<String> users = retrieveUsersInDashboard(event.getUsers().get(0), event.getTask().getDashboardId());
+        if (event.getUsers().stream().allMatch(u -> users.contains(u.getUsername()))) {
+            publisher.publishEvent(new AutoValidatedTaskEvent(this, event.getTask(), event.getUsers()));
+        } else {
+            for (String _username : users) {
+                if (event.getUsers().stream().noneMatch(u -> u.getUsername().equals(_username))) {
+                    Notification notification = NotificationBuilder.newInstance()
+                            .withMessage(event.getUsers().size() > 1 ? "have completed a task, please review it:" : "has completed a task, please review it:")
+                            .forUser(_username)
+                            .withTask(event.getTask().getId())
+                            .requireValidation(true)
+                            .from(event.getUsers().stream().map(User::getUsername).collect(Collectors.joining(",")))
+                            .withSuffix(event.getTask().getName())
+                            .addExtra("icon", "fa-check-circle-o")
+                            .build();
+                    notificationService.saveNotification(notification);
+                }
+            }
         }
     }
 
     @EventListener
     public void handleValidatedTaskEvent(ValidatedTaskEvent event) {
         User user = userService.retrieveUser(event.getTask().getAssignedTo());
-        user.setCurrentExp(user.getCurrentExp() + ConstantUtils.calcExpPerComplexity(user.getLevel(), event.getTask().getComplexity()));
         Notification notification = NotificationBuilder.newInstance()
                 .withMessage("has validated a task, well done:")
                 .forUser(user.getUsername())
@@ -85,6 +94,18 @@ public class UserListener {
                 .addExtra("icon", "fa-check-circle-o")
                 .build();
         notificationService.saveNotification(notification);
+        checkForLevelUp(event, user);
+    }
+
+    @EventListener
+    public void handleAutoValidatedTaskEvent(AutoValidatedTaskEvent event) {
+        for (User user : event.getUsers()) {
+            checkForLevelUp(event, user);
+        }
+    }
+
+    private void checkForLevelUp(AbstractEvent event, User user) {
+        user.setCurrentExp(user.getCurrentExp() + ConstantUtils.calcExpPerComplexity(user.getLevel(), event.getTask().getComplexity()));
         if (ConstantUtils.isLevelingUp(user.getLevel(), user.getCurrentExp())) {
             user.setLevel(user.getLevel() + 1);
             Notification _notification = NotificationBuilder.newInstance()
@@ -131,9 +152,7 @@ public class UserListener {
                 .findFirst()
                 .orElse(null);
         if (dashboard != null) {
-            return dashboard.getUsers().stream()
-                    .filter(u -> !u.equals(username))
-                    .collect(Collectors.toList());
+            return dashboard.getUsers();
         } else {
             return Collections.emptyList();
         }

@@ -3,7 +3,6 @@ angular.module("HomeApp").run(function (gettextCatalog) {
     gettextCatalog.setStrings("fr", {
         'Add a task':'Ajouter une tâche',
         'administrative':'Administratif',
-        'Are you sure that you performed this task?':'Avez-vous réellement réalisé cette tâche ?',
         'Are you sure that you want to delete this task?':'Voulez-vous vraiment supprimer cette tâche ?',
         'background':'Arrière-plan',
         'beard':'Barbe / moustache',
@@ -21,6 +20,7 @@ angular.module("HomeApp").run(function (gettextCatalog) {
         'Credits':'Crédits',
         'Daily':'Tous les jours',
         'Dashboard':'Accueil',
+        'Did someone helped you in this task?':'Quelqu\'un d\'autre a-t-il participé ?',
         'DIY':'Bricolage',
         'Due date':'Date limite',
         'Edit':'Modifier',

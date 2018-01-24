@@ -9,11 +9,11 @@ import java.util.List;
  * @author Sahbi Ktifa
  * created on 20/12/2017
  */
-public class CompletedTaskEvent extends AbstractEvent {
+public class AutoValidatedTaskEvent extends AbstractEvent {
 
     private List<User> users;
 
-    public CompletedTaskEvent(Object source, Task task, List<User> users) {
+    public AutoValidatedTaskEvent(Object source, Task task, List<User> users) {
         super(source, task, null);
         this.users = users;
     }

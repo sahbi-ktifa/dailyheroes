@@ -91,11 +91,36 @@
         }, true);
 
         $scope.validTask = function (task) {
-            if (confirm(gettextCatalog.getString('Are you sure that you performed this task?'))) {
-                Task.validTask(task.id).then(function () {
+            var modalInstance = $uibModal.open({
+                template: '<div>' +
+                '   <div class="modal-header">' +
+                '       <h3 class="modal-title" translate>Did someone helped you in this task?</h3>' +
+                '   </div>' +
+                '   <div class="modal-body">' +
+                '       <select style="width: 100%;" multiple="true" ng-model="$ctrl.achievers" ng-options="u as u for u in $ctrl._users"></select>' +
+                '   </div>' +
+                '   <div class="modal-footer">' +
+                '       <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()" translate>Submit</button>' +
+                '       <button class="btn btn-danger" type="button" ng-click="$ctrl.cancel()" translate>Cancel</button>' +
+                '   </div>' +
+                '</div>',
+                controller: ValidTaskCtrl,
+                controllerAs: '$ctrl',
+                resolve: {
+                    _users: function () {
+                        return $scope.dashboard.users.filter(function (u) {
+                            return u !== username;
+                        });
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (achievers) {
+                achievers.unshift(username);
+                Task.validTask(task.id, achievers).then(function () {
                     refreshTasks();
                 });
-            }
+            });
         };
 
         $scope.deleteTask = function (task) {
@@ -116,8 +141,8 @@
                 '       <task-form task="$ctrl.task"></task-form>' +
                 '   </div>' +
                 '   <div class="modal-footer">' +
-                '       <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()" translate>Submit</button>\n' +
-                '       <button class="btn btn-danger" type="button" ng-click="$ctrl.cancel()" translate>Cancel</button>\n' +
+                '       <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()" translate>Submit</button>' +
+                '       <button class="btn btn-danger" type="button" ng-click="$ctrl.cancel()" translate>Cancel</button>' +
                 '   </div>' +
                 '</div>',
                 controller: EditTaskCtrl,
@@ -143,6 +168,21 @@
         };
     };
     DashboardCtrl.$inject = ['$scope', 'Dashboard', 'Task', '$uibModal', 'gettextCatalog'];
+
+    var ValidTaskCtrl = function($scope, $uibModalInstance, _users) {
+        var $ctrl = this;
+        $ctrl._users = _users;
+        $ctrl.achievers = [];
+
+        $ctrl.ok = function () {
+            $uibModalInstance.close($ctrl.achievers);
+        };
+
+        $ctrl.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+        };
+    };
+    ValidTaskCtrl.$inject = ['$scope', '$uibModalInstance', '_users'];
 
     var EditTaskCtrl = function($scope, $uibModalInstance, task) {
         var $ctrl = this;
