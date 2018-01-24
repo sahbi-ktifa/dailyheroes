@@ -62,7 +62,8 @@ public class UserListener {
     @EventListener
     public void handleCompletedTaskEvent(CompletedTaskEvent event) {
         List<String> users = retrieveUsersInDashboard(event.getUsers().get(0), event.getTask().getDashboardId());
-        if (event.getUsers().stream().allMatch(u -> users.contains(u.getUsername()))) {
+        List<String> achievers = event.getUsers().stream().map(User::getUsername).collect(Collectors.toList());
+        if (users.stream().allMatch(achievers::contains)) {
             publisher.publishEvent(new AutoValidatedTaskEvent(this, event.getTask(), event.getUsers()));
         } else {
             for (String _username : users) {
