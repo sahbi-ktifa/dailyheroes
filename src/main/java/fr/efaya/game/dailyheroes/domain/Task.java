@@ -29,8 +29,6 @@ public class Task {
     @NotNull
     private STATE status = STATE.todo;
 
-    private Integer exp;
-
     @NotNull
     @Min(0)
     @Max(5)
@@ -73,14 +71,6 @@ public class Task {
 
     public void setStatus(STATE status) {
         this.status = status;
-    }
-
-    public Integer getExp() {
-        return exp;
-    }
-
-    public void setExp(Integer exp) {
-        this.exp = exp;
     }
 
     public Integer getComplexity() {

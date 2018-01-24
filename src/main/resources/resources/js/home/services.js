@@ -52,8 +52,8 @@
             return $http.delete(contextPath + '/task/' + taskId);
         };
 
-        taskService.validTask = function (taskId) {
-            return $http.post(contextPath + '/task/' + taskId + '/valid');
+        taskService.validTask = function (taskId, achievers) {
+            return $http.post(contextPath + '/task/' + taskId + '/valid?achievers=' + achievers.join());
         };
 
         taskService.confirmValidTask = function (taskId) {

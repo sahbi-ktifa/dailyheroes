@@ -1,6 +1,7 @@
 package fr.efaya.game.dailyheroes.controller.api;
 
 import fr.efaya.game.dailyheroes.domain.Task;
+import fr.efaya.game.dailyheroes.domain.User;
 import fr.efaya.game.dailyheroes.service.TaskService;
 import fr.efaya.game.dailyheroes.service.UserService;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,11 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Sahbi Ktifa
@@ -26,7 +29,7 @@ public class TaskWebServiceController {
     private TaskService taskService;
     private UserService userService;
 
-    public enum TASK_TYPE {administrative, fun, DIY, cleaning}
+    public enum TASK_TYPE {administrative, fun, DIY, cleaning, shopping}
     public enum TASK_REDUNDANCY {daily, weekly, monthly}
 
     public TaskWebServiceController(TaskService taskService, UserService userService) {
@@ -61,8 +64,9 @@ public class TaskWebServiceController {
     }
 
     @PostMapping("{taskId}/valid")
-    public Task validTask(@PathVariable("taskId") String taskId, Principal principal) {
-        return taskService.completeTask(taskId, userService.retrieveUser(principal.getName()));
+    public Task validTask(@PathVariable("taskId") String taskId, @RequestParam List<String> achievers) {
+        List<User> users = achievers.stream().map(a -> userService.retrieveUser(a)).collect(Collectors.toList());
+        return taskService.completeTask(taskId, users);
     }
 
     @PostMapping("{taskId}/validated")

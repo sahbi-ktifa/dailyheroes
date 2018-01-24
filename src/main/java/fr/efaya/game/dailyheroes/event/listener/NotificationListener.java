@@ -1,6 +1,8 @@
 package fr.efaya.game.dailyheroes.event.listener;
 
 import fr.efaya.game.dailyheroes.domain.Notification;
+import fr.efaya.game.dailyheroes.event.AbstractEvent;
+import fr.efaya.game.dailyheroes.event.AutoValidatedTaskEvent;
 import fr.efaya.game.dailyheroes.event.ValidatedTaskEvent;
 import fr.efaya.game.dailyheroes.service.NotificationService;
 import org.springframework.context.event.EventListener;
@@ -24,6 +26,15 @@ public class NotificationListener {
 
     @EventListener
     public void handleValidatedTaskEvent(ValidatedTaskEvent event) {
+        cleanNotification(event);
+    }
+
+    @EventListener
+    public void handleAutoValidatedTaskEvent(AutoValidatedTaskEvent event) {
+        cleanNotification(event);
+    }
+
+    private void cleanNotification(AbstractEvent event) {
         List<Notification> notifications = notificationService.retrieveNotificationsUsingTask(event.getTask().getId());
         if (!CollectionUtils.isEmpty(notifications)) {
             notifications.forEach(notification -> {

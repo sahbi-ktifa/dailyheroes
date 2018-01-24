@@ -4,6 +4,8 @@ import fr.efaya.game.dailyheroes.domain.Item;
 import fr.efaya.game.dailyheroes.domain.Notification;
 import fr.efaya.game.dailyheroes.domain.User;
 import fr.efaya.game.dailyheroes.domain.builder.NotificationBuilder;
+import fr.efaya.game.dailyheroes.event.AbstractEvent;
+import fr.efaya.game.dailyheroes.event.AutoValidatedTaskEvent;
 import fr.efaya.game.dailyheroes.event.CreatedUserEvent;
 import fr.efaya.game.dailyheroes.event.LevelUpEvent;
 import fr.efaya.game.dailyheroes.event.ValidatedTaskEvent;
@@ -49,16 +51,27 @@ public class LootListener {
     public void handleValidatedTaskEvent(ValidatedTaskEvent event) {
         User user = userService.retrieveUser(event.getTask().getAssignedTo());
         if (user != null) {
-            Item item = lootService.lootForTask(user, event.getTask());
-            if (item != null) {
-                Notification notification = NotificationBuilder.newInstance()
-                        .withMessage("Congratulations, you have been awarded with:")
-                        .withSuffix(item.getName())
-                        .forUser(user.getUsername())
-                        .addExtra("icon", "fa-gift")
-                        .build();
-                notificationService.saveNotification(notification);
-            }
+            lootForUser(event, user);
+        }
+    }
+
+    @EventListener
+    public void handleAutoValidatedTaskEvent(AutoValidatedTaskEvent event) {
+        for (User user : event.getUsers()) {
+            lootForUser(event, user);
+        }
+    }
+
+    private void lootForUser(AbstractEvent event, User user) {
+        Item item = lootService.lootForTask(user, event.getTask());
+        if (item != null) {
+            Notification notification = NotificationBuilder.newInstance()
+                    .withMessage("Congratulations, you have been awarded with:")
+                    .withSuffix(item.getName())
+                    .forUser(user.getUsername())
+                    .addExtra("icon", "fa-gift")
+                    .build();
+            notificationService.saveNotification(notification);
         }
     }
 

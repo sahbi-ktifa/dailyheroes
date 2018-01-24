@@ -2,6 +2,8 @@ package fr.efaya.game.dailyheroes.event.listener;
 
 import fr.efaya.game.dailyheroes.controller.api.TaskWebServiceController;
 import fr.efaya.game.dailyheroes.domain.Task;
+import fr.efaya.game.dailyheroes.event.AbstractEvent;
+import fr.efaya.game.dailyheroes.event.AutoValidatedTaskEvent;
 import fr.efaya.game.dailyheroes.event.ValidatedTaskEvent;
 import fr.efaya.game.dailyheroes.service.TaskService;
 import fr.efaya.game.dailyheroes.service.UserService;
@@ -29,6 +31,15 @@ public class TaskListener {
 
     @EventListener
     public void handleValidatedTaskEvent(ValidatedTaskEvent event) {
+        repeatTask(event);
+    }
+
+    @EventListener
+    public void handleAutoValidatedTaskEvent(AutoValidatedTaskEvent event) {
+        repeatTask(event);
+    }
+
+    private void repeatTask(AbstractEvent event) {
         if (event.getTask().getDueDate() != null && event.getTask().getRedundancy() != null) {
             Task task = new Task();
             task.setRedundancy(event.getTask().getRedundancy());
