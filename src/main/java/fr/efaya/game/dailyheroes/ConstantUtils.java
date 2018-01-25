@@ -15,6 +15,6 @@ public class ConstantUtils {
     }
 
     public static Integer calcExpPerComplexity(Integer level, Integer complexity) {
-        return (Constants.complexity.get(complexity) * Constants.levelsToExp.get(level + 1)) / 100;
+        return (Constants.complexity.get(complexity) * (Constants.levelsToExp.get(level + 1) - Constants.levelsToExp.get(level))) / 100;
     }
 }

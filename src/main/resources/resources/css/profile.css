@@ -10,6 +10,23 @@
     list-style: none;
     padding-left: 0;
 }
+.profile-container .reward-container ul li {
+    clear: both;
+    padding-top: 5px;
+}
+.profile-container .reward-container ul li > div {
+    padding: 0;
+}
+.profile-container .reward-container ul li .summary {
+    max-width: 75%;
+    float: left;
+}
+.profile-container .reward-container ul li .summary > span {
+    margin-left: 5px;
+}
+.profile-container .reward-container ul li .actions {
+    float: right;
+}
 .profile-container .reward-container ul li .reward {
     color: #d9534f;
 }
@@ -100,4 +117,8 @@
     .profile-container .reward-container ul {
         padding-left: initial;
     }
+}
+.avatar-displayer > div {
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -49,13 +49,13 @@ public class TaskListener {
             task.setCategory(event.getTask().getCategory());
             task.setComplexity(event.getTask().getComplexity());
             task.setDashboardId(event.getTask().getDashboardId());
-            task.setDueDate(generateDueDate(event.getTask().getRedundancy(), event.getTask().getDueDate()));
+            task.setDueDate(generateDueDate(event.getTask().getRedundancy()));
             taskService.createTask(task, userService.retrieveUser(event.getTask().getAssignedTo()));
         }
     }
 
-    private Date generateDueDate(TaskWebServiceController.TASK_REDUNDANCY redundancy, Date dueDate) {
-        LocalDateTime localDateTime = dueDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    private Date generateDueDate(TaskWebServiceController.TASK_REDUNDANCY redundancy) {
+        LocalDateTime localDateTime = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         switch (redundancy) {
             case daily:
                 localDateTime = localDateTime.plusDays(1);
