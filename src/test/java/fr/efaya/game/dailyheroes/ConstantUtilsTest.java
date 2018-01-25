@@ -22,21 +22,21 @@ public class ConstantUtilsTest {
 
     @Test
     public void checkExpGiven_Level2() {
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 0), IsEqual.equalTo(10));
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 1), IsEqual.equalTo(20));
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 2), IsEqual.equalTo(40));
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 3), IsEqual.equalTo(60));
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 4), IsEqual.equalTo(80));
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 5), IsEqual.equalTo(90));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 0), IsEqual.equalTo(5));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 1), IsEqual.equalTo(10));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 2), IsEqual.equalTo(20));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 3), IsEqual.equalTo(30));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 4), IsEqual.equalTo(40));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(2, 5), IsEqual.equalTo(45));
     }
 
     @Test
     public void checkExpGiven_Level3() {
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 0), IsEqual.equalTo(15));
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 1), IsEqual.equalTo(31));
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 2), IsEqual.equalTo(62));
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 3), IsEqual.equalTo(93));
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 4), IsEqual.equalTo(124));
-        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 5), IsEqual.equalTo(139));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 0), IsEqual.equalTo(5));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 1), IsEqual.equalTo(11));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 2), IsEqual.equalTo(22));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 3), IsEqual.equalTo(33));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 4), IsEqual.equalTo(44));
+        Assert.assertThat(ConstantUtils.calcExpPerComplexity(3, 5), IsEqual.equalTo(49));
     }
 }

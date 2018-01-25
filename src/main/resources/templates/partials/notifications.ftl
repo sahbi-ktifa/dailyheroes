@@ -15,7 +15,7 @@
                     <span> - </span>
                     <b ng-if="notification.from">{{notification.from}} </b>
                     <span>{{notification.message | translate}}</span>
-                    <i ng-if="notification.suffix"> {{notification.suffix}}!</i>
+                    <i ng-if="notification.suffix"> {{notification.suffix | translate}}!</i>
                 </div>
                 <div class="validation col-md-2" ng-if="notification.requireValidation === true && notification.validated !== true">
                     <button ng-if="notification.taskId" type="button" class="btn btn-primary" ng-click="validTask(notification)">

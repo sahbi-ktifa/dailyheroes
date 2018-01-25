@@ -11,7 +11,7 @@
             <i ng-if="favoriteDashboard && favoriteDashboard !== selectedDashboard" title="{{'Choose as my favorite dashboard' | translate}}" class="fa fa-star-o" ng-click="favoriteMe()"></i>
         </h3>
         <ul>
-            <li ng-repeat="user in dashboard.users | orderBy">
+            <li ng-repeat="user in dashboard.users | orderBy:'-currentExp'">
                 <user-presentation username="{{user}}"></user-presentation>
             </li>
         </ul>
@@ -20,21 +20,21 @@
         <h3 translate>Tasks list</h3>
         <ul>
             <li ng-repeat="task in tasks">
-                <div class="col-md-5">
+                <div class="col-md-5 summary">
                     <category-icon ref="task.category"></category-icon>
+                    <span uib-rating class="rating" ng-model="task.complexity" read-only="true" aria-labelledby="default-rating"></span>
+                    <span ng-if="task.dueDate"> ({{task.dueDate | date:'dd/MM/yy'}}) <i ng-if="task.redundancy" class="fa fa-refresh"></i></span><br/>
                     <span>{{task.name}}</span>
-                    <span uib-rating ng-model="task.complexity" read-only="true" aria-labelledby="default-rating"></span>
-                    <span ng-if="task.dueDate"> ({{task.dueDate | date:'dd/MM/yy'}}) <i ng-if="task.redundancy" class="fa fa-refresh"></i></span>
                 </div>
                 <div class="col-md-4">
                     <span class="notes">{{task.notes}}</span>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 actions">
                     <button type="button" class="btn btn-primary" ng-click="validTask(task)">
-                        <i class="fa fa-check mr-2"></i> <span translate>I did it</span>
+                        <i class="fa fa-check mr-2"></i>
                     </button>
                     <button type="button" class="btn btn-default" ng-click="editTask(task)">
-                        <i class="fa fa-pencil mr-2"></i> <span translate>Edit</span>
+                        <i class="fa fa-pencil mr-2"></i>
                     </button>
                     <button type="button" class="btn btn-danger" ng-click="deleteTask(task)">
                         <i class="fa fa-remove mr-2"></i>

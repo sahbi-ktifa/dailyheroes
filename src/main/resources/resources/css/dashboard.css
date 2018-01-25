@@ -25,17 +25,34 @@
 .container .dashboard-tasks .notes {
     font-style: italic;
 }
+.container .dashboard-tasks ul li {
+    clear: both;
+    padding-top: 10px;
+}
 .container .dashboard-tasks ul li > div {
     padding: 0;
 }
 .container .dashboard-tasks ul li div span i.fa {
     color: #60adf1;
 }
+.container .dashboard-tasks ul li div span i.fa-refresh {
+    color: initial;
+}
 .container .dashboard-tasks ul li div.col-md-4 {
     display: none;
 }
-.container .dashboard-tasks ul li div.col-md-3 {
-    text-align: right;
+.container .dashboard-tasks ul li div.summary {
+    max-width: 60%;
+    float: left;
+}
+.container .dashboard-tasks ul li div.summary .rating {
+    margin-left: 5px;
+}
+.container .dashboard-tasks ul li div.summary .fa-refresh {
+    margin-left: 5px;
+}
+.container .dashboard-tasks ul li div.actions {
+    float: right;
 }
 .container .dashboard-users ul {
     list-style-type:none;

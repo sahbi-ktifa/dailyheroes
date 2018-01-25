@@ -8,7 +8,7 @@
             '       <avatar-displayer avatar-config="refUser.avatar"></avatar-displayer>' +
             '   </div>' +
             '   <div class="user-info">' +
-            '       <span>{{refUser.username}}</span>' +
+            '       <span style="font-weight: bold;">{{refUser.username}}</span>' +
             '       <span> - </span>' +
             '       <span translate>Level</span><span> {{refUser.level}}</span>' +
             '   </div>' +
