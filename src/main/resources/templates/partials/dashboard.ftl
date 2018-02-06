@@ -13,6 +13,7 @@
         <ul>
             <li ng-repeat="user in dashboard.users">
                 <user-presentation username="{{user}}"></user-presentation>
+                <reward-alerter ng-if="user != username" username="{{user}}"></reward-alerter>
             </li>
         </ul>
     </div>
@@ -20,8 +21,7 @@
         <h3 translate>Tasks list</h3>
         <div class="filter-container">
             <i class="fa fa-filter fa-lg" ng-click="showFilter = !showFilter" ng-class="{'active':filtered.length > 0}"></i>
-            <select ng-show="showFilter" class="form-control" ng-model="filtered" ng-options="c as c | translate for c in categories" >
-            </select>
+            <select ng-show="showFilter" class="form-control" ng-model="filtered" ng-options="c as c | translate for c in categories"></select>
         </div>
         <ul>
             <li ng-repeat="task in tasks | filter:{category:filtered} | orderBy:'dueDate'" ng-class="{'delayed':isDelayed(task)}">
