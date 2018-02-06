@@ -127,3 +127,21 @@ body {
     cursor: pointer;
     text-align: left;
 }
+.info-container > div {
+    height: 70px;
+    padding: 0;
+    margin-bottom: 15px;
+}
+.info-container .fa-tasks {
+    color: #31708f;
+}
+.info-container .fa-gift, .info-container .fa-play {
+    color: #d9534f;
+}
+.info-container .fa-user {
+    color: #42a8a9;
+}
+.info-container > div > div.col-xs-10 {
+    text-align: left;
+    font-weight: bold;
+}
