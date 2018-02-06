@@ -11,15 +11,20 @@
             <i ng-if="favoriteDashboard && favoriteDashboard !== selectedDashboard" title="{{'Choose as my favorite dashboard' | translate}}" class="fa fa-star-o" ng-click="favoriteMe()"></i>
         </h3>
         <ul>
-            <li ng-repeat="user in dashboard.users | orderBy:'-currentExp'">
+            <li ng-repeat="user in dashboard.users">
                 <user-presentation username="{{user}}"></user-presentation>
             </li>
         </ul>
     </div>
     <div class="dashboard-tasks" ng-if="!loading" ng-swipe-left="goToNext()" ng-swipe-right="goToPrevious()">
         <h3 translate>Tasks list</h3>
+        <div class="filter-container">
+            <i class="fa fa-filter fa-lg" ng-click="showFilter = !showFilter" ng-class="{'active':filtered.length > 0}"></i>
+            <select ng-show="showFilter" class="form-control" ng-model="filtered" ng-options="c as c | translate for c in categories" >
+            </select>
+        </div>
         <ul>
-            <li ng-repeat="task in tasks">
+            <li ng-repeat="task in tasks | filter:{category:filtered} | orderBy:'dueDate'" ng-class="{'delayed':isDelayed(task)}">
                 <div class="col-md-5 summary">
                     <category-icon ref="task.category"></category-icon>
                     <span uib-rating class="rating" ng-model="task.complexity" read-only="true" aria-labelledby="default-rating"></span>
@@ -41,7 +46,7 @@
                     </button>
                 </div>
             </li>
-            <li ng-if="tasks.length === 0" translate>No tasks available. Add one!</li>
+            <li ng-if="tasks.length === 0 || (tasks | filter:{category:filtered}).length === 0" translate>No tasks available. Add one!</li>
         </ul>
     </div>
 </div>
