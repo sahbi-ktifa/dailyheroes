@@ -45,7 +45,7 @@
                         <div class="col-xs-4" ng-click="selectedTab = 'register'">
                             <a href="#" ng-class="{'active': selectedTab === 'register'}" translate>Create a game</a>
                         </div>
-                        <div class="col-xs-4" ng-click="selectedTab = 'infos'">
+                        <div class="col-xs-4" ng-click="selectedTab = 'infos'" style="padding: 0;">
                             <a href="#" ng-class="{'active': selectedTab === 'infos'}" translate>How does it work?</a>
                         </div>
                     </div>
