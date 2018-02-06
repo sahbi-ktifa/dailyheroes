@@ -5,7 +5,7 @@
     </div>
     <div class="form-group">
         <label for="category" class="col-sm-3 control-label" translate>Category</label>
-        <select id="category" class="form-control" ng-model="task.category" ng-options="c as c | translate for c in categories">
+        <select id="category" class="form-control" ng-model="task.category" ng-options="c as c | translate for c in categories" required="required">
             <option value=""></option>
         </select>
     </div>

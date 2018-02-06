@@ -23,6 +23,65 @@
     };
     userPresentation.$inject = ['User'];
 
+    var rewardAlerter = function (Loot, $uibModal) {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '<div class="reward-alerter">' +
+            '   <div ng-if="pendingRewards.length > 0" ng-click="displayUserRewards()">' +
+            '       <i class="fa fa-gift fa-2x" style="color: #d9534f;"></i>' +
+            '   </div>' +
+            '</div>',
+            link: function (scope, element, attrs) {
+                Loot.retrieveLoots(attrs.username).then(function (res) {
+                    scope.pendingRewards = res.data.filter(function (loot) {
+                        return loot.repeatable === true && loot.received !== true;
+                    });
+                });
+
+                scope.displayUserRewards = function () {
+                    $uibModal.open({
+                        template: '<div>' +
+                        '   <div class="modal-header">' +
+                        '       <h3 class="modal-title" translate>Pending rewards</h3>' +
+                        '   </div>' +
+                        '   <div class="modal-body">' +
+                        '       <div>{{$ctrl.user}} <span translate>is waiting for {{$ctrl.pendingRewards.length}} reward(s):</span></div>' +
+                        '       <ul>' +
+                        '           <li ng-repeat="reward in $ctrl.pendingRewards | orderBy:\'-rewardDate\'">' +
+                        '               <span>{{reward.itemName | translate}}</span>' +
+                        '           </li>' +
+                        '       </ul>' +
+                        '   </div>' +
+                        '   <div class="modal-footer">' +
+                        '       <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()" translate>Close</button>' +
+                        '   </div>' +
+                        '</div>',
+                        controller: function ($scope, $uibModalInstance, user, pendingRewards) {
+                            var $ctrl = this;
+                            $ctrl.user = user;
+                            $ctrl.pendingRewards = pendingRewards;
+
+                            $ctrl.ok = function () {
+                                $uibModalInstance.close();
+                            };
+                        },
+                        controllerAs: '$ctrl',
+                        resolve: {
+                            user: function () {
+                                return attrs.username;
+                            },
+                            pendingRewards: function () {
+                                return scope.pendingRewards;
+                            }
+                        }
+                    });
+                };
+            }
+        };
+    };
+    rewardAlerter.$inject = ['Loot', '$uibModal'];
+
     var taskForm = function (Task) {
         return {
             restrict: 'E',
@@ -240,6 +299,7 @@
     version.$inject = ['$http'];
 
     angular.module("HomeApp.directives").directive("userPresentation", userPresentation);
+    angular.module("HomeApp.directives").directive("rewardAlerter", rewardAlerter);
     angular.module("HomeApp.directives").directive("taskForm", taskForm);
     angular.module("HomeApp.directives").directive("categoryIcon", categoryIcon);
     angular.module("HomeApp.directives").directive("avatarItemSelector", avatarItemSelector);

@@ -2,7 +2,12 @@
     var LoginController = function($scope) {
         $scope.error = undefined;
         $scope.success = undefined;
-        $scope.registerTab = false;
+        if (localStorage.getItem('first-visit')) {
+            $scope.selectedTab = 'login';
+        } else {
+            $scope.selectedTab = 'infos';
+            localStorage.setItem('first-visit', String(new Date()))
+        }
 
         $scope.clearSuccess = function () {
             $scope.success = undefined;
@@ -14,7 +19,7 @@
 
         $scope.$on('successOccurred', function (event, arg) {
             $scope.success = arg;
-            $scope.registerTab = false;
+            $scope.selectedTab = 'login';
         });
 
         $scope.$on('errorOccurred', function (event, arg) {

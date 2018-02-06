@@ -39,11 +39,14 @@
             <div class="panel panel-login">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-xs-6" ng-click="registerTab = false">
-                            <a href="#" ng-class="{'active': !registerTab  || registerTab === false}" translate>Join game</a>
+                        <div class="col-xs-4" ng-click="selectedTab = 'login'">
+                            <a href="#" ng-class="{'active': selectedTab === 'login'}" translate>Join game</a>
                         </div>
-                        <div class="col-xs-6" ng-click="registerTab = true">
-                            <a href="#" ng-class="{'active': registerTab === true}" translate>Create a game</a>
+                        <div class="col-xs-4" ng-click="selectedTab = 'register'">
+                            <a href="#" ng-class="{'active': selectedTab === 'register'}" translate>Create a game</a>
+                        </div>
+                        <div class="col-xs-4" ng-click="selectedTab = 'infos'" style="padding: 0;">
+                            <a href="#" ng-class="{'active': selectedTab === 'infos'}" translate>How does it work?</a>
                         </div>
                     </div>
                     <hr>
@@ -51,7 +54,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form name="loginForm" role="form" action="/login" method="post" ng-if="!registerTab">
+                            <form name="loginForm" role="form" action="/login" method="post" ng-if="selectedTab === 'login'">
                                 <div class="form-group">
                                     <input type="text" name="username" tabindex="1" class="form-control" placeholder="{{'Username' | translate}}" required="required">
                                 </div>
@@ -67,7 +70,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <form name="registerForm" role="form" ng-if="registerTab" ng-controller="RegistrationCtrl">
+                            <form name="registerForm" role="form" ng-if="selectedTab === 'register'" ng-controller="RegistrationCtrl">
                                 <div class="form-group">
                                     <input type="text" name="player1" tabindex="1" class="form-control" ng-model="form.player1" ng-minlength="4"
                                            placeholder="{{'Enter player 1 name' | translate}}" required="required" ng-model-options="{ allowInvalid: true}">
@@ -110,6 +113,40 @@
                                     </div>
                                 </div>
                             </form>
+                            <div ng-if="selectedTab === 'infos'" class="info-container">
+                                <div class="col-md-12">
+                                    <div class="col-xs-2">
+                                        <i class="fa-3x fa fa-tasks"></i>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <span translate>DailyHeroes gives you the opportunity to do all your common tasks and add fun to it!</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-xs-10">
+                                        <span translate>Receive rewards and gifts by other players as you are leveling up.</span>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <i class="fa-3x fa fa-gift"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-xs-2">
+                                        <i class="fa-3x fa fa-user"></i>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <span translate>Multiplayer todolist RPG where you can customize your avatar using unique items.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-xs-10">
+                                        <span translate>Play with your friends, your colleagues or with your family!</span>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <i class="fa-3x fa fa-play"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

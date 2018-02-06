@@ -67,7 +67,12 @@
 
     var DashboardCtrl = function($scope, Dashboard, Task, $uibModal, gettextCatalog) {
         $scope.loading = true;
+        $scope.filtered = '';
         $scope.tasks = [];
+        Task.retrieveTaskCategories().then(function (res) {
+            $scope.categories = res.data;
+            $scope.categories.unshift('')
+        });
         var refreshTasks = function () {
             Task.retrieveTasks($scope.dashboard.id).then(function (response) {
                 $scope.tasks = response.data;
@@ -165,6 +170,10 @@
             Dashboard.favoriteMe($scope.selectedDashboard).then(function() {
                 $scope.favoriteDashboard = $scope.selectedDashboard;
             });
+        };
+
+        $scope.isDelayed = function(task) {
+            return task.dueDate && task.dueDate < new Date().getTime();
         };
     };
     DashboardCtrl.$inject = ['$scope', 'Dashboard', 'Task', '$uibModal', 'gettextCatalog'];
