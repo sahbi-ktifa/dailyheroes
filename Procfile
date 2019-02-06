@@ -1,0 +1,1 @@
+web: java -jar build/libs/dailyheroes-1.0.0.RC3.jar
