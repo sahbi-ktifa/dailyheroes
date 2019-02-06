@@ -10,7 +10,14 @@
 
 Use `java -jar build/libs/dailyheroes-0.0.1-SNAPSHOT.jar` to start or `gradlew bootRun`
 
-## Deploy to Pivotal CloudFoundry
+## Deployment with Heroku
+
+Synced automatically with GitHub.
+git push heroku master (manual deploy)
+
+Application available here: https://daily-heroes.herokuapp.com/#!/
+
+## DEPRECATED - Deploy to Pivotal CloudFoundry
 
 cf login
 cf push dailyheroes(-dev) -p build/libs/***.jar
