@@ -1,1 +1,1 @@
-web: java -jar build/libs/dailyheroes-1.0.0.RC3.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/dailyheroes-1.0.0.RC3.jar
