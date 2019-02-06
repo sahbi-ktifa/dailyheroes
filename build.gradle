@@ -14,8 +14,12 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
+jar {
+    baseName = 'dailyheroes'
+    version = '1.0.0.RC3'
+}
+
 group = 'fr.efaya.game'
-version = '1.0.0.RC3'
 sourceCompatibility = 1.8
 
 repositories {
